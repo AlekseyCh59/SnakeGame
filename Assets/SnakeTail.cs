@@ -45,8 +45,10 @@ public class SnakeTail : MonoBehaviour
 
     public void RemoveCircle()
     {
+        if (snakeCircles.Count > 2) { 
         Destroy(snakeCircles[0].gameObject);
         snakeCircles.RemoveAt(0);
         positions.RemoveAt(1);
+    }
     }
 }

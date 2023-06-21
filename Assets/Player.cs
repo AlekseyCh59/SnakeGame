@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     float level = 1;
     float experiens = 0;
     float bonusExp = 0;
-    float speed = 1;
+    public float speed = 2;
     float defence = 0;
     float armor = 0;
     int money = 0;

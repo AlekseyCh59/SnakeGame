@@ -10,15 +10,15 @@ public class SnakeMovement : MonoBehaviour
 
 
     private SnakeTail componentSnakeTail;
+    private Player playerChar;
 
     private Vector2 touchLastPos;
     private float sidewaysSpeed;
 
     private void Start()
     {
-
+        playerChar = GetComponent<Player>();
         componentSnakeTail = GetComponent<SnakeTail>();
-
         for (int i = 0; i < Length; i++) componentSnakeTail.AddCircle();
     }
 
@@ -40,11 +40,22 @@ public class SnakeMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-       if (Input.GetKey(KeyCode.UpArrow))
-        {
-            Sensitivity = ForwardSpeed * Time.deltaTime;
-            transform.Translate(0, Sensitivity, 0);
-        }
+        if (Input.anyKey)
+            Control(Input.inputString);
+
+
 
     }
+
+    private void Control(string key)
+    {
+
+        Debug.Log(key);
+        if (key== "UpArrow")
+        {
+            Sensitivity = playerChar.speed * Time.deltaTime;
+            transform.Translate(0, Sensitivity, 0);
+        }
+    }
+
 }
