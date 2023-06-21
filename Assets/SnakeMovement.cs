@@ -9,8 +9,6 @@ public class SnakeMovement : MonoBehaviour
     public int Length = 1;
 
 
-    private Camera mainCamera;
-
     private SnakeTail componentSnakeTail;
 
     private Vector2 touchLastPos;
@@ -18,7 +16,7 @@ public class SnakeMovement : MonoBehaviour
 
     private void Start()
     {
-        mainCamera = Camera.main;
+
         componentSnakeTail = GetComponent<SnakeTail>();
 
         for (int i = 0; i < Length; i++) componentSnakeTail.AddCircle();
@@ -26,22 +24,7 @@ public class SnakeMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            touchLastPos = mainCamera.ScreenToViewportPoint(Input.mousePosition);
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            sidewaysSpeed = 0;
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            Vector2 delta = (Vector2)mainCamera.ScreenToViewportPoint(Input.mousePosition) - touchLastPos;
-            sidewaysSpeed += delta.x * Sensitivity;
-            touchLastPos = mainCamera.ScreenToViewportPoint(Input.mousePosition);
-        }
-
-
+       
         if (Input.GetKeyDown(KeyCode.A))
         {
             Length++;
@@ -52,13 +35,16 @@ public class SnakeMovement : MonoBehaviour
             Length--;
             componentSnakeTail.RemoveCircle();
         }
+
     }
 
     private void FixedUpdate()
     {
-        if (Mathf.Abs(sidewaysSpeed) > 4) sidewaysSpeed = 4 * Mathf.Sign(sidewaysSpeed);
+       if (Input.GetKey(KeyCode.UpArrow))
+        {
+            Sensitivity = ForwardSpeed * Time.deltaTime;
+            transform.Translate(0, Sensitivity, 0);
+        }
 
-
-        sidewaysSpeed = 0;
     }
 }
