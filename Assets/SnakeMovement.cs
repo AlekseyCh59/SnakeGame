@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class SnakeMovement : MonoBehaviour
 {
-    public float ForwardSpeed = 5;
-    public float Sensitivity = 10;
+    float currentSpeed;
 
     public int Length = 1;
 
@@ -40,22 +39,25 @@ public class SnakeMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.anyKey)
-            Control(Input.inputString);
-
+       
 
 
     }
 
     private void Control(string key)
     {
-
+        currentSpeed = playerChar.speed * Time.deltaTime;
+        
         Debug.Log(key);
-        if (key== "UpArrow")
+            switch(key)
         {
-            Sensitivity = playerChar.speed * Time.deltaTime;
-            transform.Translate(0, Sensitivity, 0);
+            case "up": transform.Translate(0, currentSpeed, 0); break;
+            case "down": transform.Translate(0, -currentSpeed, 0); break;
+            case "right": transform.Translate(currentSpeed, 0, 0); break;
+            case "left": transform.Translate(-currentSpeed, 0, 0); break;
+
         }
+            
     }
 
 }
