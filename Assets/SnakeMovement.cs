@@ -44,20 +44,5 @@ public class SnakeMovement : MonoBehaviour
 
     }
 
-    private void Control(string key)
-    {
-        currentSpeed = playerChar.speed * Time.deltaTime;
-        
-        Debug.Log(key);
-            switch(key)
-        {
-            case "up": transform.Translate(0, currentSpeed, 0); break;
-            case "down": transform.Translate(0, -currentSpeed, 0); break;
-            case "right": transform.Translate(currentSpeed, 0, 0); break;
-            case "left": transform.Translate(-currentSpeed, 0, 0); break;
-
-        }
-            
-    }
 
 }
