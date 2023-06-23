@@ -1,66 +1,34 @@
 using TMPro;
 using UnityEngine;
 
-public class move : MonoBehaviour
+public class Move : Player
 {
-    float currentSpeed;
-    private Player playerChar;
     Vector3 mover = new Vector3(0, 0, 0);
     string key;
+    Rigidbody2D PhisycsBody;
     private void Start()
     {
-        playerChar = GetComponent<Player>();
-            }
-
-
-    private void FixedUpdate()
-    {
-
-
-
-        if (Input.GetAxis("Vertical") > 0.1 & key != "down")
-        {
-            key = "up";
-            Control(key);
-        }
-        else if (Input.GetAxis("Vertical") < -0.1 &key !="up")
-        { key = "down";
-            Control(key);
-        }
-          
-        if (Input.GetAxis("Horizontal") > 0.1& key!="left")
-        {
-            key = "right";
-            Control(key);
-        }
-
-        else if (Input.GetAxis("Horizontal") < -0.1& key!="right")
-        {
-            key = "left";
-            Control(key);
-        }
-
-
-
-        transform.Translate(mover);
+        PhisycsBody= GetComponent<Rigidbody2D>();
     }
 
-    private void Control(string key)
+    private void Update()
     {
-        currentSpeed = playerChar.speed * Time.deltaTime;
-   
-        
+        if (Input.GetAxis("Vertical") > 0.1 & key != "down")
+            key = "up";
+        else if (Input.GetAxis("Vertical") < -0.1 & key != "up")
+            key = "down";
+        if (Input.GetAxis("Horizontal") > 0.1 & key != "left")
+            key = "right";
+        else if (Input.GetAxis("Horizontal") < -0.1 & key != "right")
+            key = "left";
+
         switch (key)
         {
-            case "up": mover= new Vector3(0, currentSpeed, 0); break;
-            case "down": mover = new Vector3(0, -currentSpeed, 0); break;
-            case "right": mover = new Vector3(currentSpeed, 0, 0); break;
-            case "left": mover = new Vector3(-currentSpeed, 0, 0); break;
+            case "up": PhisycsBody.MovePosition(transform.position + Vector3.up * Speed * Time.deltaTime); break;
+            case "down": PhisycsBody.MovePosition(transform.position + Vector3.down * Speed * Time.deltaTime); break;
+            case "right": PhisycsBody.MovePosition(transform.position + Vector3.right * Speed * Time.deltaTime); break;
+            case "left": PhisycsBody.MovePosition(transform.position + Vector3.left * Speed * Time.deltaTime); break;
 
         }
-        
-        
-
     }
-
 }

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class SnakeTail : MonoBehaviour
+public class SnakeTail : Player
 {
-    public Transform SnakeHead;
-    public float CircleDiameter;
-
+    [SerializeField]private Transform SnakeHead;
+    [SerializeField] private float CircleDiameter;
+    [SerializeField] private int SnakeLength=3;
     private List<Transform> snakeCircles = new List<Transform>();
     private List<Vector2> positions = new List<Vector2>();
 
@@ -15,6 +17,10 @@ public class SnakeTail : MonoBehaviour
         positions.Add(SnakeHead.position);
     }
 
+    private void Start()
+    {
+        for (int i = 0; i < SnakeLength; i++) AddCircle();
+    }
     private void Update()
     {
         float distance = ((Vector2)SnakeHead.position - positions[0]).magnitude;
@@ -39,6 +45,10 @@ public class SnakeTail : MonoBehaviour
     public void AddCircle()
     {
         Transform circle = Instantiate(SnakeHead, positions[positions.Count - 1], Quaternion.identity, transform);
+        circle.GetComponent<Move>().enabled = false;
+        circle.GetComponent<Player>().enabled = false;
+        circle.GetComponent<Eating>().enabled = false;
+        circle.GetComponent<CircleCollider2D>().isTrigger = true;
         snakeCircles.Add(circle);
         positions.Add(circle.position);
     }
