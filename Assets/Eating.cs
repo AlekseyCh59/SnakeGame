@@ -16,7 +16,6 @@ public class Eating : MonoBehaviour
                 //Player.ReceiveCoin(); Научить работаь с функцией
                 break;            
             case "Exp": Destroy(collision.gameObject);
-                Debug.Log("HHH");
                 //Player.ReceiveExp(); Научить работаь с функцией
                 break;
         }
