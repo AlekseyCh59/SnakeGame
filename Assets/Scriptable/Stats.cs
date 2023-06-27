@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "Stats", menuName = "MyScriptable/MyStats", order = 51)]
 public class Stats : ScriptableObject
 {
 
@@ -18,5 +18,7 @@ public class Stats : ScriptableObject
     public float armor = 0;
     public int money = 0;
 
-    public
+    public Sprite sprite;
+
+
 }

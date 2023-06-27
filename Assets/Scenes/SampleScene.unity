@@ -1802,7 +1802,7 @@ MonoBehaviour:
   level: 1
   experiens: 0
   bonusExp: 0
-  Speed: 100
+  Speed: 1
   MagicResistance: 0
   PhisicResistance: 0
   armor: 0
