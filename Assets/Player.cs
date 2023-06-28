@@ -1,49 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] protected float healthPoints = 100f;
-    [SerializeField] protected float maxhp = 100f;
-    [SerializeField] protected float regeneration = 0;
-    [SerializeField] protected float level = 1;
-    [SerializeField] protected float experiens = 0;
-    [SerializeField] protected float bonusExp = 0;
-    [SerializeField] protected float Speed = 2;
-    [SerializeField] protected float MagicResistance = 0;
-    [SerializeField] protected float PhisicResistance = 0;
-    [SerializeField] protected float armor = 0;
-    [SerializeField] protected int money = 0;
-
-
-
-
-
-
+    public PlayerStats stats;
+    protected float currentHP;
+    private void Start()
+    {
+        currentHP = stats.maxhp-10;
+}
     protected void ReceiveDamage(float forceDamage, float magicDamage)
     { 
-        float damage = magicDamage * (1 - MagicResistance) - armor + forceDamage * (1 - PhisicResistance) - armor;
+        float damage = magicDamage * (1 - stats.MagicResistance) - stats.armor + forceDamage * (1 - stats.PhisicResistance) - stats.armor;
         if (damage > 0)
-            healthPoints = - damage;
-        if (healthPoints <= 0)
+            currentHP = - damage;
+        if (currentHP <= 0)
             Death();
     }
-    protected void Healing(float heal)
+    public void Healing(int heal)
     {
-        if (maxhp > healthPoints)
+        if (stats.maxhp > currentHP)
         {
-            healthPoints = +heal;
-            if (healthPoints > maxhp)
-                healthPoints = maxhp;
+            currentHP += heal;
+            if (currentHP > stats.maxhp)
+                currentHP = stats.maxhp;
         }
     }    
     protected void Regeneration()
     {
-        if (maxhp > healthPoints)
+        if (stats.maxhp > currentHP)
         {
-            healthPoints = +regeneration;
+            currentHP = +stats.regeneration;
         }
     }
 
@@ -54,22 +42,22 @@ public class Player : MonoBehaviour
 
     protected void ReceiveExp(float exp, float expForLvl)
     {
-        experiens = +exp * bonusExp;
-        if (experiens >= expForLvl)
+        stats.experiens = +exp * stats.bonusExp;
+        if (stats.experiens >= expForLvl)
         {
             LevelUp();
-            experiens= - expForLvl;
+            stats.experiens = - expForLvl;
         }
     }    
     protected void ReceiveCoin()
     {
-        money = +1;
+        stats.money = +1;
     }
 
 
     protected void LevelUp()
     {
-        level++;
+        stats.level++;
         ChooseWeapon();
         //Choose your bonus function
     }
@@ -80,4 +68,6 @@ public class Player : MonoBehaviour
         //how can we get array here?
 
     }
+
+    
 }

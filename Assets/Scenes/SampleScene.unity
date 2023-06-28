@@ -135,19 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544d18e19961cf341b033af265121efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 100
-  maxhp: 100
-  regeneration: 0
-  level: 1
-  experiens: 0
-  bonusExp: 0
-  Speed: 50
-  MagicResistance: 0
-  PhisicResistance: 0
-  armor: 0
-  money: 0
+  stats: {fileID: 11400000, guid: 4519b8b2dfc7eee4086be6fc6a14308c, type: 2}
   SnakeHead: {fileID: 8660868214004042198}
-  CircleDiameter: 0.5
+  CircleDiameter: 0.7
   SnakeLength: 10
 --- !u!114 &75648970
 MonoBehaviour:
@@ -161,17 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7ed11cb07a78143b3bf61e38e71ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 100
-  maxhp: 100
-  regeneration: 0
-  level: 1
-  experiens: 0
-  bonusExp: 0
-  Speed: 2
-  MagicResistance: 0
-  PhisicResistance: 0
-  armor: 0
-  money: 0
+  stats: {fileID: 11400000, guid: 4519b8b2dfc7eee4086be6fc6a14308c, type: 2}
 --- !u!1 &92017016
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +328,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -776,6 +756,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &539293694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 539293696}
+  - component: {fileID: 539293695}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &539293695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539293694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f7a35328214754489a774c939da793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: {fileID: 1049092116}
+  money: {fileID: 318169481}
+  stats: {fileID: 11400000, guid: 4519b8b2dfc7eee4086be6fc6a14308c, type: 2}
+--- !u!4 &539293696
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539293694}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &607295981
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,9 +882,9 @@ RectTransform:
   m_Father: {fileID: 1956701921}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 592, y: -30}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -100, y: -30}
   m_SizeDelta: {x: 200, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &696839808
@@ -944,7 +971,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1493,7 +1520,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1507,7 +1534,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.2, y: 1.2}
   m_EdgeRadius: 0
 --- !u!4 &1797035581
 Transform:
@@ -1796,17 +1823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1cb7deb17aa00e48bc36a947a9091d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 100
-  maxhp: 100
-  regeneration: 0
-  level: 1
-  experiens: 0
-  bonusExp: 0
-  Speed: 1
-  MagicResistance: 0
-  PhisicResistance: 0
-  armor: 0
-  money: 0
+  stats: {fileID: 11400000, guid: 4519b8b2dfc7eee4086be6fc6a14308c, type: 2}
 --- !u!4 &2419288191398614708
 Transform:
   m_ObjectHideFlags: 0
@@ -1835,6 +1852,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c88c027020d84074081f8edb911755db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: 4519b8b2dfc7eee4086be6fc6a14308c, type: 2}
+  player: {fileID: 75648967}
 --- !u!1 &3996391753030053589
 GameObject:
   m_ObjectHideFlags: 0
@@ -1845,11 +1864,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8660868214004042198}
   - component: {fileID: 59189058183735177}
-  - component: {fileID: 1411621454446064459}
-  - component: {fileID: 8484246144179343671}
-  - component: {fileID: 4239221697900049047}
-  - component: {fileID: 2504359627932315784}
   - component: {fileID: 4623206692311468959}
+  - component: {fileID: 4239221697900049047}
+  - component: {fileID: 1411621454446064459}
+  - component: {fileID: 2504359627932315784}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -1930,6 +1948,8 @@ GameObject:
   - component: {fileID: 2419288191398614708}
   - component: {fileID: 75648967}
   - component: {fileID: 75648970}
+  - component: {fileID: 5505502216065143063}
+  - component: {fileID: 5505502216065143062}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1937,29 +1957,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8484246144179343671
+--- !u!114 &5505502216065143062
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3996391753030053589}
-  m_Enabled: 1
+  m_GameObject: {fileID: 5505502216065143061}
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c7ed11cb07a78143b3bf61e38e71ef6, type: 3}
+  m_Script: {fileID: 11500000, guid: c88c027020d84074081f8edb911755db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 100
-  maxhp: 100
-  regeneration: 0
-  level: 1
-  experiens: 0
-  bonusExp: 0
-  Speed: 10
-  MagicResistance: 0
-  PhisicResistance: 0
-  armor: 0
-  money: 0
+  stats: {fileID: 11400000, guid: 4519b8b2dfc7eee4086be6fc6a14308c, type: 2}
+  player: {fileID: 75648970}
+--- !u!114 &5505502216065143063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505502216065143061}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cb7deb17aa00e48bc36a947a9091d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: 4519b8b2dfc7eee4086be6fc6a14308c, type: 2}
 --- !u!4 &8660868214004042198
 Transform:
   m_ObjectHideFlags: 0

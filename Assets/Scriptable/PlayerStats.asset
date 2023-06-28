@@ -12,15 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4af39430e6283b40bca6178bd6a27d2, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  healthPoints: 100
+  currentHP: 100
   maxhp: 100
-  regeneration: 0
   level: 1
   experiens: 0
-  bonusExp: 0
-  Speed: 2
+  Speed: 20
   MagicResistance: 0
   PhisicResistance: 0
   armor: 0
-  money: 0
   sprite: {fileID: 0}
+  money: 0
+  regeneration: 0
+  bonusExp: 0
+  bonusprojectile: 0
+  bonusmoney: 0

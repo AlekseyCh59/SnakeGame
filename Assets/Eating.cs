@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Eating : MonoBehaviour
 {
-
+    public PlayerStats stats;
+    public Player player;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
         {
             case "Food": Destroy(collision.gameObject);
-                //Player.Healing(); Научить работаь с функцией
-                    break;            
+                {
+                    player.Healing(10);// Научить работаь с функцией
+                    break;
+                }       
             case "Coin": Destroy(collision.gameObject);
                 //Player.ReceiveCoin(); Научить работаь с функцией
                 break;            

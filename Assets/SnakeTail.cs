@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class SnakeTail : Player
-{
+{  
     [SerializeField]private Transform SnakeHead;
     [SerializeField] private float CircleDiameter;
     [SerializeField] private int SnakeLength=3;

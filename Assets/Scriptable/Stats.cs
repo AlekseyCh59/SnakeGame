@@ -6,19 +6,15 @@ using UnityEngine;
 public class Stats : ScriptableObject
 {
 
-    public float healthPoints = 100f;
-    public float maxhp = 100f;
-    public float regeneration = 0;
-    public float level = 1;
-    public float experiens = 0;
-    public float bonusExp = 0;
-    public float Speed = 2;
-    public float MagicResistance = 0;
-    public float PhisicResistance = 0;
-    public float armor = 0;
-    public int money = 0;
-
-    public Sprite sprite;
+    public float currentHP = 100f;   //текущее здоровье
+    public float maxhp = 100f;          //максимальное здоровье
+    public float level = 1;             //текущий уровень
+    public float experiens = 0;         //опыт у игрока / опыт за врага
+    public float Speed = 200;             //скорость игрока / противника
+    public float MagicResistance = 0;   //сопротивление не физическому урону
+    public float PhisicResistance = 0;  //сопротивлкение физическому урону
+    public float armor = 0;             //броня
+    public Sprite sprite;               //спрайт
 
 
 }
