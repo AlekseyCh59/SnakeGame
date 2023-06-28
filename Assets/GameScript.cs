@@ -20,7 +20,7 @@ public class GameScript : MonoBehaviour
     void Update()
     {
 
-        hp.text = stats.currentHP.ToString();
+        hp.text = stats.maxhp + "/" + stats.currentHP.ToString();
         money.text = stats.money.ToString();
     }
 }

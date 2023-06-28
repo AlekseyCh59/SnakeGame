@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Eating : MonoBehaviour
+public class Eating : Player
 {
-    public PlayerStats stats;
-    public Player player;
+   // public PlayerStats stats;
+    //public Player player;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
         {
             case "Food": Destroy(collision.gameObject);
                 {
-                    player.Healing(10);// Научить работаь с функцией
+                    Healing(10);// Научить работаь с функцией
                     break;
                 }       
             case "Coin": Destroy(collision.gameObject);
-                //Player.ReceiveCoin(); Научить работаь с функцией
+                ReceiveCoin();
                 break;            
             case "Exp": Destroy(collision.gameObject);
-                //Player.ReceiveExp(); Научить работаь с функцией
+                ReceiveExp(1f,1f);
                 break;
         }
 

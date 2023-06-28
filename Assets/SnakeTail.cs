@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class SnakeTail : Player
-{  
+{
+    [SerializeField] public Transform Tail;
     [SerializeField]private Transform SnakeHead;
     [SerializeField] private float CircleDiameter;
     [SerializeField] private int SnakeLength=3;
@@ -15,6 +15,7 @@ public class SnakeTail : Player
     private void Awake()
     {
         positions.Add(SnakeHead.position);
+
     }
 
     private void Start()
@@ -35,20 +36,20 @@ public class SnakeTail : Player
 
             distance -= CircleDiameter;
         }
-
         for (int i = 0; i < snakeCircles.Count; i++)
         {
             snakeCircles[i].position = Vector2.Lerp(positions[i + 1], positions[i], distance / CircleDiameter);
+
         }
     }
 
     public void AddCircle()
     {
-        Transform circle = Instantiate(SnakeHead, positions[positions.Count - 1], Quaternion.identity, transform);
-        circle.GetComponent<Move>().enabled = false;
-        circle.GetComponent<Player>().enabled = false;
-        circle.GetComponent<Eating>().enabled = false;
-        circle.GetComponent<CircleCollider2D>().isTrigger = true;
+        Transform circle = Instantiate(Tail, positions[positions.Count - 1], Quaternion.identity, transform);
+        //circle.GetComponent<Move>().enabled = false;
+        //circle.GetComponent<Player>().enabled = false;
+        //circle.GetComponent<Eating>().enabled = false;
+        //circle.GetComponent<CircleCollider2D>().isTrigger = true;
         snakeCircles.Add(circle);
         positions.Add(circle.position);
     }

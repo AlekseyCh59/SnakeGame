@@ -5,33 +5,29 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public PlayerStats stats;
-    protected float currentHP;
-    private void Start()
-    {
-        currentHP = stats.maxhp-10;
-}
+
     protected void ReceiveDamage(float forceDamage, float magicDamage)
     { 
         float damage = magicDamage * (1 - stats.MagicResistance) - stats.armor + forceDamage * (1 - stats.PhisicResistance) - stats.armor;
         if (damage > 0)
-            currentHP = - damage;
-        if (currentHP <= 0)
+            stats.currentHP = - damage;
+        if (stats.currentHP <= 0)
             Death();
     }
-    public void Healing(int heal)
+    protected void Healing(int heal)
     {
-        if (stats.maxhp > currentHP)
+        if (stats.maxhp > stats.currentHP)
         {
-            currentHP += heal;
-            if (currentHP > stats.maxhp)
-                currentHP = stats.maxhp;
+            stats.currentHP += heal;
+            if (stats.currentHP > stats.maxhp)
+                stats.currentHP = stats.maxhp;
         }
     }    
     protected void Regeneration()
     {
-        if (stats.maxhp > currentHP)
+        if (stats.maxhp > stats.currentHP)
         {
-            currentHP = +stats.regeneration;
+            stats.currentHP = +stats.regeneration;
         }
     }
 
@@ -51,13 +47,14 @@ public class Player : MonoBehaviour
     }    
     protected void ReceiveCoin()
     {
-        stats.money = +1;
+        stats.money += 1;
     }
 
 
     protected void LevelUp()
     {
         stats.level++;
+        stats.maxhp = stats.maxhp * 1.05f;
         ChooseWeapon();
         //Choose your bonus function
     }

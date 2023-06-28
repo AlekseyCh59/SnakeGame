@@ -10,7 +10,7 @@ public class PlayerStats : Stats
     public float bonusExp = 0;      //бонусный опыт за убийство врага
     public int bonusprojectile = 0; //бунусные снаряды
     public int bonusmoney = 0; //бонус к деньгам
-    
+    public float currentHP = 100f;   //текущее здоровье
 
 
 }

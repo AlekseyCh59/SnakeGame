@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4af39430e6283b40bca6178bd6a27d2, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  currentHP: 100
   maxhp: 100
   level: 1
   experiens: 0
@@ -21,8 +20,9 @@ MonoBehaviour:
   PhisicResistance: 0
   armor: 0
   sprite: {fileID: 0}
-  money: 0
+  money: 2
   regeneration: 0
   bonusExp: 0
   bonusprojectile: 0
   bonusmoney: 0
+  currentHP: 100
