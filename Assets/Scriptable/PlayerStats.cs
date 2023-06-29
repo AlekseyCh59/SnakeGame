@@ -9,8 +9,10 @@ public class PlayerStats : Stats
     public float regeneration = 0;  //восстановление здоровь€ в секунду(?)
     public float bonusExp = 0;      //бонусный опыт за убийство врага
     public int bonusprojectile = 0; //бунусные снар€ды
-    public int bonusmoney = 0; //бонус к деньгам
+    public int bonusmoney = 0;      //бонус к деньгам
     public float currentHP = 100f;   //текущее здоровье
+    public float expForLevel = 100f; //опыта дл€ получени€ уровн€
+    public float scalingExp = 2f;    //скейлинг опыта дл€ лвлава
 
 
 }

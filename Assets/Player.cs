@@ -36,13 +36,14 @@ public class Player : MonoBehaviour
         //
     }
 
-    protected void ReceiveExp(float exp, float expForLvl)
+    protected void ReceiveExp(float exp)
     {
-        stats.experiens = +exp * stats.bonusExp;
-        if (stats.experiens >= expForLvl)
+        stats.experiens = +exp + exp * stats.bonusExp;
+        if (stats.experiens >= stats.expForLevel)
         {
+            stats.experiens -= stats.expForLevel;
             LevelUp();
-            stats.experiens = - expForLvl;
+           
         }
     }    
     protected void ReceiveCoin()
@@ -54,7 +55,8 @@ public class Player : MonoBehaviour
     protected void LevelUp()
     {
         stats.level++;
-        stats.maxhp = stats.maxhp * 1.05f;
+        stats.maxhp = stats.maxhp * stats.scalingHp;
+        stats.expForLevel = stats.expForLevel * stats.scalingExp;
         ChooseWeapon();
         //Choose your bonus function
     }

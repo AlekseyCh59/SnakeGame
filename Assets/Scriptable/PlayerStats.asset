@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   maxhp: 100
+  scalingHp: 1.05
   level: 1
   experiens: 0
   Speed: 20
@@ -20,9 +21,11 @@ MonoBehaviour:
   PhisicResistance: 0
   armor: 0
   sprite: {fileID: 0}
-  money: 2
+  money: 6
   regeneration: 0
   bonusExp: 0
   bonusprojectile: 0
   bonusmoney: 0
   currentHP: 100
+  expForLevel: 1
+  scalingExp: 2

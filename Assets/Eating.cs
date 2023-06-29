@@ -18,9 +18,12 @@ public class Eating : Player
             case "Coin": Destroy(collision.gameObject);
                 ReceiveCoin();
                 break;            
-            case "Exp": Destroy(collision.gameObject);
-                ReceiveExp(1f,1f);
-                break;
+            case "Exp":
+                {
+                    Destroy(collision.gameObject);
+                    ReceiveExp(1f);
+                    break;
+                }
         }
 
     }
