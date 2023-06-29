@@ -6,14 +6,25 @@ public class Player : MonoBehaviour
 {
     public PlayerStats stats;
 
-    protected void ReceiveDamage(float forceDamage, float magicDamage)
+    protected void ReceiveDamageFromAttack(float forceDamage, float magicDamage)
     { 
         float damage = magicDamage * (1 - stats.MagicResistance) - stats.armor + forceDamage * (1 - stats.PhisicResistance) - stats.armor;
         if (damage > 0)
             stats.currentHP = - damage;
         if (stats.currentHP <= 0)
             Death();
+    }    
+    
+    protected void ReceiveDamageFromBump(int level)
+    { 
+
+            stats.currentHP -= level;
+        if (stats.currentHP <= 0)
+            Death();
     }
+
+
+
     protected void Healing(int heal)
     {
         if (stats.maxhp > stats.currentHP)

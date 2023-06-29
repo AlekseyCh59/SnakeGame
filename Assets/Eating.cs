@@ -15,16 +15,27 @@ public class Eating : Player
                     Healing(10);// Научить работаь с функцией
                     break;
                 }       
-            case "Coin": Destroy(collision.gameObject);
-                ReceiveCoin();
-                break;            
+            case "Coin":
+                {
+                    Destroy(collision.gameObject);
+                    ReceiveCoin();
+                    break;
+                }
             case "Exp":
                 {
                     Destroy(collision.gameObject);
                     ReceiveExp(1f);
                     break;
                 }
+
+            case "Enemy":
+                {
+                    ReceiveDamageFromBump(1);
+                    break;
+                }
         }
+
+
 
     }
     // Start is called before the first frame update

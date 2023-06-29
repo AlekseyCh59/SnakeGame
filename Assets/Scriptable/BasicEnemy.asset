@@ -9,23 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4af39430e6283b40bca6178bd6a27d2, type: 3}
-  m_Name: PlayerStats
+  m_Script: {fileID: 11500000, guid: e08ac42fb40ada84388a466d5a707be5, type: 3}
+  m_Name: BasicEnemy
   m_EditorClassIdentifier: 
-  maxhp: 104.99999
+  maxhp: 100
   scalingHp: 1.05
-  level: 2
-  experiens: 1
-  Speed: 20
+  level: 1
+  experiens: 0
+  Speed: 200
   MagicResistance: 0
   PhisicResistance: 0
   armor: 0
   sprite: {fileID: 0}
-  money: 9
-  regeneration: 0
-  bonusExp: 0
-  bonusprojectile: 0
-  bonusmoney: 0
-  currentHP: -383
-  expForLevel: 2
-  scalingExp: 2
+  damage: 2
+  scalingDamage: 1.05
