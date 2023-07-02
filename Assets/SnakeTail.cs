@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class SnakeTail : Player
+public class SnakeTail : MonoBehaviour
 {
     [SerializeField] public Transform Tail;
     [SerializeField]private Transform SnakeHead;

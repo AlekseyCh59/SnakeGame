@@ -1,10 +1,8 @@
 using UnityEngine;
 
-public class Move : Player
+public class Move : MonoBehaviour
 {
-
-    //public PlayerStats stats; //мб стоит отказаться от такого наследования?
-    Vector3 mover = new Vector3(0, 0, 0);
+    [SerializeField] float Speed = 5;
     string key;
     Rigidbody2D PhisycsBody;
     private void Start()
@@ -25,10 +23,10 @@ public class Move : Player
 
         switch (key)
         {
-            case "up": PhisycsBody.MovePosition(transform.position + Vector3.up * stats.Speed * Time.deltaTime); break;
-            case "down": PhisycsBody.MovePosition(transform.position + Vector3.down * stats.Speed * Time.deltaTime); break;
-            case "right": PhisycsBody.MovePosition(transform.position + Vector3.right * stats.Speed * Time.deltaTime); break;
-            case "left": PhisycsBody.MovePosition(transform.position + Vector3.left * stats.Speed * Time.deltaTime); break;
+            case "up": PhisycsBody.MovePosition(transform.position + Vector3.up * Speed * Time.deltaTime); break;
+            case "down": PhisycsBody.MovePosition(transform.position + Vector3.down * Speed * Time.deltaTime); break;
+            case "right": PhisycsBody.MovePosition(transform.position + Vector3.right * Speed * Time.deltaTime); break;
+            case "left": PhisycsBody.MovePosition(transform.position + Vector3.left * Speed * Time.deltaTime); break;
 
         }
     }
