@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5445141062456600686}
   - component: {fileID: 2466250799790505911}
   - component: {fileID: 4908324424213336161}
-  - component: {fileID: 1817591848734564120}
+  - component: {fileID: 6764548705468303944}
   - component: {fileID: 334073495826721029}
   - component: {fileID: 6011852340064192731}
   - component: {fileID: 1524587890831414121}
@@ -37,7 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8995793518092396321
 SpriteRenderer:
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
---- !u!114 &1817591848734564120
+--- !u!114 &6764548705468303944
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -207,7 +207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 832bb42484b845044b987a7074c468e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fire: {fileID: 0}
   weapon: {fileID: 2575384695216457030, guid: 5896d43b5fdb54a4ea24ea4ada8458f0, type: 3}
   attackInterwal: 1
 --- !u!114 &1524587890831414121

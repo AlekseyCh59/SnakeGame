@@ -26,7 +26,7 @@ public class SnakeTail : MonoBehaviour
     {
         float distance = ((Vector2)SnakeHead.position - positions[0]).magnitude;
 
-        if (distance > CircleDiameter*0.7)
+        if (distance > CircleDiameter)
         {
             // Ќаправление от старого положени€ головы, к новому
             Vector2 direction = ((Vector2)SnakeHead.position - positions[0]);

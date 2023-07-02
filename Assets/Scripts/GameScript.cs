@@ -17,7 +17,7 @@ public class GameScript : MonoBehaviour
     [SerializeField] private List<GameObject> EnemyList = new();
 
     [SerializeField] private GameObject weapon;
-    [SerializeField] private float attackInterwal = 1f;
+/*    [SerializeField] private float attackInterwal = 1f;*/
 
 
 

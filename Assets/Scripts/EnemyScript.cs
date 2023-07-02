@@ -8,7 +8,7 @@ public class EnemyScript : MonoBehaviour
     Rigidbody2D rbEnemy;
     Vector3 Direct;
     public EnemyStats stats;
-    float currentHp;
+    public float currentHp { get; private set; }
     public Transform exp;
 
 
