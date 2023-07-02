@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class SnakeTail : MonoBehaviour
 {
     [SerializeField] public Transform Tail;
-    [SerializeField]private Transform SnakeHead;
+    [SerializeField] protected Transform SnakeHead;
     [SerializeField] private float CircleDiameter;
     [SerializeField] private int SnakeLength=3;
     private List<Transform> snakeCircles = new List<Transform>();
@@ -26,7 +26,7 @@ public class SnakeTail : MonoBehaviour
     {
         float distance = ((Vector2)SnakeHead.position - positions[0]).magnitude;
 
-        if (distance > CircleDiameter)
+        if (distance > CircleDiameter*0.7)
         {
             // Ќаправление от старого положени€ головы, к новому
             Vector2 direction = ((Vector2)SnakeHead.position - positions[0]);
@@ -46,10 +46,10 @@ public class SnakeTail : MonoBehaviour
     public void AddCircle()
     {
         Transform circle = Instantiate(Tail, positions[positions.Count - 1], Quaternion.identity, transform);
-        //circle.GetComponent<Move>().enabled = false;
-        //circle.GetComponent<Player>().enabled = false;
-        //circle.GetComponent<Eating>().enabled = false;
-        //circle.GetComponent<CircleCollider2D>().isTrigger = true;
+        /*circle.GetComponent<Move>().enabled = false;
+        circle.GetComponent<Player>().enabled = false;
+        circle.GetComponent<Eating>().enabled = false;
+        circle.GetComponent<CircleCollider2D>().isTrigger = true;*/
         snakeCircles.Add(circle);
         positions.Add(circle.position);
     }

@@ -10,7 +10,7 @@ public class Move : MonoBehaviour
         PhisycsBody= GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (Input.GetAxis("Vertical") > 0.1 & key != "down")
             key = "up";
@@ -20,7 +20,6 @@ public class Move : MonoBehaviour
             key = "right";
         else if (Input.GetAxis("Horizontal") < -0.1 & key != "right")
             key = "left";
-
         switch (key)
         {
             case "up": PhisycsBody.MovePosition(transform.position + Vector3.up * Speed * Time.deltaTime); break;

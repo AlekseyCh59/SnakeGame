@@ -16,7 +16,7 @@ MonoBehaviour:
   scalingHp: 1.05
   level: 1
   experiens: 0
-  Speed: 200
+  Speed: 2
   MagicResistance: 0
   PhisicResistance: 0
   armor: 0
