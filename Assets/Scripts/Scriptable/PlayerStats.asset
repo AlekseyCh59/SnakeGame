@@ -16,16 +16,16 @@ MonoBehaviour:
   scalingHp: 1.05
   level: 2
   experiens: 1
-  Speed: 20
+  Speed: 2
   MagicResistance: 0
   PhisicResistance: 0
   armor: 0
   sprite: {fileID: 0}
-  money: 9
+  money: 15
   regeneration: 0
   bonusExp: 0
   bonusprojectile: 0
   bonusmoney: 0
-  currentHP: -383
+  currentHP: 13.99999
   expForLevel: 2
   scalingExp: 2

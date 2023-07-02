@@ -43,12 +43,14 @@ public class Player : MonoBehaviour
 
     protected void Death()
     {
-        //
-    }
+        
+            stats.currentHP =stats.maxhp; //временно
+            }
 
     protected void ReceiveExp(float exp)
     {
-        stats.experiens = +exp + exp * stats.bonusExp;
+        Debug.Log("fgdffg");
+        stats.experiens += exp + exp * stats.bonusExp;
         if (stats.experiens >= stats.expForLevel)
         {
             stats.experiens -= stats.expForLevel;
@@ -64,6 +66,7 @@ public class Player : MonoBehaviour
 
     protected void LevelUp()
     {
+        
         stats.level++;
         stats.maxhp = stats.maxhp * stats.scalingHp;
         stats.expForLevel = stats.expForLevel * stats.scalingExp;

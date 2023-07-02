@@ -11,14 +11,17 @@ public class MoveToEmemy : MonoBehaviour
     float timeLife = 5f;
     private void Start()
     {
-        Enemy = GameObject.FindWithTag("Enemy").transform;
-        Direct = Enemy.position - transform.position;
-        Direct.Normalize();
+       
+            Enemy = GameObject.FindWithTag("Enemy").transform;
+            Direct = Enemy.position - transform.position;
+            Direct.Normalize();
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag.Contains("Enemy"))
             Destroy(this.gameObject);
+
     }
     private void Update()
     {

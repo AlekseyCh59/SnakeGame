@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08ac42fb40ada84388a466d5a707be5, type: 3}
   m_Name: BasicEnemy
   m_EditorClassIdentifier: 
-  maxhp: 100
+  maxhp: 5
   scalingHp: 1.05
   level: 1
   experiens: 0

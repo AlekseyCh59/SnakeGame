@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    [SerializeField] float Speed = 5;
+    [SerializeField] PlayerStats stats;
     string key;
     Rigidbody2D PhisycsBody;
     private void Start()
@@ -22,10 +22,10 @@ public class Move : MonoBehaviour
             key = "left";
         switch (key)
         {
-            case "up": PhisycsBody.MovePosition(transform.position + Vector3.up * Speed * Time.deltaTime); break;
-            case "down": PhisycsBody.MovePosition(transform.position + Vector3.down * Speed * Time.deltaTime); break;
-            case "right": PhisycsBody.MovePosition(transform.position + Vector3.right * Speed * Time.deltaTime); break;
-            case "left": PhisycsBody.MovePosition(transform.position + Vector3.left * Speed * Time.deltaTime); break;
+            case "up": PhisycsBody.MovePosition(transform.position + Vector3.up * stats.Speed * Time.deltaTime); break;
+            case "down": PhisycsBody.MovePosition(transform.position + Vector3.down * stats.Speed * Time.deltaTime); break;
+            case "right": PhisycsBody.MovePosition(transform.position + Vector3.right * stats.Speed * Time.deltaTime); break;
+            case "left": PhisycsBody.MovePosition(transform.position + Vector3.left * stats.Speed * Time.deltaTime); break;
 
         }
     }

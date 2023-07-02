@@ -8,6 +8,7 @@ TagManager:
   - Coin
   - Food
   - Exp
+  - weapon
   layers:
   - Default
   - TransparentFX

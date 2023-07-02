@@ -46,10 +46,6 @@ public class SnakeTail : MonoBehaviour
     public void AddCircle()
     {
         Transform circle = Instantiate(Tail, positions[positions.Count - 1], Quaternion.identity, transform);
-        /*circle.GetComponent<Move>().enabled = false;
-        circle.GetComponent<Player>().enabled = false;
-        circle.GetComponent<Eating>().enabled = false;
-        circle.GetComponent<CircleCollider2D>().isTrigger = true;*/
         snakeCircles.Add(circle);
         positions.Add(circle.position);
     }
