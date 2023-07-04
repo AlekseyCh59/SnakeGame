@@ -12,7 +12,7 @@ public class PlayerStats : Stats
     public int bonusmoney = 0;      //бонус к деньгам
     public float currentHP = 100f;   //текущее здоровье
     public float expForLevel = 100f; //опыта для получения уровня
-    public float scalingExp = 2f;    //скейлинг опыта для лвлава
+    public float scalingExp = 2;    //скейлинг опыта для лвлава
 
 
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -14,10 +15,10 @@ public class Player : MonoBehaviour
             Death();
     }    
     
-    protected void ReceiveDamageFromBump(int level)
+    protected void ReceiveDamageFromBump(float damage)
     { 
 
-            stats.currentHP -= level;
+            stats.currentHP -= damage;
         if (stats.currentHP <= 0)
             Death();
     }
@@ -49,7 +50,6 @@ public class Player : MonoBehaviour
 
     protected void ReceiveExp(float exp)
     {
-        Debug.Log("fgdffg");
         stats.experiens += exp + exp * stats.bonusExp;
         if (stats.experiens >= stats.expForLevel)
         {

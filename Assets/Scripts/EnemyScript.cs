@@ -7,21 +7,31 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] Transform PlayerPos;
     Rigidbody2D rbEnemy;
     Vector3 Direct;
-    public EnemyStats stats;
     public float currentHp { get; private set; }
     public Transform exp;
+    public GameScript gameManager; //PUBLIC?!
 
 
-
+    private void Awake()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameScript>();
+    }
 
 
     private void Start()
     {
 
         PlayerPos = GameObject.FindGameObjectWithTag("Player").transform;
-        currentHp = stats.maxhp;
+        currentHp = gameManager.enemyStats.maxhp;
         rbEnemy = GetComponent<Rigidbody2D>();
     }
+
+    private void OnDestroy()
+    {
+        gameManager.clearEnemy(this.gameObject);
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag.Contains("weapon"))
@@ -29,10 +39,10 @@ public class EnemyScript : MonoBehaviour
             currentHp -= 2;
             if (currentHp <= 0)
             {
+
                 Instantiate(exp, transform.position, Quaternion.identity);
-                Debug.Log(transform.position);
                 Destroy(this.gameObject);
-                
+
             }
         }
     }
@@ -41,7 +51,7 @@ public class EnemyScript : MonoBehaviour
         if (this.gameObject) { 
         Direct = PlayerPos.position - transform.position;
         Direct.Normalize();
-        rbEnemy.MovePosition(transform.position + Direct * stats.Speed * Time.deltaTime);
+        rbEnemy.MovePosition(transform.position + Direct * gameManager.enemyStats.Speed * Time.deltaTime);
         }
     }
 }

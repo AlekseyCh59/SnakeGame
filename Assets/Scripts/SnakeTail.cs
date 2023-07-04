@@ -5,16 +5,20 @@ using UnityEngine.UIElements;
 
 public class SnakeTail : MonoBehaviour
 {
+
     [SerializeField] public Transform Tail;
     [SerializeField] protected Transform SnakeHead;
     [SerializeField] private float CircleDiameter;
     [SerializeField] private int SnakeLength=3;
     private List<Transform> snakeCircles = new List<Transform>();
     private List<Vector2> positions = new List<Vector2>();
+    GameScript gameManager;
 
     private void Awake()
     {
-        positions.Add(SnakeHead.position);
+        gameManager = GameObject.Find("GameManager").GetComponent<GameScript>();
+        //positions.Add(gameManager.SnakeList[0].transform.position);
+        positions.Add(transform.position);
 
     }
 

@@ -21,5 +21,5 @@ MonoBehaviour:
   PhisicResistance: 0
   armor: 0
   sprite: {fileID: 0}
-  damage: 2
+  damage: 1
   scalingDamage: 1.05

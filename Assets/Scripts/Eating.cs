@@ -20,14 +20,15 @@ public class Eating : Player
                 }
             case "Exp":
                 {
-                    Destroy(collision.gameObject);
                     ReceiveExp(1f);
+                    Destroy(collision.gameObject);
+                    
                     break;
                 }
 
             case "Enemy":
                 {
-                    ReceiveDamageFromBump(1);
+                    ReceiveDamageFromBump(collision.transform.GetComponent<EnemyScript>().gameManager.enemyStats.damage);
                     break;
                 }
         }

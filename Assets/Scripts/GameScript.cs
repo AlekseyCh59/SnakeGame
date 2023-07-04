@@ -6,37 +6,49 @@ using System;
 using Random = UnityEngine.Random;
 
 public class GameScript : MonoBehaviour
-{
+{   
+
+    // Интерфейс
     public TMP_Text hp;
     public TMP_Text money;
     public TMP_Text Exp;
     public TMP_Text level;
+
+    // Скриптаблы
     public PlayerStats stats;
-    [SerializeField] private GameObject enemy;
-    [SerializeField] private float spawnInterwal = 1f;
-    [SerializeField] private List<GameObject> EnemyList = new();
+    public EnemyStats enemyStats;
+
+
+
+    //Массивы
+    [SerializeField] public List<GameObject> EnemyList { get; private set; } = new();
+    [SerializeField] public List<GameObject> SnakeList = new();
 
     [SerializeField] private GameObject weapon;
-/*    [SerializeField] private float attackInterwal = 1f;*/
+    /*    [SerializeField] private float attackInterwal = 1f;*/
 
 
+
+
+    public void clearEnemy(GameObject enemy)
+    {
+        EnemyList.Remove(enemy);
+
+    }
 
 
     private void MyInterface()
     {
-        hp.text = stats.maxhp + "/" + stats.currentHP;
-        Exp.text = stats.expForLevel.ToString() + "/" + stats.experiens.ToString();
+
+        hp.text = Math.Round(stats.maxhp) + "/" + Math.Round(stats.currentHP);
+        Exp.text = Math.Round(stats.expForLevel) + "/" + Math.Round(stats.experiens);
         money.text = stats.money.ToString();
         level.text = stats.level.ToString();
+
+                  
     }
-    // корутина для спавна врагов
-    private IEnumerator spawnEnemy(float interwal, GameObject enemy)
-    {
-        yield return new WaitForSeconds(interwal);
-        GameObject newEnemy = Instantiate(enemy, new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0), Quaternion.identity);//сделать безопасную зону игрока
-        EnemyList.Add(newEnemy);
-        StartCoroutine(spawnEnemy(interwal, enemy));
-    }
+
+    
 
 
 
@@ -51,7 +63,13 @@ public class GameScript : MonoBehaviour
          }
 
      }*/
-
+    private void Awake()
+    {
+        stats.experiens = 0;
+        stats.currentHP = stats.maxhp;
+        SnakeList.Add(GameObject.Find("Head"));
+        
+    }
 
 
 
@@ -59,13 +77,14 @@ public class GameScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(spawnEnemy(spawnInterwal, enemy));
+
        // StartCoroutine(spawnEnemy(attackInterwal, weapon));
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         MyInterface();
 
     }

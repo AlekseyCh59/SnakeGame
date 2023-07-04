@@ -263,5 +263,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerPos: {fileID: 0}
-  stats: {fileID: 11400000, guid: b31d52133d5fe8f41affd898af28f8e3, type: 2}
   exp: {fileID: 5435655721622509160, guid: f298b651c97513b489bb74caa2562a65, type: 3}
+  gameManager: {fileID: 0}
