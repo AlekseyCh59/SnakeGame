@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
-using Random = UnityEngine.Random;
+
 
 public class GameScript : MonoBehaviour
 {   
@@ -22,8 +22,9 @@ public class GameScript : MonoBehaviour
 
 
     //Массивы
-    [SerializeField] public List<GameObject> EnemyList { get; private set; } = new();
-    [SerializeField] public List<GameObject> SnakeList = new();
+    [SerializeField] public List<Transform> EnemyList { get; private set; } = new();
+
+    [SerializeField] public List<Transform> SnakeList = new();
 
     [SerializeField] private GameObject weapon;
     /*    [SerializeField] private float attackInterwal = 1f;*/
@@ -31,7 +32,7 @@ public class GameScript : MonoBehaviour
 
 
 
-    public void clearEnemy(GameObject enemy)
+    public void clearEnemy(Transform enemy)
     {
         EnemyList.Remove(enemy);
     }
@@ -66,10 +67,9 @@ public class GameScript : MonoBehaviour
     private void Awake()
     {
 
-
+        stats.level = 1;
         stats.experiens = 0;
         stats.currentHP = stats.maxhp;
-        SnakeList.Add(GameObject.Find("Head"));
         
     }
 

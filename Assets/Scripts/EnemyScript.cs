@@ -28,7 +28,7 @@ public class EnemyScript : MonoBehaviour
 
     private void OnDestroy()
     {
-        gameManager.clearEnemy(this.gameObject);
+        gameManager.clearEnemy(this.transform);
     }
 
 
