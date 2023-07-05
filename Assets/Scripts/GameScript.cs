@@ -17,6 +17,7 @@ public class GameScript : MonoBehaviour
     // Скриптаблы
     public PlayerStats stats;
     public EnemyStats enemyStats;
+    public static List<float> expiriens = new() { 1,4,8,10,20,100};
 
 
 
@@ -33,7 +34,6 @@ public class GameScript : MonoBehaviour
     public void clearEnemy(GameObject enemy)
     {
         EnemyList.Remove(enemy);
-
     }
 
 
@@ -65,6 +65,8 @@ public class GameScript : MonoBehaviour
      }*/
     private void Awake()
     {
+
+
         stats.experiens = 0;
         stats.currentHP = stats.maxhp;
         SnakeList.Add(GameObject.Find("Head"));
