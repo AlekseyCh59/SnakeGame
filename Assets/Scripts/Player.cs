@@ -5,6 +5,40 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public PlayerStats stats;
+    Spawner spawner;
+
+
+    private void Awake()
+    {
+
+        spawner = GameObject.Find("GameManager").GetComponent<Spawner>();
+    }
+
+
+    private void Start()
+    {
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     protected void ReceiveDamageFromAttack(float forceDamage, float magicDamage)
     { 

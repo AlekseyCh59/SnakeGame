@@ -13,11 +13,12 @@ public class SnakeTail : MonoBehaviour
     //private List<Transform> snakeCircles = new List<Transform>();
     private List<Vector2> positions = new List<Vector2>();
     GameScript gameManager;
+    Spawner spawner;
 
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameScript>();
-        //positions.Add(gameManager.SnakeList[0].transform.position);
+        spawner = GameObject.Find("GameManager").GetComponent<Spawner>();
         gameManager.SnakeList.Add(transform);
         
     }
@@ -26,7 +27,6 @@ public class SnakeTail : MonoBehaviour
     {
 
         positions.Add(transform.position);
-        Debug.Log(transform.position + " / " + gameManager.SnakeList[0].position);
         for (int i = 0; i < SnakeLength; i++) AddCircle();
     }
     private void Update()
@@ -43,27 +43,17 @@ public class SnakeTail : MonoBehaviour
 
             distance -= CircleDiameter;
         }
-        for (int i = 0; i < gameManager.SnakeList.Count; i++)
+        for (int i = 1; i < gameManager.SnakeList.Count; i++)
         {
-             gameManager.SnakeList[i+1].position = Vector2.Lerp(positions[i + 1], positions[i], distance / CircleDiameter);
+             gameManager.SnakeList[i].position = Vector2.Lerp(positions[i], positions[i-1], distance / CircleDiameter);
 
         }
     }
 
     public void AddCircle()
     {
-        Transform circle = Instantiate(Tail, positions[positions.Count - 1], Quaternion.identity, transform);
+        Transform circle = spawner.UniSpawn(Tail, positions[positions.Count - 1]);
         gameManager.SnakeList.Add(circle);
         positions.Add(circle.position);
     }
-
-    /*public void RemoveCircle()
-    {
-        if (snakeCircles.Count > 2)
-        {
-            Destroy(snakeCircles[0].gameObject);
-            snakeCircles.RemoveAt(0);
-            positions.RemoveAt(1);
-        }
-    }*/
 }

@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject enemy;
     [SerializeField] private float spawnInterwal = 1f;   
     [SerializeField] private GameObject weapon;
-    [SerializeField] private float weaponinterwal = 1f;
+    [SerializeField] private float weaponinterwal = 10f;
 
 
     [SerializeField] private GameObject snakeHead;
@@ -19,11 +19,6 @@ public class Spawner : MonoBehaviour
     private void headSpawn()
     {
         Instantiate(snakeHead, new Vector3(0, 0, 0), Quaternion.identity);
-
-    }
-
-    private void tailSapwn()
-    {
 
     }
 
@@ -52,8 +47,14 @@ public class Spawner : MonoBehaviour
            
         }
         StartCoroutine(weaponAttack(interwal, weapon));
-
     }
+
+    public Transform UniSpawn(Transform gameObj, Vector2 whereSpawn)
+    {
+       return Instantiate(gameObj, whereSpawn, Quaternion.identity);
+    }
+
+
     private void Awake()
     {
 
@@ -64,7 +65,7 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         gameScript = GameObject.Find("GameManager").GetComponent<GameScript>();
-        headSpawn();
+        UniSpawn( snakeHead.transform, new Vector2(0,0));
 
         StartCoroutine(weaponAttack(weaponinterwal, weapon));
         StartCoroutine(spawnEnemy(spawnInterwal, enemy));

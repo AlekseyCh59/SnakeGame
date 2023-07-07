@@ -10,18 +10,19 @@ public class EnemyScript : MonoBehaviour
     public float currentHp { get; private set; }
     public Transform exp;
     public GameScript gameManager; //PUBLIC?!
+    Spawner spawner;
 
 
     private void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameScript>();
+        spawner = GameObject.Find("GameManager").GetComponent<Spawner>();
     }
 
 
     private void Start()
     {
 
-        PlayerPos = GameObject.FindGameObjectWithTag("Player").transform;
         currentHp = gameManager.enemyStats.maxhp;
         rbEnemy = GetComponent<Rigidbody2D>();
     }
@@ -40,14 +41,23 @@ public class EnemyScript : MonoBehaviour
             if (currentHp <= 0)
             {
 
-                Instantiate(exp, transform.position, Quaternion.identity);
+                spawner.UniSpawn(exp, this.transform.position);
                 Destroy(this.gameObject);
 
             }
         }
     }
-    private void FixedUpdate()
+    private void FixedUpdate() //SOME SHIT HERE
     {
+        float distance = 999;
+
+        foreach (var item in gameManager.SnakeList)
+        {
+            if ((item.position - this.transform.position).magnitude < distance) { 
+                distance = (item.position - this.transform.position).magnitude;
+            PlayerPos = item;
+        }
+        }
         if (this.gameObject) { 
         Direct = PlayerPos.position - transform.position;
         Direct.Normalize();
