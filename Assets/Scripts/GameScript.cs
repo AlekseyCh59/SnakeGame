@@ -22,7 +22,7 @@ public class GameScript : MonoBehaviour
 
 
     //ћассивы
-    [SerializeField] public List<Transform> EnemyList { get; private set; } = new();
+    [SerializeField] public List<GameObject> EnemyList { get; private set; } = new();
 
     [SerializeField] public List<Transform> SnakeList = new();
 
@@ -32,9 +32,10 @@ public class GameScript : MonoBehaviour
 
 
 
-    public void clearEnemy(Transform enemy)
+    public void clearEnemy(GameObject enemy)
     {
-        EnemyList.Remove(enemy);
+        enemy.SetActive(false);
+
     }
 
 
@@ -53,17 +54,7 @@ public class GameScript : MonoBehaviour
 
 
 
-    //нужно применить к списку хвоста и голове.
-    /* private IEnumerator weaponAttack(float interwal, GameObject weapon)
-     {
-         yield return new WaitForSeconds(interwal);
-         if (EnemyList.Count != 0)
-         {
-             GameObject attack = Instantiate(weapon, ???????, Quaternion.identity,);
-             StartCoroutine(weaponAttack(interwal, weapon));
-         }
 
-     }*/
     private void Awake()
     {
 

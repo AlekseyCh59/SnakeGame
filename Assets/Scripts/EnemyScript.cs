@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
@@ -9,27 +8,33 @@ public class EnemyScript : MonoBehaviour
     Vector3 Direct;
     public float currentHp { get; private set; }
     public Transform exp;
-    public GameScript gameManager; //PUBLIC?!
+    public GameScript gameScript; //PUBLIC?!
     Spawner spawner;
 
 
     private void Awake()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameScript>();
+
+        gameScript = GameObject.Find("GameManager").GetComponent<GameScript>();
         spawner = GameObject.Find("GameManager").GetComponent<Spawner>();
     }
 
 
     private void Start()
     {
-
-        currentHp = gameManager.enemyStats.maxhp;
+        PlayerPos = gameScript.SnakeList[0];
+        currentHp = gameScript.enemyStats.maxhp;
         rbEnemy = GetComponent<Rigidbody2D>();
     }
 
     private void OnDestroy()
     {
-        gameManager.clearEnemy(this.transform);
+        gameScript.clearEnemy(this.gameObject);
+    }
+
+    private void OnEnable()
+    {
+        currentHp = gameScript.enemyStats.maxhp;
     }
 
 
@@ -40,28 +45,47 @@ public class EnemyScript : MonoBehaviour
             currentHp -= 2;
             if (currentHp <= 0)
             {
-
                 spawner.UniSpawn(exp, this.transform.position);
-                Destroy(this.gameObject);
-
+                gameScript.clearEnemy(this.gameObject);
             }
         }
     }
+
+    private void Update()
+    {
+        if (this.gameObject)
+        {
+            Waiting();
+            Direct = PlayerPos.position - transform.position;
+            Direct.Normalize();
+            rbEnemy.MovePosition(transform.position + Direct * gameScript.enemyStats.Speed * Time.deltaTime);
+
+        }
+    }
+
+
+
+    async void Waiting()
+    {
+
+        float min = (gameScript.SnakeList[0].position - this.transform.position).magnitude;
+        foreach (var item in gameScript.SnakeList)
+        {
+            float distance = (item.position - this.transform.position).magnitude;
+            if (min > distance)
+            {
+                min = distance;
+                PlayerPos = item;
+            }
+        }
+        await Task.Delay(1000);
+
+    }
+
     private void FixedUpdate() //SOME SHIT HERE
     {
-        float distance = 999;
 
-        foreach (var item in gameManager.SnakeList)
-        {
-            if ((item.position - this.transform.position).magnitude < distance) { 
-                distance = (item.position - this.transform.position).magnitude;
-            PlayerPos = item;
-        }
-        }
-        if (this.gameObject) { 
-        Direct = PlayerPos.position - transform.position;
-        Direct.Normalize();
-        rbEnemy.MovePosition(transform.position + Direct * gameManager.enemyStats.Speed * Time.deltaTime);
-        }
+
+       
     }
 }

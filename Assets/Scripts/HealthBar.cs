@@ -17,6 +17,8 @@ public class HealthBar : MonoBehaviour {
         damageable = GetComponentInParent<EnemyScript>();
     }
 
+
+
     private void Start() {
         // Cache since Camera.main is super slow
         MaxHealth = GetComponentInParent<EnemyScript>().currentHp;

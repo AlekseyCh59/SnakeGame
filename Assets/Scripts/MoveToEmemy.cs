@@ -18,19 +18,21 @@ public class MoveToEmemy : MonoBehaviour
     }
     private void Start()
     {
-        float min = 9999;
-        Transform number = gameManager.EnemyList[0];
+        float min = (transform.position - gameManager.EnemyList[0].transform.position).magnitude;
+
+        Transform number = gameManager.EnemyList[0].transform;
         foreach (var item in gameManager.EnemyList)
         {
-           float distance = Mathf.Sqrt(Mathf.Pow((transform.position.x - item.position.x),2) + Mathf.Pow((transform.position.y - item.position.y),2)); //расстояние между точками?
-
+            float distance = (transform.position - gameManager.EnemyList[0].transform.position).magnitude; //расстояние между точками?
+            if (item.activeInHierarchy)
+            {
             if (distance < min)
             {
                 name = item.name;
                 min = distance;
-                number = item;
+                number = item.transform;
             }
-                
+            }
         }
 
         direct = number.position - transform.position;
@@ -39,15 +41,15 @@ public class MoveToEmemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag.Contains("Enemy"))
-            Destroy(this.gameObject);
+        if (collision.tag.Contains("Enemy"))
+            this.gameObject.SetActive(false);
 
     }
     private void Update()
     {
         timeLife -= Time.deltaTime;
         if (timeLife<=0)
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
     }
     private void FixedUpdate()
     {

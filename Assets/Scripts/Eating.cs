@@ -28,7 +28,7 @@ public class Eating : Player
 
             case "Enemy":
                 {
-                    ReceiveDamageFromBump(collision.transform.GetComponent<EnemyScript>().gameManager.enemyStats.damage);
+                    ReceiveDamageFromBump(collision.transform.GetComponent<EnemyScript>().gameScript.enemyStats.damage);
                     break;
                 }
         }
