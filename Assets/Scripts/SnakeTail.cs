@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class SnakeTail : MonoBehaviour
 {
 
-    [SerializeField] public Transform Tail;
+    [SerializeField] public GameObject Tail;
     //[SerializeField] protected Transform SnakeHead;
     [SerializeField] private float CircleDiameter;
     [SerializeField] private int SnakeLength = 3;
@@ -19,7 +19,7 @@ public class SnakeTail : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameScript>();
         spawner = GameObject.Find("GameManager").GetComponent<Spawner>();
-        gameManager.SnakeList.Add(transform);
+        gameManager.SnakeList.Add(gameObject);
         
     }
 
@@ -31,12 +31,12 @@ public class SnakeTail : MonoBehaviour
     }
     private void Update()
     {
-        float distance = ((Vector2)gameManager.SnakeList[0].position - positions[0]).magnitude;
+        float distance = ((Vector2)gameManager.SnakeList[0].transform.position - positions[0]).magnitude;
 
         if (distance > CircleDiameter)
         {
             // Íàïðàâëåíèå îò ñòàðîãî ïîëîæåíèÿ ãîëîâû, ê íîâîìó
-            Vector2 direction = ((Vector2)gameManager.SnakeList[0].position - positions[0]);
+            Vector2 direction = ((Vector2)gameManager.SnakeList[0].transform.position - positions[0]);
 
             positions.Insert(0, positions[0] + direction * CircleDiameter);
             positions.RemoveAt(positions.Count - 1);
@@ -45,15 +45,15 @@ public class SnakeTail : MonoBehaviour
         }
         for (int i = 1; i < gameManager.SnakeList.Count; i++)
         {
-             gameManager.SnakeList[i].position = Vector2.Lerp(positions[i], positions[i-1], distance / CircleDiameter);
+             gameManager.SnakeList[i].transform.position = Vector2.Lerp(positions[i], positions[i-1], distance / CircleDiameter);
 
         }
     }
 
     public void AddCircle()
     {
-        Transform circle = spawner.UniSpawn(Tail, positions[positions.Count - 1]);
+        GameObject circle = spawner.UniSpawn(Tail, positions[positions.Count - 1]);
         gameManager.SnakeList.Add(circle);
-        positions.Add(circle.position);
+        positions.Add(circle.transform.position);
     }
 }

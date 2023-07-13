@@ -263,5 +263,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerPos: {fileID: 0}
-  exp: {fileID: 5435655721622509160, guid: f298b651c97513b489bb74caa2562a65, type: 3}
+  exp: {fileID: 921297553671310817, guid: f298b651c97513b489bb74caa2562a65, type: 3}
   gameScript: {fileID: 0}

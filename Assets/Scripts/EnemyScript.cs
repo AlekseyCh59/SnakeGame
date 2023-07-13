@@ -7,7 +7,7 @@ public class EnemyScript : MonoBehaviour
     Rigidbody2D rbEnemy;
     Vector3 Direct;
     public float currentHp { get; private set; }
-    public Transform exp;
+    public GameObject exp;
     public GameScript gameScript; //PUBLIC?!
     Spawner spawner;
 
@@ -22,15 +22,11 @@ public class EnemyScript : MonoBehaviour
 
     private void Start()
     {
-        PlayerPos = gameScript.SnakeList[0];
+        PlayerPos = gameScript.SnakeList[0].transform;
         currentHp = gameScript.enemyStats.maxhp;
         rbEnemy = GetComponent<Rigidbody2D>();
     }
 
-    private void OnDestroy()
-    {
-        gameScript.clearEnemy(this.gameObject);
-    }
 
     private void OnEnable()
     {
@@ -43,10 +39,10 @@ public class EnemyScript : MonoBehaviour
         if (collision.tag.Contains("weapon"))
         {
             currentHp -= 2;
-            if (currentHp <= 0)
+
+            if (currentHp <= 0 && gameObject.activeInHierarchy)
             {
-                spawner.UniSpawn(exp, this.transform.position);
-                gameScript.clearEnemy(this.gameObject);
+                gameScript.ClearEnemy(gameObject);
             }
         }
     }
@@ -68,24 +64,19 @@ public class EnemyScript : MonoBehaviour
     async void Waiting()
     {
 
-        float min = (gameScript.SnakeList[0].position - this.transform.position).magnitude;
+        float min = (gameScript.SnakeList[0].transform.position - this.transform.position).magnitude;
         foreach (var item in gameScript.SnakeList)
         {
-            float distance = (item.position - this.transform.position).magnitude;
+            float distance = (item.transform.position - this.transform.position).magnitude;
             if (min > distance)
             {
                 min = distance;
-                PlayerPos = item;
+                PlayerPos = item.transform;
             }
         }
         await Task.Delay(1000);
 
     }
 
-    private void FixedUpdate() //SOME SHIT HERE
-    {
 
-
-       
-    }
 }

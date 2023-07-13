@@ -22,24 +22,6 @@ public class Player : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     protected void ReceiveDamageFromAttack(float forceDamage, float magicDamage)
     { 
         float damage = magicDamage * (1 - stats.MagicResistance) - stats.armor + forceDamage * (1 - stats.PhisicResistance) - stats.armor;

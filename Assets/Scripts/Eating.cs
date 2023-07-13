@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class Eating : Player
 {
+    public GameScript gameScript; //PUBLIC?!
+
+    private void Start()
+    {
+        gameScript = GameObject.Find("GameManager").GetComponent<GameScript>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
@@ -21,7 +27,7 @@ public class Eating : Player
             case "Exp":
                 {
                     ReceiveExp(1f);
-                    Destroy(collision.gameObject);
+                    collision.gameObject.SetActive(false);
                     
                     break;
                 }

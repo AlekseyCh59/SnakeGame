@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,7 +11,8 @@ public class ObjectPoolClass: MonoBehaviour
     public bool willGrow = true;
     public List<GameObject> fireList;
     GameScript gameScript;
-    Dictionary<GameObject, GameObject> AllpolledObjects = new Dictionary<GameObject, GameObject>(); //как то прикрутить надо
+    
+
 
     private void Awake()
     {
@@ -22,21 +23,7 @@ public class ObjectPoolClass: MonoBehaviour
     {
         gameScript = GameObject.Find("GameManager").GetComponent<GameScript>();
         //pooledObjects = new List<GameObject>();
-        for (int i = 0; i < poolAmount; i++)
-        {
-            GameObject obj = (GameObject)Instantiate(enemy);
-            GameObject obj2 = (GameObject)Instantiate(fire);
-            obj.SetActive(false);
-            obj2.SetActive(false);
-            gameScript.EnemyList.Add(obj);
-            fireList.Add(obj2);
-
-        }
-    }
-
-
-
-
+            }
 
 
 
@@ -74,3 +61,4 @@ public class ObjectPoolClass: MonoBehaviour
 
 
 }
+*/

@@ -8,35 +8,39 @@ public class MoveToEmemy : MonoBehaviour
 {
     Vector3 direct;
     [SerializeField]float Speed;
-    float timeLife = 5f;
-    GameScript gameManager;
+    float timeLife = 2f;
+    GameScript gameScript;
 
     private void Awake()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameScript>();
+        gameScript = GameObject.Find("GameManager").GetComponent<GameScript>();
 
     }
-    private void Start()
-    {
-        float min = (transform.position - gameManager.EnemyList[0].transform.position).magnitude;
 
-        Transform number = gameManager.EnemyList[0].transform;
-        foreach (var item in gameManager.EnemyList)
+
+    private void OnEnable()
+    {
+        timeLife = 2f;
+        float min = (transform.position - gameScript.EnemyList[0].transform.position).magnitude;
+        Transform number = gameScript.EnemyList[0].transform;
+        foreach (var item in gameScript.EnemyList)
         {
-            float distance = (transform.position - gameManager.EnemyList[0].transform.position).magnitude; //расстояние между точками?
             if (item.activeInHierarchy)
             {
-            if (distance < min)
-            {
-                name = item.name;
-                min = distance;
-                number = item.transform;
-            }
+                float distance = (transform.position - item.transform.position).magnitude; //расстояние между точками?
+                if (distance < min)
+                {
+                    min = distance;
+                    number = item.transform;
+                }
             }
         }
 
         direct = number.position - transform.position;
-            direct.Normalize();
+        direct.Normalize();
+    }
+    private void Start()
+    {
         
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -48,8 +52,10 @@ public class MoveToEmemy : MonoBehaviour
     private void Update()
     {
         timeLife -= Time.deltaTime;
-        if (timeLife<=0)
+        if (timeLife <= 0) {
             this.gameObject.SetActive(false);
+        }
+            
     }
     private void FixedUpdate()
     {

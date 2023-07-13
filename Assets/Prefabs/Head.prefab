@@ -191,8 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544d18e19961cf341b033af265121efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tail: {fileID: 492368702522728839, guid: 9a2b54940e26d5245a60cf9575aa888a, type: 3}
-  SnakeHead: {fileID: 4541207112605418644}
+  Tail: {fileID: 2376674306866171090, guid: 9a2b54940e26d5245a60cf9575aa888a, type: 3}
   CircleDiameter: 0.8
   SnakeLength: 12
 --- !u!114 &6011852340064192731
@@ -207,8 +206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 832bb42484b845044b987a7074c468e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 2575384695216457030, guid: 5896d43b5fdb54a4ea24ea4ada8458f0, type: 3}
-  attackInterwal: 1
 --- !u!114 &1524587890831414121
 MonoBehaviour:
   m_ObjectHideFlags: 0

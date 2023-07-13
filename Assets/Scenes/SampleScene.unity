@@ -700,8 +700,18 @@ MonoBehaviour:
   level: {fileID: 1936758339}
   stats: {fileID: 11400000, guid: 4519b8b2dfc7eee4086be6fc6a14308c, type: 2}
   enemyStats: {fileID: 11400000, guid: b31d52133d5fe8f41affd898af28f8e3, type: 2}
+  EnemyList: []
+  FireList: []
+  ExpList: []
   SnakeList: []
-  weapon: {fileID: 2575384695216457030, guid: 5896d43b5fdb54a4ea24ea4ada8458f0, type: 3}
+  fire: {fileID: 2575384695216457030, guid: 5896d43b5fdb54a4ea24ea4ada8458f0, type: 3}
+  amountFire: 10
+  enemy: {fileID: 7381558060882434626, guid: 275d42f6df73ece44ba5dc3c84e2d741, type: 3}
+  amountEnemy: 10
+  tail: {fileID: 2376674306866171090, guid: 9a2b54940e26d5245a60cf9575aa888a, type: 3}
+  amountTail: 0
+  exp: {fileID: 921297553671310817, guid: f298b651c97513b489bb74caa2562a65, type: 3}
+  amountExp: 10
 --- !u!4 &539293696
 Transform:
   m_ObjectHideFlags: 0
@@ -730,7 +740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 7381558060882434626, guid: 275d42f6df73ece44ba5dc3c84e2d741, type: 3}
-  spawnInterwal: 1
+  spawnInterwal: 0.2
   weapon: {fileID: 2575384695216457030, guid: 5896d43b5fdb54a4ea24ea4ada8458f0, type: 3}
   weaponinterwal: 1
   snakeHead: {fileID: 6767126602759605265, guid: 5f40b0cac856e0a45afeb16fef220418, type: 3}
@@ -1035,11 +1045,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae83e84760b19d14fb840750a6afac22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 7381558060882434626, guid: 275d42f6df73ece44ba5dc3c84e2d741, type: 3}
-  fire: {fileID: 2575384695216457030, guid: 5896d43b5fdb54a4ea24ea4ada8458f0, type: 3}
-  poolAmount: 10
-  willGrow: 1
-  fireList: []
+--- !u!1 &1243659875
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1243659876}
+  m_Layer: 0
+  m_Name: EnemyList
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1243659876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243659875}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.5384903, y: 4.9292874, z: -1.2276977}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1316700218
 GameObject:
   m_ObjectHideFlags: 0
