@@ -15,7 +15,7 @@ public class GameScript : MonoBehaviour
 
     // Скриптаблы
     public PlayerStats stats;
-    public EnemyStats enemyStats;
+   // public EnemyStats enemyStats;
     public static List<float> expiriens = new() { 1, 4, 8, 10, 20, 100 };
 
     //Массивы
@@ -167,7 +167,6 @@ public class GameScript : MonoBehaviour
     void SpawnExp(GameObject enemy)
     {
         GameObject obj = GetPooledObj("exp");
-        Debug.Log(obj);
         if (obj == null) return;
         obj.transform.SetPositionAndRotation(enemy.transform.position, enemy.transform.rotation);
         obj.SetActive(true);

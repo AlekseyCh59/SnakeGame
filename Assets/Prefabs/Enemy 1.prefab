@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 5728256934230786732}
   - component: {fileID: 7160297211256725315}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,7 +178,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 982feda08149fd74bb24717370d5116e, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.4811321, g: 0.015886446, b: 0.015886446, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -265,4 +265,4 @@ MonoBehaviour:
   PlayerPos: {fileID: 0}
   exp: {fileID: 921297553671310817, guid: f298b651c97513b489bb74caa2562a65, type: 3}
   gameScript: {fileID: 0}
-  enemyStats: {fileID: 11400000, guid: b31d52133d5fe8f41affd898af28f8e3, type: 2}
+  enemyStats: {fileID: 11400000, guid: 8c531f06f6261204f8e3f46cb198ddcf, type: 2}

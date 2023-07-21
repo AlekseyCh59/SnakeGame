@@ -10,6 +10,7 @@ public class EnemyScript : MonoBehaviour
     public GameObject exp;
     public GameScript gameScript; //PUBLIC?!
     Spawner spawner;
+    public EnemyStats enemyStats;
 
 
     private void Awake()
@@ -23,14 +24,14 @@ public class EnemyScript : MonoBehaviour
     private void Start()
     {
         PlayerPos = gameScript.SnakeList[0].transform;
-        currentHp = gameScript.enemyStats.maxhp;
+        currentHp = enemyStats.maxhp;
         rbEnemy = GetComponent<Rigidbody2D>();
     }
 
 
     private void OnEnable()
     {
-        currentHp = gameScript.enemyStats.maxhp;
+        currentHp = enemyStats.maxhp;
     }
 
 
@@ -54,7 +55,7 @@ public class EnemyScript : MonoBehaviour
             Waiting();
             Direct = PlayerPos.position - transform.position;
             Direct.Normalize();
-            rbEnemy.MovePosition(transform.position + Direct * gameScript.enemyStats.Speed * Time.deltaTime);
+            rbEnemy.MovePosition(transform.position + Direct * enemyStats.Speed * Time.deltaTime);
 
         }
     }
