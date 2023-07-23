@@ -15,7 +15,7 @@ public class GameScript : MonoBehaviour
 
     // Скриптаблы
     public PlayerStats stats;
-   // public EnemyStats enemyStats;
+    // public EnemyStats enemyStats;
     public static List<float> expiriens = new() { 1, 4, 8, 10, 20, 100 };
 
     //Массивы
@@ -34,7 +34,7 @@ public class GameScript : MonoBehaviour
     [SerializeField] private int amountExp = 10;
     /*    [SerializeField] private float attackInterwal = 1f;*/
     public Dictionary<GameObject, List<GameObject>> AllpolledObjects = new Dictionary<GameObject, List<GameObject>>(); //как то прикрутить надо
-
+    ObjectPool objectpool;
 
 
 
@@ -43,6 +43,8 @@ public class GameScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        objectpool = ObjectPool.Instance;
+
         AllpolledObjects.Add(enemy, EnemyList);
         AllpolledObjects.Add(fire, FireList);
 
@@ -158,11 +160,14 @@ public class GameScript : MonoBehaviour
 
     void SpawnEnemy()
     {
-        GameObject obj = GetPooledObj("enemy");
+            objectpool.SpawnFromPool("EnemyTier1", new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0), transform.rotation);
+        
+
+/*        GameObject obj = GetPooledObj("enemy");
         if (obj == null) return;
         obj.transform.SetPositionAndRotation(new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0), transform.rotation);
         obj.SetActive(true);
-
+*/
     }
     void SpawnExp(GameObject enemy)
     {
