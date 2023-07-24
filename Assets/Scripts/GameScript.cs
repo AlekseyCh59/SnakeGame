@@ -16,24 +16,10 @@ public class GameScript : MonoBehaviour
     // Скриптаблы
     public PlayerStats stats;
     // public EnemyStats enemyStats;
-    public static List<float> expiriens = new() { 1, 4, 8, 10, 20, 100 };
 
     //Массивы
-    [SerializeField] public List<GameObject> EnemyList = new();
-    [SerializeField] public List<GameObject> FireList = new();
-    [SerializeField] public List<GameObject> ExpList = new();
-    [SerializeField] public List<GameObject> SnakeList = new();
 
-    [SerializeField] private GameObject fire;
-    [SerializeField] private int amountFire = 10;
-    [SerializeField] private GameObject enemy;
-    [SerializeField] private int amountEnemy = 10;
-    [SerializeField] private GameObject tail;
-    [SerializeField] private int amountTail = 0;
-    [SerializeField] private GameObject exp;
-    [SerializeField] private int amountExp = 10;
-    /*    [SerializeField] private float attackInterwal = 1f;*/
-    public Dictionary<GameObject, List<GameObject>> AllpolledObjects = new Dictionary<GameObject, List<GameObject>>(); //как то прикрутить надо
+    [SerializeField] public List<GameObject> SnakeList = new();
     ObjectPool objectpool;
 
 
@@ -44,24 +30,13 @@ public class GameScript : MonoBehaviour
     void Start()
     {
         objectpool = ObjectPool.Instance;
-
-        AllpolledObjects.Add(enemy, EnemyList);
-        AllpolledObjects.Add(fire, FireList);
-
-        // AllpolledObjects.Add(tail, TailList);
-        AllpolledObjects.Add(exp, ExpList);
-        PoolSome(enemy, amountEnemy);
-        PoolSome(fire, amountFire);
-        PoolSome(exp, amountExp);
-        // PoolSome(tail, amountTail);
         InvokeRepeating(nameof(SpawnEnemy), 1, 0.5f);
-        InvokeRepeating(nameof(SpawnFire), 1, 1);
+        //InvokeRepeating(nameof(SpawnFire), 1, 1);
     }
 
     // Update is called once per frame
     void Update()
     {
-
         MyInterface();
 
     }
@@ -85,7 +60,6 @@ public class GameScript : MonoBehaviour
         level.text = stats.level.ToString();
     }
 
-
     private void Awake()
     {
 
@@ -95,96 +69,22 @@ public class GameScript : MonoBehaviour
 
     }
 
-    private void PoolSome(GameObject poolingObj, int amount)
-    {
-        for (int i = 0; i < amount; i++)
-        {
-            GameObject obj = (GameObject)Instantiate(poolingObj);
-            obj.SetActive(false);
-            AllpolledObjects[poolingObj].Add(obj);
-        }
 
-    }
-
-    public GameObject GetPooledObj(string list)
-    {
-        if (list == "enemy")
-        {
-            foreach (var item in AllpolledObjects[enemy])
-            {
-                if (!item.activeInHierarchy)
-                    return item;
-            }
-
-            if (true)
-            {
-                GameObject obj = (GameObject)Instantiate(enemy);
-                EnemyList.Add(obj);
-                return obj;
-            }
-        }
-
-        if (list == "fire")
-        {
-            foreach (var item in FireList)
-            {
-                if (!item.activeInHierarchy)
-                    return item;
-            }
-            if (true)
-            {
-                GameObject obj = (GameObject)Instantiate(fire);
-                FireList.Add(obj);
-                return obj;
-            }
-        }
-
-        if (list == "exp")
-        {
-            foreach (var item in ExpList)
-            {
-                if (!item.activeInHierarchy)
-                    return item;
-            }
-            if (true)
-            {
-                GameObject obj = (GameObject)Instantiate(exp);
-                ExpList.Add(obj);
-                return obj;
-            }
-        }
-        else
-            return null;
-    }
 
 
     void SpawnEnemy()
     {
             objectpool.SpawnFromPool("EnemyTier1", new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0), transform.rotation);
-        
-
-/*        GameObject obj = GetPooledObj("enemy");
-        if (obj == null) return;
-        obj.transform.SetPositionAndRotation(new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0), transform.rotation);
-        obj.SetActive(true);
-*/
     }
     void SpawnExp(GameObject enemy)
     {
-        GameObject obj = GetPooledObj("exp");
-        if (obj == null) return;
-        obj.transform.SetPositionAndRotation(enemy.transform.position, enemy.transform.rotation);
-        obj.SetActive(true);
-
+        objectpool.SpawnFromPool("ExpTier1", enemy.transform.position, transform.rotation);
     }
     void SpawnFire()
-    {
+    {  
         foreach (var item in SnakeList)
         {
-            GameObject obj = GetPooledObj("fire");
-            if (obj == null) return;
-            obj.transform.SetPositionAndRotation(item.transform.position, item.transform.rotation);
-            obj.SetActive(true);
+            objectpool.SpawnFromPool("FireType1", item.transform.position, item.transform.rotation);
         }
     }
 }

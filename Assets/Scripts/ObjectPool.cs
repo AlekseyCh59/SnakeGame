@@ -14,7 +14,7 @@ public class ObjectPool : MonoBehaviour
         public int size;
         public bool grow = false;
     }
-    public Dictionary<string, Queue<GameObject>> AllpolledObjects = new Dictionary<string, Queue<GameObject>>(); //как то прикрутить надо
+    public Dictionary<string, List<GameObject>> AllpolledObjects = new Dictionary<string, List<GameObject>>(); //как то прикрутить надо
     public List<Pool> pools;
 
     public static ObjectPool Instance; 
@@ -37,26 +37,29 @@ public class ObjectPool : MonoBehaviour
     {
         foreach (Pool pool in pools)
         {
-            Queue<GameObject> objectPool = new Queue<GameObject>();
-            for (int i = 0; i < pool.size; i++)
+            List<GameObject> objectPool = new List<GameObject>();
+            for (int i = 0; i <= pool.size; i++)
             {
                 GameObject obj = Instantiate(pool.prefab);
+                obj.transform.position = new Vector3(999, 999, 0);
                 obj.SetActive(false);
-                objectPool.Enqueue(obj);
+                objectPool.Add(obj);
             }
             AllpolledObjects.Add(pool.tag, objectPool);
         }
     }
+
+
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
-        if (AllpolledObjects[tag].Count>0)
+        foreach (var item in AllpolledObjects[tag])
         {
-            GameObject obj = AllpolledObjects[tag].Dequeue();
-
-            obj.transform.SetPositionAndRotation(position, rotation);
-            obj.SetActive(true);
-            //AllpolledObjects[tag].Enqueue(obj);
-            return obj;
+            if (!item.activeInHierarchy)
+            {
+                item.transform.SetPositionAndRotation(position, rotation);
+                item.SetActive(true);
+                return item;
+            }
         }
         return null;
 
@@ -65,7 +68,6 @@ public class ObjectPool : MonoBehaviour
     public void BackToPoll(string tag, GameObject obj)
     {
         obj.SetActive(false);
-        AllpolledObjects[tag].Enqueue(obj);
     }
 
 

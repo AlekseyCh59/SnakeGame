@@ -632,7 +632,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -657,7 +657,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -30}
+  m_LocalPosition: {x: 0, y: 0, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -700,18 +700,7 @@ MonoBehaviour:
   Exp: {fileID: 1316700220}
   level: {fileID: 1936758339}
   stats: {fileID: 11400000, guid: 4519b8b2dfc7eee4086be6fc6a14308c, type: 2}
-  EnemyList: []
-  FireList: []
-  ExpList: []
   SnakeList: []
-  fire: {fileID: 2575384695216457030, guid: 5896d43b5fdb54a4ea24ea4ada8458f0, type: 3}
-  amountFire: 10
-  enemy: {fileID: 7381558060882434626, guid: 275d42f6df73ece44ba5dc3c84e2d741, type: 3}
-  amountEnemy: 10
-  tail: {fileID: 2376674306866171090, guid: 9a2b54940e26d5245a60cf9575aa888a, type: 3}
-  amountTail: 0
-  exp: {fileID: 921297553671310817, guid: f298b651c97513b489bb74caa2562a65, type: 3}
-  amountExp: 10
 --- !u!4 &539293696
 Transform:
   m_ObjectHideFlags: 0
@@ -759,7 +748,7 @@ MonoBehaviour:
   pools:
   - tag: EnemyTier1
     prefab: {fileID: 7381558060882434626, guid: 275d42f6df73ece44ba5dc3c84e2d741, type: 3}
-    size: 10
+    size: 100
     grow: 0
   - tag: EnemyTier2
     prefab: {fileID: 7381558060882434626, guid: 60d5f7141fb4df94cb2b712c13bd8ddd, type: 3}
@@ -1034,37 +1023,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049092114}
   m_CullTransparentMesh: 1
---- !u!1 &1243659875
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1243659876}
-  m_Layer: 0
-  m_Name: EnemyList
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1243659876
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243659875}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5384903, y: 4.9292874, z: -1.2276977}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1316700218
 GameObject:
   m_ObjectHideFlags: 0

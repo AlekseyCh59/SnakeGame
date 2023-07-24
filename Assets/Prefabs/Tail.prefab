@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 4519b8b2dfc7eee4086be6fc6a14308c, type: 2}
+  gameScript: {fileID: 0}
 --- !u!114 &5598771219829914180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,5 +176,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 832bb42484b845044b987a7074c468e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 2575384695216457030, guid: 5896d43b5fdb54a4ea24ea4ada8458f0, type: 3}
-  attackInterwal: 1

@@ -9,15 +9,12 @@ public class EnemyScript : MonoBehaviour
     public float currentHp { get; private set; }
     public GameObject exp;
     public GameScript gameScript; //PUBLIC?!
-    Spawner spawner;
     public EnemyStats enemyStats;
 
 
     private void Awake()
     {
-
         gameScript = GameObject.Find("GameManager").GetComponent<GameScript>();
-        spawner = GameObject.Find("GameManager").GetComponent<Spawner>();
     }
 
 
@@ -75,7 +72,7 @@ public class EnemyScript : MonoBehaviour
                 PlayerPos = item.transform;
             }
         }
-        await Task.Delay(1000);
+        await Task.Delay(50);
 
     }
 

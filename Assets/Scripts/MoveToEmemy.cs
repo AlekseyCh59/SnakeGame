@@ -10,6 +10,7 @@ public class MoveToEmemy : MonoBehaviour
     [SerializeField]float Speed;
     float timeLife = 2f;
     GameScript gameScript;
+    ObjectPool objectpool;
 
     private void Awake()
     {
@@ -21,9 +22,9 @@ public class MoveToEmemy : MonoBehaviour
     private void OnEnable()
     {
         timeLife = 2f;
-        float min = (transform.position - gameScript.EnemyList[0].transform.position).magnitude;
-        Transform number = gameScript.EnemyList[0].transform;
-        foreach (var item in gameScript.EnemyList)
+        float min = 999;
+        Vector3 number = new Vector3(0,0,0);
+        foreach (var item in objectpool.AllpolledObjects["EnemyTier1"])
         {
             if (item.activeInHierarchy)
             {
@@ -31,17 +32,19 @@ public class MoveToEmemy : MonoBehaviour
                 if (distance < min)
                 {
                     min = distance;
-                    number = item.transform;
+                    number = item.transform.position;
                 }
             }
         }
-
-        direct = number.position - transform.position;
+        direct = number - transform.position;
         direct.Normalize();
+
+
+
     }
     private void Start()
     {
-        
+        objectpool = ObjectPool.Instance;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
