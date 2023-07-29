@@ -21,13 +21,14 @@ public class ObjectPool : MonoBehaviour
 
     private void Start()
     {
-        FillPool();
+
 
     }
 
     private void Awake()
     {
         Instance = this;
+        FillPool();
     }
 
 

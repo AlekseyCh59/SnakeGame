@@ -28,6 +28,12 @@ public class EnemyScript : MonoBehaviour
     }
 
 
+    private void OnDisable()
+    {
+
+    }
+
+
     private void OnEnable()
     {
         currentHp = enemyStats.maxhp;
@@ -42,7 +48,8 @@ public class EnemyScript : MonoBehaviour
 
             if (currentHp <= 0 && gameObject.activeInHierarchy)
             {
-                GlobalEventManager.SendEnemyKilled();
+
+                GlobalEventManager.SendEnemyKilled(gameObject);
                 objectpool.BackToPoll(gameObject);
             }
         }

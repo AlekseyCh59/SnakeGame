@@ -5,11 +5,11 @@ using UnityEngine.Events;
 
 public class GlobalEventManager : MonoBehaviour
 {
-    public static UnityEvent OnEnemyKilled = new UnityEvent();
+    public static UnityEvent<GameObject> OnEnemyKilled = new UnityEvent<GameObject>();
 
-    public static void SendEnemyKilled()
+    public static void SendEnemyKilled(GameObject obj)
     {
-        OnEnemyKilled.Invoke();
-    }
+        OnEnemyKilled.Invoke(obj);
+    }  
 
 }

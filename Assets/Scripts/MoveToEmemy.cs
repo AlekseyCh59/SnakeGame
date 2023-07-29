@@ -35,6 +35,18 @@ public class MoveToEmemy : MonoBehaviour
                     number = item.transform.position;
                 }
             }
+        }      
+        foreach (var item in objectpool.AllpolledObjects["EnemyTier2"])
+        {
+            if (item.activeInHierarchy)
+            {
+                float distance = (transform.position - item.transform.position).magnitude; //расстояние между точками?
+                if (distance < min)
+                {
+                    min = distance;
+                    number = item.transform.position;
+                }
+            }
         }
         direct = number - transform.position;
         direct.Normalize();

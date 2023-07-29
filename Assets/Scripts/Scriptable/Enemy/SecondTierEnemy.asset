@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08ac42fb40ada84388a466d5a707be5, type: 3}
   m_Name: SecondTierEnemy
   m_EditorClassIdentifier: 
-  maxhp: 100
+  maxhp: 10
   scalingHp: 1.05
   level: 1
   experiens: 0
-  Speed: 200
+  Speed: 5
   MagicResistance: 0
   PhisicResistance: 0
   armor: 0
