@@ -31,7 +31,7 @@ public class GameScript : MonoBehaviour
     {
         objectpool = ObjectPool.Instance;
         InvokeRepeating(nameof(SpawnEnemy), 1, 0.5f);
-        //InvokeRepeating(nameof(SpawnFire), 1, 1);
+        InvokeRepeating(nameof(SpawnFire), 1, 1);
     }
 
     // Update is called once per frame

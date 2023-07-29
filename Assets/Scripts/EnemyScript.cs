@@ -10,7 +10,8 @@ public class EnemyScript : MonoBehaviour
     public GameObject exp;
     public GameScript gameScript; //PUBLIC?!
     public EnemyStats enemyStats;
-
+    int cadr = 0;
+    ObjectPool objectpool;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class EnemyScript : MonoBehaviour
 
     private void Start()
     {
+        objectpool = ObjectPool.Instance;
         PlayerPos = gameScript.SnakeList[0].transform;
         currentHp = enemyStats.maxhp;
         rbEnemy = GetComponent<Rigidbody2D>();
@@ -40,41 +42,37 @@ public class EnemyScript : MonoBehaviour
 
             if (currentHp <= 0 && gameObject.activeInHierarchy)
             {
-                gameScript.ClearEnemy(gameObject);
+                GlobalEventManager.SendEnemyKilled();
+                objectpool.BackToPoll(gameObject);
             }
         }
     }
 
     private void Update()
     {
-        if (this.gameObject)
+        cadr++;
+        if (cadr == 10)
         {
-            Waiting();
-            Direct = PlayerPos.position - transform.position;
-            Direct.Normalize();
-            rbEnemy.MovePosition(transform.position + Direct * enemyStats.Speed * Time.deltaTime);
-
-        }
-    }
-
-
-
-    async void Waiting()
-    {
-
-        float min = (gameScript.SnakeList[0].transform.position - this.transform.position).magnitude;
-        foreach (var item in gameScript.SnakeList)
-        {
-            float distance = (item.transform.position - this.transform.position).magnitude;
-            if (min > distance)
+            float min = (gameScript.SnakeList[0].transform.position - this.transform.position).magnitude;
+            foreach (var item in gameScript.SnakeList)
             {
-                min = distance;
-                PlayerPos = item.transform;
+                float distance = (item.transform.position - this.transform.position).magnitude;
+                if (min > distance)
+                {
+                    min = distance;
+                    PlayerPos = item.transform;
+                }
             }
+            //if (this.gameObject)
+            //{
+           
+            cadr =0;
+            //}
         }
-        await Task.Delay(50);
+        Direct = PlayerPos.position - transform.position;
+        Direct.Normalize();
+        rbEnemy.MovePosition(transform.position + Direct * enemyStats.Speed * Time.deltaTime);
 
     }
-
 
 }

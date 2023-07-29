@@ -65,7 +65,7 @@ public class ObjectPool : MonoBehaviour
 
     }
 
-    public void BackToPoll(string tag, GameObject obj)
+    public void BackToPoll(GameObject obj)
     {
         obj.SetActive(false);
     }
