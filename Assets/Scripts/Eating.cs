@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class Eating : Player
 {
+    private ObjectPool objectpool;
     public GameScript gameScript; //PUBLIC?!
 
     private void Start()
     {
+        objectpool = ObjectPool.Instance;
         gameScript = GameObject.Find("GameManager").GetComponent<GameScript>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,9 +28,9 @@ public class Eating : Player
                 }
             case "Exp":
                 {
+                    GlobalEventManager.SendExpEating(collision.gameObject.tag);
                     ReceiveExp(1f);
-                    collision.gameObject.SetActive(false);
-                    
+                    objectpool.BackToPoll(collision.gameObject);                 
                     break;
                 }
 
