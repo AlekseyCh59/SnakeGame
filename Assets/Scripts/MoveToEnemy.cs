@@ -4,7 +4,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
  
 
-public class MoveToEmemy : MonoBehaviour
+public class MoveToEnemy : MonoBehaviour
 {
     Vector3 direct;
     [SerializeField]float Speed;

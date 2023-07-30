@@ -24,7 +24,20 @@ public class GameScript : MonoBehaviour
 
 
     int enemies;
-
+    public enum Enemies
+    {
+        EnemyTier1,
+        EnemyTier2,
+        EnemyTier3,
+        EnemyTier4
+    }
+    public enum Expiriens
+    {
+        ExpTier1,
+        ExpTier2,
+        ExpTier3,
+        ExpTier4
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -41,15 +54,6 @@ public class GameScript : MonoBehaviour
         MyInterface();
     }
 
-
-/*
-    public void ClearEnemy(GameObject enemy)
-    {
-
-        SpawnExp(enemy);
-        enemy.SetActive(false);
-
-    }*/
 
 
     private void MyInterface()
@@ -73,51 +77,16 @@ public class GameScript : MonoBehaviour
     private void EnemyKill(GameObject enemy)
     {
         enemies--;
-        string tag = null;
-        switch (enemy.tag)
-        {
-            case "EnemyTier1": tag = "ExpTier1"; break;
-            case "EnemyTier2": tag = "ExpTier2"; break;
-            case "EnemyTier3": tag = "ExpTier3"; break;
-            case "EnemyTier4": tag = "ExpTier4"; break;
-        }
-        if (tag != null)
-        {
-            objectpool.SpawnFromPool(tag, enemy.transform.position, transform.rotation);
-        }
-        else { Debug.Log("Enemy tag = null - GameScript SpawnEnemy"); }
-
+            objectpool.SpawnFromPool(ToExp(Enum.Parse<Enemies>(enemy.tag)).ToString(), enemy.transform.position, transform.rotation);
     }
 
     void SpawnEnemy()
     {
+        int tier = Random.Range(0, 2);
         enemies++;
-        string str = "";
-        int tier = Random.Range(1, 3);
-        switch (tier)
-        {
-            case 1:str = "EnemyTier1";break;
-            case 2:str = "EnemyTier2";break;
-        }
-        objectpool.SpawnFromPool(str, new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0), transform.rotation);
+        objectpool.SpawnFromPool(((Enemies)tier).ToString(), new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0), transform.rotation);
     }
-/*    void SpawnExp(GameObject enemy)
-    {
-        string tag=null;
-        switch (enemy.tag)
-        { 
-            case "EnemyTier1": tag = enemy.tag;break;
-            case "EnemyTier2": tag = enemy.tag;break;
-            case "EnemyTier3": tag = enemy.tag;break;
-            case "EnemyTier4": tag = enemy.tag;break;
-        }
-        if (tag != null)
-        {
-            objectpool.SpawnFromPool(tag, enemy.transform.position, transform.rotation);
-        }
-        else { Debug.Log("Enemy tag = null - GameScript SpawnEnemy"); }
-        
-    }*/
+
     void SpawnFire()
     {
         if (enemies > 0)
@@ -128,4 +97,11 @@ public class GameScript : MonoBehaviour
             }
         }
     }
+    public static Expiriens ToExp(Enemies enemies) => enemies switch
+    {
+        Enemies.EnemyTier1 => Expiriens.ExpTier1,
+        Enemies.EnemyTier2 => Expiriens.ExpTier2,
+        Enemies.EnemyTier3 => Expiriens.ExpTier3,
+        Enemies.EnemyTier4 => Expiriens.ExpTier4,
+    };
 }
