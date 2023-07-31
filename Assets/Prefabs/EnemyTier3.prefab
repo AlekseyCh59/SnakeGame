@@ -114,8 +114,8 @@ GameObject:
   - component: {fileID: 5728256934230786732}
   - component: {fileID: 7160297211256725315}
   m_Layer: 6
-  m_Name: Enemy 1
-  m_TagString: EnemyTier2
+  m_Name: EnemyTier3
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,7 +178,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 982feda08149fd74bb24717370d5116e, type: 3}
-  m_Color: {r: 0.4811321, g: 0.015886446, b: 0.015886446, a: 1}
+  m_Color: {r: 0.24528301, g: 0.03332145, b: 0.03332145, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

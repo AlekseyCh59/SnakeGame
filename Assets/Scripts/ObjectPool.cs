@@ -42,6 +42,7 @@ public class ObjectPool : MonoBehaviour
             for (int i = 0; i <= pool.size; i++)
             {
                 GameObject obj = Instantiate(pool.prefab);
+                obj.name = pool.tag;
                 obj.transform.position = new Vector3(999, 999, 0);
                 obj.SetActive(false);
                 objectPool.Add(obj);

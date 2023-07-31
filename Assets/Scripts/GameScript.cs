@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+
+
 public class GameScript : MonoBehaviour
 {
 
@@ -31,7 +33,7 @@ public class GameScript : MonoBehaviour
         EnemyTier3,
         EnemyTier4
     }
-    public enum Expiriens
+    public enum Consumables
     {
         ExpTier1,
         ExpTier2,
@@ -68,16 +70,26 @@ public class GameScript : MonoBehaviour
     private void Awake()
     {
         GlobalEventManager.OnEnemyKilled.AddListener(EnemyKill);
+        GlobalEventManager.OnConsume.AddListener(Consume);
         stats.level = 1;
         stats.experiens = 0;
         stats.currentHP = stats.maxhp;
 
     }
 
+    private void Consume(string name)
+    {
+        if (Enum.IsDefined(typeof(Consumables), name))
+        {
+            Debug.Log(name);
+        }
+
+    }
+
     private void EnemyKill(GameObject enemy)
     {
         enemies--;
-            objectpool.SpawnFromPool(ToExp(Enum.Parse<Enemies>(enemy.tag)).ToString(), enemy.transform.position, transform.rotation);
+           objectpool.SpawnFromPool(ToExp(Enum.Parse<Enemies>(enemy.name)).ToString(), enemy.transform.position, transform.rotation);
     }
 
     void SpawnEnemy()
@@ -97,11 +109,11 @@ public class GameScript : MonoBehaviour
             }
         }
     }
-    public static Expiriens ToExp(Enemies enemies) => enemies switch
+    public static Consumables ToExp(Enemies enemies) => enemies switch
     {
-        Enemies.EnemyTier1 => Expiriens.ExpTier1,
-        Enemies.EnemyTier2 => Expiriens.ExpTier2,
-        Enemies.EnemyTier3 => Expiriens.ExpTier3,
-        Enemies.EnemyTier4 => Expiriens.ExpTier4,
+        Enemies.EnemyTier1 => Consumables.ExpTier1,
+        Enemies.EnemyTier2 => Consumables.ExpTier2,
+        Enemies.EnemyTier3 => Consumables.ExpTier3,
+        Enemies.EnemyTier4 => Consumables.ExpTier4,
     };
 }

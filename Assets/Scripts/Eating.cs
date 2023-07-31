@@ -14,22 +14,9 @@ public class Eating : Player
     {
         switch (collision.gameObject.tag)
         {
-            case "Food":
-                Destroy(collision.gameObject);
+            case "consumable":
                 {
-                    Healing(10);// Научить работаь с функцией
-                    break;
-                }
-            case "Coin":
-                {
-                    Destroy(collision.gameObject);
-                    ReceiveCoin();
-                    break;
-                }
-            case "Exp":
-                {
-                    GlobalEventManager.SendExpEating(collision.gameObject.tag);
-                    ReceiveExp(1f);
+                    GlobalEventManager.SendConsume(collision.gameObject.name);
                     objectpool.BackToPoll(collision.gameObject);                 
                     break;
                 }

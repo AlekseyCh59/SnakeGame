@@ -9,7 +9,7 @@ TagManager:
   - Food
   - Exp
   - weapon
-  - EnemyTier2
+  - consumable
   layers:
   - Default
   - TransparentFX
