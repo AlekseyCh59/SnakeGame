@@ -5,12 +5,12 @@ using UnityEngine.Events;
 
 public class GlobalEventManager : MonoBehaviour
 {
-    public static UnityEvent<GameObject> OnEnemyKilled = new UnityEvent<GameObject>();
+    public static UnityEvent<float> OnEnemyKilled = new UnityEvent<float>();
     public static UnityEvent<string> OnConsume = new UnityEvent<string>();
 
-    public static void SendEnemyKilled(GameObject obj)
+    public static void SendEnemyKilled(float exp)
     {
-        OnEnemyKilled.Invoke(obj);
+        OnEnemyKilled.Invoke(exp);
     }
     public static void SendConsume(string tag)
     {

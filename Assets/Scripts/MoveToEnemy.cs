@@ -61,14 +61,14 @@ public class MoveToEnemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag.Contains("Enemy"))
-            this.gameObject.SetActive(false);
+            objectpool.BackToPoll(this.gameObject);
 
     }
     private void Update()
     {
         timeLife -= Time.deltaTime;
         if (timeLife <= 0) {
-            this.gameObject.SetActive(false);
+            objectpool.BackToPoll(this.gameObject);
         }
             
     }

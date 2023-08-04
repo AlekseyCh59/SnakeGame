@@ -16,6 +16,7 @@ public class Eating : Player
         {
             case "consumable":
                 {
+                    
                     GlobalEventManager.SendConsume(collision.gameObject.name);
                     objectpool.BackToPoll(collision.gameObject);                 
                     break;

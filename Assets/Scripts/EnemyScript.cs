@@ -48,8 +48,9 @@ public class EnemyScript : MonoBehaviour
 
             if (currentHp <= 0 && gameObject.activeInHierarchy)
             {
-
-                GlobalEventManager.SendEnemyKilled(gameObject);
+                objectpool.SpawnFromPool("ExpTier1", gameObject.transform.position, transform.rotation);
+                //objectpool.SpawnFromPool("ExpTier1", gameObject.transform.position, transform.rotation);
+                GlobalEventManager.SendEnemyKilled(enemyStats.experiens);
                 objectpool.BackToPoll(gameObject);
             }
         }

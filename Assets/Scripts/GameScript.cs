@@ -38,7 +38,9 @@ public class GameScript : MonoBehaviour
         ExpTier1,
         ExpTier2,
         ExpTier3,
-        ExpTier4
+        ExpTier4,
+        Coin,
+        Food
     }
 
     // Start is called before the first frame update
@@ -69,7 +71,7 @@ public class GameScript : MonoBehaviour
 
     private void Awake()
     {
-        GlobalEventManager.OnEnemyKilled.AddListener(EnemyKill);
+        //GlobalEventManager.OnEnemyKilled.AddListener(EnemyKill);
         GlobalEventManager.OnConsume.AddListener(Consume);
         stats.level = 1;
         stats.experiens = 0;
@@ -81,6 +83,7 @@ public class GameScript : MonoBehaviour
     {
         if (Enum.IsDefined(typeof(Consumables), name))
         {
+
             Debug.Log(name);
         }
 
@@ -103,10 +106,11 @@ public class GameScript : MonoBehaviour
     {
         if (enemies > 0)
         {
-            foreach (var item in SnakeList)
+            for (int i = 1; i < SnakeList.Count; i++)
             {
-                objectpool.SpawnFromPool("FireType1", item.transform.position, item.transform.rotation);
+                objectpool.SpawnFromPool("FireType1", SnakeList[i].transform.position, SnakeList[i].transform.rotation);
             }
+
         }
     }
     public static Consumables ToExp(Enemies enemies) => enemies switch
@@ -115,5 +119,12 @@ public class GameScript : MonoBehaviour
         Enemies.EnemyTier2 => Consumables.ExpTier2,
         Enemies.EnemyTier3 => Consumables.ExpTier3,
         Enemies.EnemyTier4 => Consumables.ExpTier4,
+    };
+    public static int ExpToPlayer(Consumables consumable) => consumable switch //???
+    {
+        Consumables.ExpTier1 => 2,
+        Consumables.ExpTier2 => 10,
+        Consumables.ExpTier3 => 50,
+        Consumables.ExpTier4 => 100,
     };
 }
