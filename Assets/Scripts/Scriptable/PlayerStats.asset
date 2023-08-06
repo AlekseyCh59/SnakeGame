@@ -12,20 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4af39430e6283b40bca6178bd6a27d2, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  maxhp: 115.76248
-  scalingHp: 1.05
-  level: 4
-  experiens: 8
-  Speed: 3
-  MagicResistance: 0
-  PhisicResistance: 0
-  armor: 0
-  sprite: {fileID: 0}
-  money: 19
-  regeneration: 0
-  bonusExp: 0
-  bonusprojectile: 0
-  bonusmoney: 0
-  currentHP: 23.762482
-  expForLevel: 16
-  scalingExp: 2
+  maxhpInitialValue: 100
+  currentHPInitialValue: 100
+  speedInitialValueInitialValue: 10
+  moneyInitialValue: 0
+  magicResistanceInitialValue: 0
+  phisicResistanceInitialValue: 0
+  armorInitialValue: 0
+  fireResistanceInitialValue: 0
+  iceResistanceInitialValue: 0
+  lightingResistanceInitialValue: 0
+  poisonResistanceInitialValue: 0
+  bleedResistanceInitialValue: 0
+  shieldInitialValue: 0
+  shieldSizeInitialValue: 0
+  reloadRateInitialValue: 0
+  bonusprojectileInitialValue: 0
+  critChanceInitialValue: 0
+  bonusCritDamageInitialValue: 0
+  iceDamageInitialValue: 0
+  fireDamageInitialValue: 0
+  lightingDamageInitialValue: 0
+  magicDamageInitialValue: 0
+  phisicDamageInitialValue: 0
+  poisonDamageInitialValue: 0
+  bleedDamageInitialValue: 0
+  bonusmoneyInitialValue: 0
+  bonusExpInitialValue: 0
+  regenerationInitialValue: 0
+  levelInitialValue: 0
+  experiensInitialValue: 0
+  expForLevelInitialValue: 0
+  scaleExpForLevelInitialValue: 0
+  scalingHpInitialValue: 0
+  scalingExpInitialValue: 0

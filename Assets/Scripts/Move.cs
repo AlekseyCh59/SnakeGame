@@ -22,10 +22,10 @@ public class Move : MonoBehaviour
             key = "left";
         switch (key)
         {
-            case "up": PhisycsBody.MovePosition(transform.position + Vector3.up * stats.Speed * Time.deltaTime); break;
-            case "down": PhisycsBody.MovePosition(transform.position + Vector3.down * stats.Speed * Time.deltaTime); break;
-            case "right": PhisycsBody.MovePosition(transform.position + Vector3.right * stats.Speed * Time.deltaTime); break;
-            case "left": PhisycsBody.MovePosition(transform.position + Vector3.left * stats.Speed * Time.deltaTime); break;
+            case "up": PhisycsBody.MovePosition(transform.position + Vector3.up * stats.speed * Time.deltaTime); break;
+            case "down": PhisycsBody.MovePosition(transform.position + Vector3.down * stats.speed * Time.deltaTime); break;
+            case "right": PhisycsBody.MovePosition(transform.position + Vector3.right * stats.speed * Time.deltaTime); break;
+            case "left": PhisycsBody.MovePosition(transform.position + Vector3.left * stats.speed * Time.deltaTime); break;
 
         }
     }

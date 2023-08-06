@@ -79,7 +79,7 @@ public class EnemyScript : MonoBehaviour
         }
         Direct = PlayerPos.position - transform.position;
         Direct.Normalize();
-        rbEnemy.MovePosition(transform.position + Direct * enemyStats.Speed * Time.deltaTime);
+        rbEnemy.MovePosition(transform.position + Direct * enemyStats.speed * Time.deltaTime);
 
     }
 

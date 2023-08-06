@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 
     protected void ReceiveDamageFromAttack(float forceDamage, float magicDamage)
     { 
-        float damage = magicDamage * (1 - stats.MagicResistance) - stats.armor + forceDamage * (1 - stats.PhisicResistance) - stats.armor;
+        float damage = magicDamage * (1 - stats.magicResistance) - stats.armor + forceDamage * (1 - stats.phisicResistance) - stats.armor;
         if (damage > 0)
             stats.currentHP = - damage;
         if (stats.currentHP <= 0)

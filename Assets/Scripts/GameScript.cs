@@ -43,6 +43,16 @@ public class GameScript : MonoBehaviour
         Food
     }
 
+    private void Awake()
+    {
+        //GlobalEventManager.OnEnemyKilled.AddListener(EnemyKill);
+        GlobalEventManager.OnConsume.AddListener(Consume);
+/*        stats.level = 1;
+        stats.experiens = 0;
+        stats.currentHP = stats.maxhp;*/
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,15 +79,7 @@ public class GameScript : MonoBehaviour
         level.text = stats.level.ToString();
     }
 
-    private void Awake()
-    {
-        //GlobalEventManager.OnEnemyKilled.AddListener(EnemyKill);
-        GlobalEventManager.OnConsume.AddListener(Consume);
-        stats.level = 1;
-        stats.experiens = 0;
-        stats.currentHP = stats.maxhp;
 
-    }
 
     private void Consume(string name)
     {
