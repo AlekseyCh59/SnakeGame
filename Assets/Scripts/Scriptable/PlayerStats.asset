@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxhpInitialValue: 100
   currentHPInitialValue: 100
-  speedInitialValueInitialValue: 10
-  moneyInitialValue: 0
+  speedInitialValueInitialValue: 5
+  money: 0
   magicResistanceInitialValue: 0
   phisicResistanceInitialValue: 0
   armorInitialValue: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
   regenerationInitialValue: 0
   levelInitialValue: 0
   experiensInitialValue: 0
-  expForLevelInitialValue: 0
-  scaleExpForLevelInitialValue: 0
-  scalingHpInitialValue: 0
+  expForLevelInitialValue: 100
+  scaleExpForLevelInitialValue: 2
+  scalingHpInitialValue: 1.05
   scalingExpInitialValue: 0

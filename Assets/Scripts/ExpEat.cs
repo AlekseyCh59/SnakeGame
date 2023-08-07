@@ -4,28 +4,29 @@ using UnityEngine;
 
 public class ExpEat : MonoBehaviour
 {
-    int Exp;
-   
+    public float exp;
+    private ObjectPool objectpool;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag.Contains("Player"))
         {
-
-
+            GlobalEventManager.SendConsumeExp(exp);
+            objectpool.BackToPoll(gameObject);
         }
     }
     
     private void EnemyKilled(float exp)
     {
-
+        this.exp = exp;
     }
 
+    
 
 
     private void Awake()
     {
-        GlobalEventManager.OnEnemyKilled.AddListener(EnemyKilled);
+        objectpool = ObjectPool.Instance;
     }
     // Start is called before the first frame update
     void Start()
@@ -38,4 +39,16 @@ public class ExpEat : MonoBehaviour
     {
         
     }
+
+    private void OnEnable()
+    {
+
+        GlobalEventManager.OnEnemyKilled.AddListener(EnemyKilled);
     }
+
+    private void OnDisable()
+    {
+
+        GlobalEventManager.OnEnemyKilled.RemoveListener(EnemyKilled);
+    }
+}

@@ -13,13 +13,37 @@ MonoBehaviour:
   m_Name: BasicEnemy
   m_EditorClassIdentifier: 
   maxhp: 5
-  scalingHp: 1.05
-  level: 1
-  experiens: 0
-  Speed: 2
-  MagicResistance: 0
-  PhisicResistance: 0
+  currentHP: 10
+  speed: 3
+  money: 0
+  magicResistance: 0
+  phisicResistance: 0
   armor: 0
-  sprite: {fileID: 0}
+  fireResistance: 0
+  iceResistance: 0
+  lightingResistance: 0
+  poisonResistance: 0
+  bleedResistance: 0
+  shield: 0
+  shieldSize: 100
   damage: 1
-  scalingDamage: 1.05
+  reloadRate: 1
+  bonusprojectile: 0
+  critChance: 1
+  bonusCritDamage: 1.5
+  iceDamage: 1
+  fireDamage: 1
+  lightingDamage: 1
+  magicDamage: 1
+  phisicDamage: 1
+  poisonDamage: 1
+  bleedDamage: 1
+  bonusmoney: 1
+  bonusExp: 1
+  regeneration: 0
+  level: 1
+  experiens: 1
+  expForLevel: 100
+  scaleExpForLevel: 2
+  scalingHp: 1.05
+  scalingExp: 1

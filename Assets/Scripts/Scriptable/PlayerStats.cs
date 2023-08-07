@@ -10,7 +10,7 @@ public class PlayerStats : ScriptableObject, ISerializationCallbackReceiver
     public float maxhpInitialValue;
     public float currentHPInitialValue;   //текущее здоровье
     public float speedInitialValueInitialValue;
-    public int moneyInitialValue;           //деньги игрока для магазина между уровнями(?) или метапрокачки(?)
+    public int money;           //деньги игрока для магазина между уровнями(?) или метапрокачки(?)
     //Resistance
     public float magicResistanceInitialValue;   //сопротивление не физическому урону
     public float phisicResistanceInitialValue;  //сопротивлкение физическому урону
@@ -59,7 +59,7 @@ public class PlayerStats : ScriptableObject, ISerializationCallbackReceiver
     [NonSerialized] public float maxhp;
     [NonSerialized] public float currentHP;   //текущее здоровье
     [NonSerialized] public float speed;
-    [NonSerialized] public int money;           //деньги игрока для магазина между уровнями(?) или метапрокачки(?)
+
     //Resistance
     [NonSerialized] public float magicResistance;   //сопротивление не физическому урону
     [NonSerialized] public float phisicResistance;  //сопротивлкение физическому урону
@@ -111,8 +111,7 @@ public class PlayerStats : ScriptableObject, ISerializationCallbackReceiver
         maxhp = maxhpInitialValue;
         currentHP = currentHPInitialValue;   //текущее здоровье
         speed = speedInitialValueInitialValue;
-        money = moneyInitialValue;           //деньги игрока для магазина между уровнями(?) или метапрокачки(?)
-                                             //Resistance
+        //Resistance
         magicResistance = magicResistanceInitialValue;   //сопротивление не физическому урону
         phisicResistance = phisicResistanceInitialValue;  //сопротивлкение физическому урону
         armor = armorInitialValue;             //броня

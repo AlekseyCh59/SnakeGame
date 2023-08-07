@@ -45,13 +45,15 @@ public class GameScript : MonoBehaviour
 
     private void Awake()
     {
+
         //GlobalEventManager.OnEnemyKilled.AddListener(EnemyKill);
-        GlobalEventManager.OnConsume.AddListener(Consume);
-/*        stats.level = 1;
-        stats.experiens = 0;
-        stats.currentHP = stats.maxhp;*/
+        // GlobalEventManager.OnConsumeExp.AddListener(Consume);
+        /*        stats.level = 1;
+                stats.experiens = 0;
+                stats.currentHP = stats.maxhp;*/
 
     }
+
 
     // Start is called before the first frame update
     void Start()
@@ -59,7 +61,6 @@ public class GameScript : MonoBehaviour
         objectpool = ObjectPool.Instance;
         InvokeRepeating(nameof(SpawnEnemy), 2, 0.5f);
         InvokeRepeating(nameof(SpawnFire), 1, 1);
-        enemies = 0;
     }
 
     // Update is called once per frame
@@ -79,28 +80,15 @@ public class GameScript : MonoBehaviour
         level.text = stats.level.ToString();
     }
 
-
-
-    private void Consume(string name)
-    {
-        if (Enum.IsDefined(typeof(Consumables), name))
-        {
-
-            Debug.Log(name);
-        }
-
-    }
-
+    //не используется а надо бы
     private void EnemyKill(GameObject enemy)
     {
-        enemies--;
            objectpool.SpawnFromPool(ToExp(Enum.Parse<Enemies>(enemy.name)).ToString(), enemy.transform.position, transform.rotation);
     }
 
     void SpawnEnemy()
     {
         int tier = Random.Range(0, 2);
-        enemies++;
         objectpool.SpawnFromPool(((Enemies)tier).ToString(), new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0), transform.rotation);
     }
 

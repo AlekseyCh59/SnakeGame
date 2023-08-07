@@ -15,6 +15,7 @@ public class EnemyScript : MonoBehaviour
 
     private void Awake()
     {
+
         gameScript = GameObject.Find("GameManager").GetComponent<GameScript>();
     }
 
@@ -49,10 +50,13 @@ public class EnemyScript : MonoBehaviour
             if (currentHp <= 0 && gameObject.activeInHierarchy)
             {
                 objectpool.SpawnFromPool("ExpTier1", gameObject.transform.position, transform.rotation);
-                //objectpool.SpawnFromPool("ExpTier1", gameObject.transform.position, transform.rotation);
-                GlobalEventManager.SendEnemyKilled(enemyStats.experiens);
+                GlobalEventManager.SendEnemyKilled(enemyStats.experiens); //не работает как надо
                 objectpool.BackToPoll(gameObject);
             }
+        } else if (collision.tag.Contains("Player"))
+        {
+            GlobalEventManager.SendPlayerDamage(enemyStats.damage);//Нужно добавить тип урона врага
+
         }
     }
 

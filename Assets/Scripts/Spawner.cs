@@ -4,27 +4,19 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject enemy;
-    [SerializeField] private float spawnInterwal = 1f;   
-    [SerializeField] private GameObject weapon;
-    [SerializeField] private float weaponinterwal = 10f;
-    int enemyCount = 100;
 
     [SerializeField] private GameObject snakeHead;
-     GameScript gameScript;
+
 
     void Start()
     {
 
-        gameScript = GameObject.Find("GameManager").GetComponent<GameScript>();
         UniSpawn(snakeHead, new Vector2(0, 0));
         //StartCoroutine(weaponAttack(weaponinterwal, weapon));
         //StartCoroutine(spawnEnemy(spawnInterwal, enemy));
        // InvokeRepeating(nameof(SpawnEnemy), 0, spawnInterwal);
         //InvokeRepeating(nameof(SpawnFire), 0, weaponinterwal);
     }
-
-
 
 
     private void headSpawn()
