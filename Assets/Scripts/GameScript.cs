@@ -94,14 +94,10 @@ public class GameScript : MonoBehaviour
 
     void SpawnFire()
     {
-        if (enemies > 0)
-        {
             for (int i = 1; i < SnakeList.Count; i++)
             {
                 objectpool.SpawnFromPool("FireType1", SnakeList[i].transform.position, SnakeList[i].transform.rotation);
             }
-
-        }
     }
     public static Consumables ToExp(Enemies enemies) => enemies switch
     {

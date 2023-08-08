@@ -42,7 +42,7 @@ MonoBehaviour:
   regenerationInitialValue: 0
   levelInitialValue: 0
   experiensInitialValue: 0
-  expForLevelInitialValue: 100
+  expForLevelInitialValue: 5
   scaleExpForLevelInitialValue: 2
   scalingHpInitialValue: 1.05
   scalingExpInitialValue: 0

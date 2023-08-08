@@ -45,12 +45,12 @@ public class EnemyScript : MonoBehaviour
     {
         if (collision.tag.Contains("weapon"))
         {
-            currentHp -= 2;
+            currentHp -= 5;
 
             if (currentHp <= 0 && gameObject.activeInHierarchy)
             {
-                objectpool.SpawnFromPool("ExpTier1", gameObject.transform.position, transform.rotation);
-                GlobalEventManager.SendEnemyKilled(enemyStats.experiens); //не работает как надо
+                GameObject obj = objectpool.SpawnFromPool("ExpTier1", gameObject.transform.position, transform.rotation);
+                obj.GetComponent<ExpEat>().exp = enemyStats.experiens;
                 objectpool.BackToPoll(gameObject);
             }
         } else if (collision.tag.Contains("Player"))
@@ -75,11 +75,7 @@ public class EnemyScript : MonoBehaviour
                     PlayerPos = item.transform;
                 }
             }
-            //if (this.gameObject)
-            //{
-           
             cadr =0;
-            //}
         }
         Direct = PlayerPos.position - transform.position;
         Direct.Normalize();

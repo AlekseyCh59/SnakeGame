@@ -16,14 +16,6 @@ public class ExpEat : MonoBehaviour
         }
     }
     
-    private void EnemyKilled(float exp)
-    {
-        this.exp = exp;
-    }
-
-    
-
-
     private void Awake()
     {
         objectpool = ObjectPool.Instance;
@@ -38,17 +30,5 @@ public class ExpEat : MonoBehaviour
     void Update()
     {
         
-    }
-
-    private void OnEnable()
-    {
-
-        GlobalEventManager.OnEnemyKilled.AddListener(EnemyKilled);
-    }
-
-    private void OnDisable()
-    {
-
-        GlobalEventManager.OnEnemyKilled.RemoveListener(EnemyKilled);
     }
 }

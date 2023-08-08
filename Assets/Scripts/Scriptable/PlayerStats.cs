@@ -101,6 +101,57 @@ public class PlayerStats : ScriptableObject, ISerializationCallbackReceiver
     [NonSerialized] public float scalingExp;
 
 
+    //Получение урона
+    //Нужно добавить расчет снижения урона и тип урона врага
+    public void ReceiveDamage(float damage)
+    {
+        currentHP -= damage;
+    }
+
+    //Получение лечения
+    public void ReceiveHeal(float heal)
+    {
+        currentHP += heal;
+        if (currentHP >= maxhp)
+            currentHP = maxhp;
+    }
+    //Получение опыта
+    public void ReceiveExp(float exp)
+    {
+        experiens += exp + exp * bonusExp;
+        if (experiens >= expForLevel)
+        {
+            experiens -= expForLevel;
+            LevelUp();
+        }
+    }
+    //Поднятие уровня
+    public void LevelUp()
+    {
+        GlobalEventManager.SendPlayerLevelUp();
+        level++;
+        expForLevel *= scaleExpForLevel;
+        maxhp *= scalingHp;
+        ChooseBonus();
+    }
+
+    //Регенерация
+    public void Regeneration(float regen)
+    {
+
+    }
+
+    //Выбор бонуса
+    public void ChooseBonus()
+    {
+
+    }
+
+    //Получение монет
+    public void ReceiveMoney()
+    {
+
+    }
 
 
 

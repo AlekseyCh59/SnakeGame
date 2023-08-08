@@ -8,7 +8,14 @@ public class GlobalEventManager : MonoBehaviour
     public static UnityEvent<float> OnEnemyKilled = new UnityEvent<float>();
     public static UnityEvent<float> OnConsumeExp = new UnityEvent<float>();
     public static UnityEvent<float> OnPlayerDamage = new UnityEvent<float>();
+    public static UnityEvent OnPlayerLevelUp = new UnityEvent();
 
+
+
+    public static void SendPlayerLevelUp()
+    {
+        OnPlayerLevelUp.Invoke();
+    }
 
     public static void SendPlayerDamage(float damage)
     {

@@ -633,7 +633,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -678,6 +678,7 @@ GameObject:
   - component: {fileID: 539293697}
   - component: {fileID: 539293698}
   - component: {fileID: 539293699}
+  - component: {fileID: 539293700}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -730,10 +731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d7f47d764e5a8b4eb76b01b973bc608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 7381558060882434626, guid: 275d42f6df73ece44ba5dc3c84e2d741, type: 3}
-  spawnInterwal: 0.2
-  weapon: {fileID: 2575384695216457030, guid: 5896d43b5fdb54a4ea24ea4ada8458f0, type: 3}
-  weaponinterwal: 1
   snakeHead: {fileID: 6767126602759605265, guid: 5f40b0cac856e0a45afeb16fef220418, type: 3}
 --- !u!114 &539293698
 MonoBehaviour:
@@ -780,6 +777,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680ca658d95d2f34592e98a7c10737e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &539293700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539293694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c5ddc330f398740ac7a771019edd34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: 4519b8b2dfc7eee4086be6fc6a14308c, type: 2}
 --- !u!1 &607295981
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,7 +971,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'EnemyKilled: 0'
+  m_text: 'Level:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

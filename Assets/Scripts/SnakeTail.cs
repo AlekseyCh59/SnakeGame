@@ -9,7 +9,7 @@ public class SnakeTail : MonoBehaviour
     [SerializeField] public GameObject Tail;
     //[SerializeField] protected Transform SnakeHead;
     [SerializeField] private float CircleDiameter;
-    [SerializeField] private int SnakeLength = 3;
+     private int SnakeLength = 1;
     //private List<Transform> snakeCircles = new List<Transform>();
     private List<Vector2> positions = new List<Vector2>();
     GameScript gameManager;
@@ -17,6 +17,7 @@ public class SnakeTail : MonoBehaviour
 
     private void Awake()
     {
+        GlobalEventManager.OnPlayerLevelUp.AddListener(AddCircle);
         gameManager = GameObject.Find("GameManager").GetComponent<GameScript>();
         spawner = GameObject.Find("GameManager").GetComponent<Spawner>();
         gameManager.SnakeList.Add(gameObject);
@@ -25,9 +26,9 @@ public class SnakeTail : MonoBehaviour
 
     private void Start()
     {
-
+        
         positions.Add(transform.position);
-        for (int i = 0; i < SnakeLength; i++) AddCircle();
+        AddCircle();
     }
     private void Update()
     {
