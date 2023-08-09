@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxhp: 10
   currentHP: 10
-  speed: 5
-  money: 0
+  speed: 6
   magicResistance: 0
   phisicResistance: 0
   armor: 0
@@ -25,25 +24,10 @@ MonoBehaviour:
   poisonResistance: 0
   bleedResistance: 0
   shield: 0
-  shieldSize: 100
-  damage: 2
-  reloadRate: 1
-  bonusprojectile: 0
-  critChance: 1
-  bonusCritDamage: 1.5
-  iceDamage: 1
-  fireDamage: 1
-  lightingDamage: 1
-  magicDamage: 1
-  phisicDamage: 1
-  poisonDamage: 1
-  bleedDamage: 1
-  bonusmoney: 1
-  bonusExp: 1
+  shieldSize: 0
+  damage: 3
+  damageType: 
   regeneration: 0
-  level: 1
+  level: 0
   experiens: 2
-  expForLevel: 100
-  scaleExpForLevel: 2
-  scalingHp: 1.05
-  scalingExp: 1
+  scalingHp: 0

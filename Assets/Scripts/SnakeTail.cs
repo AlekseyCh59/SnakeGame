@@ -9,7 +9,6 @@ public class SnakeTail : MonoBehaviour
     [SerializeField] public GameObject Tail;
     //[SerializeField] protected Transform SnakeHead;
     [SerializeField] private float CircleDiameter;
-     private int SnakeLength = 1;
     //private List<Transform> snakeCircles = new List<Transform>();
     private List<Vector2> positions = new List<Vector2>();
     GameScript gameManager;
@@ -29,6 +28,7 @@ public class SnakeTail : MonoBehaviour
         
         positions.Add(transform.position);
         AddCircle();
+        AddCircle();
     }
     private void Update()
     {
@@ -36,7 +36,6 @@ public class SnakeTail : MonoBehaviour
 
         if (distance > CircleDiameter)
         {
-            // Íàïðàâëåíèå îò ñòàðîãî ïîëîæåíèÿ ãîëîâû, ê íîâîìó
             Vector2 direction = ((Vector2)gameManager.SnakeList[0].transform.position - positions[0]);
 
             positions.Insert(0, positions[0] + direction * CircleDiameter);
@@ -53,7 +52,7 @@ public class SnakeTail : MonoBehaviour
 
     public void AddCircle()
     {
-        GameObject circle = spawner.UniSpawn(Tail, positions[positions.Count - 1]);
+        GameObject circle = spawner.UniSpawn(Tail, positions[^1]);
         gameManager.SnakeList.Add(circle);
         positions.Add(circle.transform.position);
     }

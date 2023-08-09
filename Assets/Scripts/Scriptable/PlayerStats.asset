@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxhpInitialValue: 100
   currentHPInitialValue: 100
-  speedInitialValueInitialValue: 5
+  speedInitialValue: 10
   money: 0
   magicResistanceInitialValue: 0
   phisicResistanceInitialValue: 0

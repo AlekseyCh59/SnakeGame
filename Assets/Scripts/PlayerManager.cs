@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,13 +11,17 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         
-        GlobalEventManager.OnPlayerDamage.AddListener(stats.ReceiveDamage);     
-        GlobalEventManager.OnConsumeExp.AddListener(stats.ReceiveExp);
+
     }
+    private void Update()
+    {
+      
+    }
+
+
 
     private void Start()
     {
-        stats.LevelUp();
     }
 
     /*    public void ReceiveDamage(float damage)
@@ -24,10 +29,7 @@ public class PlayerManager : MonoBehaviour
             stats.currentHP -= damage;
         }*/
 
-    //Смерть игрока
-    public void DeathPlayer() { 
 
-    }
 /*    //Получение лечения
     public void ReceiveHeal(float heal) {
         stats.currentHP += heal;

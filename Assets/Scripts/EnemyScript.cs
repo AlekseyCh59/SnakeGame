@@ -49,7 +49,7 @@ public class EnemyScript : MonoBehaviour
 
             if (currentHp <= 0 && gameObject.activeInHierarchy)
             {
-                GameObject obj = objectpool.SpawnFromPool("ExpTier1", gameObject.transform.position, transform.rotation);
+                GameObject obj = objectpool.SpawnFromPool("Exp", gameObject.transform.position, transform.rotation);
                 obj.GetComponent<ExpEat>().exp = enemyStats.experiens;
                 objectpool.BackToPoll(gameObject);
             }
@@ -80,6 +80,7 @@ public class EnemyScript : MonoBehaviour
         Direct = PlayerPos.position - transform.position;
         Direct.Normalize();
         rbEnemy.MovePosition(transform.position + Direct * enemyStats.speed * Time.deltaTime);
+
 
     }
 

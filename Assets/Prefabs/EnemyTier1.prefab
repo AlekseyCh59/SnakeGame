@@ -93,7 +93,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4256209115834434030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 954060bc398e96b459175e3229edfa12, type: 3}
+  m_Script: {fileID: 11500000, guid: f803c84a6ceb54a46b4f06c541c694b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 0}
@@ -134,7 +134,7 @@ Transform:
   m_Children:
   - {fileID: 6829751749460089067}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2213889045103457962
 SpriteRenderer:
@@ -259,10 +259,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7381558060882434626}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7724248e894b59f40b1a8c4ac1531384, type: 3}
+  m_Script: {fileID: 11500000, guid: 57fb161b03a274b4cb16c4c14aeaac51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerPos: {fileID: 0}
-  exp: {fileID: 921297553671310817, guid: f298b651c97513b489bb74caa2562a65, type: 3}
+  exp: {fileID: 0}
   gameScript: {fileID: 0}
   enemyStats: {fileID: 11400000, guid: b31d52133d5fe8f41affd898af28f8e3, type: 2}

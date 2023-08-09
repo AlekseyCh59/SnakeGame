@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement; //DELETE THIS
 
 
 
@@ -9,7 +10,7 @@ public class PlayerStats : ScriptableObject, ISerializationCallbackReceiver
     //Main
     public float maxhpInitialValue;
     public float currentHPInitialValue;   //текущее здоровье
-    public float speedInitialValueInitialValue;
+    public float speedInitialValue;
     public int money;           //деньги игрока для магазина между уровнями(?) или метапрокачки(?)
     //Resistance
     public float magicResistanceInitialValue;   //сопротивление не физическому урону
@@ -100,12 +101,20 @@ public class PlayerStats : ScriptableObject, ISerializationCallbackReceiver
     [NonSerialized] public float scalingHp;
     [NonSerialized] public float scalingExp;
 
+    
 
+
+
+    //МЕТОДЫ!!!!
     //Получение урона
     //Нужно добавить расчет снижения урона и тип урона врага
     public void ReceiveDamage(float damage)
     {
         currentHP -= damage;
+        if (currentHP<=0)
+        {
+            DeathPlayer();
+        }
     }
 
     //Получение лечения
@@ -132,6 +141,7 @@ public class PlayerStats : ScriptableObject, ISerializationCallbackReceiver
         level++;
         expForLevel *= scaleExpForLevel;
         maxhp *= scalingHp;
+        currentHP *= scalingHp;
         ChooseBonus();
     }
 
@@ -153,7 +163,11 @@ public class PlayerStats : ScriptableObject, ISerializationCallbackReceiver
 
     }
 
-
+    //Смерть игрока
+    public void DeathPlayer()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
 
 
     public void OnAfterDeserialize()
@@ -161,7 +175,7 @@ public class PlayerStats : ScriptableObject, ISerializationCallbackReceiver
         //Main
         maxhp = maxhpInitialValue;
         currentHP = currentHPInitialValue;   //текущее здоровье
-        speed = speedInitialValueInitialValue;
+        speed = speedInitialValue;
         //Resistance
         magicResistance = magicResistanceInitialValue;   //сопротивление не физическому урону
         phisicResistance = phisicResistanceInitialValue;  //сопротивлкение физическому урону

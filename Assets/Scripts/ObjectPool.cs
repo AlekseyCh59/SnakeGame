@@ -16,22 +16,19 @@ public class ObjectPool : MonoBehaviour
     }
     public Dictionary<string, List<GameObject>> AllpolledObjects = new Dictionary<string, List<GameObject>>(); //как то прикрутить надо
     public List<Pool> pools;
-
     public static ObjectPool Instance; 
 
     private void Start()
     {
-
+        FillPool();
 
     }
 
     private void Awake()
     {
         Instance = this;
-        FillPool();
+
     }
-
-
 
 
     void FillPool()
@@ -71,10 +68,4 @@ public class ObjectPool : MonoBehaviour
     {
         obj.SetActive(false);
     }
-
-
-
-
-
-
 }

@@ -1,14 +1,15 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement; 
 
 
 
 public class GameScript : MonoBehaviour
 {
-
     // Интерфейс
     public TMP_Text hp;
     public TMP_Text money;
@@ -17,15 +18,19 @@ public class GameScript : MonoBehaviour
 
     // Скриптаблы
     public PlayerStats stats;
-    // public EnemyStats enemyStats;
+
+
+    int enemies;
+    public static bool gameIsPaused = false;
 
     //Массивы
 
     [SerializeField] public List<GameObject> SnakeList = new();
     ObjectPool objectpool;
+    private float spawnEnemyInterwal = 1;
+    private float spawnFireInterwal = 1.5f;
+    private float spawnFoodInterwal = 10;
 
-
-    int enemies;
     public enum Enemies
     {
         EnemyTier1,
@@ -33,25 +38,18 @@ public class GameScript : MonoBehaviour
         EnemyTier3,
         EnemyTier4
     }
-    public enum Consumables
-    {
-        ExpTier1,
-        ExpTier2,
-        ExpTier3,
-        ExpTier4,
-        Coin,
-        Food
-    }
 
     private void Awake()
     {
+        GlobalEventManager.OnPlayerDamage.AddListener(stats.ReceiveDamage);
+        GlobalEventManager.OnConsumeExp.AddListener(stats.ReceiveExp);
+        GlobalEventManager.OnConsumeFood.AddListener(stats.ReceiveHeal);
+        GlobalEventManager.OnEnemyKilled.AddListener(EnemyKill);
+    }
 
-        //GlobalEventManager.OnEnemyKilled.AddListener(EnemyKill);
-        // GlobalEventManager.OnConsumeExp.AddListener(Consume);
-        /*        stats.level = 1;
-                stats.experiens = 0;
-                stats.currentHP = stats.maxhp;*/
-
+    private void EnemyKill(float arg0)
+    {
+        enemies--;
     }
 
 
@@ -59,17 +57,58 @@ public class GameScript : MonoBehaviour
     void Start()
     {
         objectpool = ObjectPool.Instance;
-        InvokeRepeating(nameof(SpawnEnemy), 2, 0.5f);
-        InvokeRepeating(nameof(SpawnFire), 1, 1);
+        StartCoroutine(SpawnEnemy(spawnEnemyInterwal));
+        StartCoroutine(SpawnFire(spawnFireInterwal));
+        StartCoroutine(SpawnFood(spawnFoodInterwal));
+
     }
+    private IEnumerator SpawnEnemy(float interwal)
+    {
+        yield return new WaitForSeconds(interwal);
+        int tier = Random.Range(0, 2);
+        objectpool.SpawnFromPool(((Enemies)tier).ToString(), new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0), transform.rotation);
+        enemies++;
+        StartCoroutine(SpawnEnemy(interwal));
+    }
+
+    private IEnumerator SpawnFood(float interwal)
+    {
+        yield return new WaitForSeconds(interwal);
+        objectpool.SpawnFromPool("Food", new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0), transform.rotation);
+        enemies++;
+        StartCoroutine(SpawnFood(interwal));
+    }
+
+    private IEnumerator SpawnFire(float interwal)
+    {
+        yield return new WaitForSeconds(interwal);
+        if (enemies > 0)
+        {
+            for (int i = 1; i < SnakeList.Count; i++)
+            {
+                objectpool.SpawnFromPool("Fire", SnakeList[i].transform.position, SnakeList[i].transform.rotation);
+            }
+        }
+        StartCoroutine(SpawnFire(interwal));
+    }
+
+
 
     // Update is called once per frame
     void Update()
     {
         MyInterface();
+        if (Input.GetKeyDown(KeyCode.Space))
+            GamePause();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+            GameExit();
+        }
+
+    private void GameExit()
+    {
+        Application.Quit();
     }
-
-
 
     private void MyInterface()
     {
@@ -79,38 +118,18 @@ public class GameScript : MonoBehaviour
         money.text = stats.money.ToString();
         level.text = stats.level.ToString();
     }
-
-    //не используется а надо бы
-    private void EnemyKill(GameObject enemy)
-    {
-           objectpool.SpawnFromPool(ToExp(Enum.Parse<Enemies>(enemy.name)).ToString(), enemy.transform.position, transform.rotation);
-    }
-
-    void SpawnEnemy()
-    {
-        int tier = Random.Range(0, 2);
-        objectpool.SpawnFromPool(((Enemies)tier).ToString(), new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0), transform.rotation);
-    }
-
-    void SpawnFire()
-    {
-            for (int i = 1; i < SnakeList.Count; i++)
+    void GamePause() {
+            if (gameIsPaused)
             {
-                objectpool.SpawnFromPool("FireType1", SnakeList[i].transform.position, SnakeList[i].transform.rotation);
-            }
-    }
-    public static Consumables ToExp(Enemies enemies) => enemies switch
-    {
-        Enemies.EnemyTier1 => Consumables.ExpTier1,
-        Enemies.EnemyTier2 => Consumables.ExpTier2,
-        Enemies.EnemyTier3 => Consumables.ExpTier3,
-        Enemies.EnemyTier4 => Consumables.ExpTier4,
-    };
-    public static int ExpToPlayer(Consumables consumable) => consumable switch //???
-    {
-        Consumables.ExpTier1 => 2,
-        Consumables.ExpTier2 => 10,
-        Consumables.ExpTier3 => 50,
-        Consumables.ExpTier4 => 100,
-    };
+                gameIsPaused = !gameIsPaused;
+                Time.timeScale = 1f;
+         }
+            else
+            {
+                gameIsPaused = !gameIsPaused;
+                Time.timeScale = 0f;
+        }
+        }
+
 }
+
