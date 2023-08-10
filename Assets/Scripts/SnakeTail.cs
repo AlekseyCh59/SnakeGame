@@ -28,7 +28,6 @@ public class SnakeTail : MonoBehaviour
         
         positions.Add(transform.position);
         AddCircle();
-        AddCircle();
     }
     private void Update()
     {

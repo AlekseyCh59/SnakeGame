@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExpEat : MonoBehaviour
+public class CoinEat : MonoBehaviour
 {
-    public float exp;
+    public int coin;
     private ObjectPool objectpool;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -12,11 +12,10 @@ public class ExpEat : MonoBehaviour
         if (collision.tag.Contains("Player"))
         {
             //отправка сообщения для вызова события
-            GlobalEventManager.SendConsumeExp(exp); 
+            GlobalEventManager.SendConsumeCoin(coin);
             objectpool.BackToPoll(gameObject);
         }
     }
-    
     private void Awake()
     {
         objectpool = ObjectPool.Instance;

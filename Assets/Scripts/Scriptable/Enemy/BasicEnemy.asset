@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxhp: 5
   currentHP: 5
-  speed: 3
+  speed: 5
   magicResistance: 0
   phisicResistance: 0
   armor: 0

@@ -6,7 +6,9 @@ using Random = UnityEngine.Random;
 
 public class ObjectPool : MonoBehaviour
 {
+    public static ObjectPool Instance;
     [Serializable]
+    //основа для каждого пула объектов
     public class Pool
     {
         public string tag;
@@ -14,23 +16,22 @@ public class ObjectPool : MonoBehaviour
         public int size;
         public bool grow = false;
     }
-    public Dictionary<string, List<GameObject>> AllpolledObjects = new Dictionary<string, List<GameObject>>(); //как то прикрутить надо
-    public List<Pool> pools;
-    public static ObjectPool Instance; 
+    public List<Pool> pools;    //создаем лист пулов через инспектор
+    //словарь для хранения и удобного доступа к объектам
+    public Dictionary<string, List<GameObject>> AllpolledObjects = new(); 
 
-    private void Start()
-    {
-        FillPool();
-
-    }
 
     private void Awake()
     {
         Instance = this;
-
     }
 
+    private void Start()
+    {
+        FillPool();
+    }
 
+    //заполнение пулов объектами и помещение в словарь
     void FillPool()
     {
         foreach (Pool pool in pools)
@@ -48,7 +49,7 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-
+    //Вызов не активного объекта из пула и перемещение на заданные координаты
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
         foreach (var item in AllpolledObjects[tag])
@@ -61,9 +62,9 @@ public class ObjectPool : MonoBehaviour
             }
         }
         return null;
-
     }
 
+    //Деактивация объекта для повторного использования в дальнейшем
     public void BackToPoll(GameObject obj)
     {
         obj.SetActive(false);

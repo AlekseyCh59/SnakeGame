@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
-using UnityEngine.SceneManagement; 
 
 
 
@@ -30,6 +29,7 @@ public class GameScript : MonoBehaviour
     private float spawnEnemyInterwal = 1;
     private float spawnFireInterwal = 1.5f;
     private float spawnFoodInterwal = 10;
+    private float spawnCoinInterwal = 1;
 
     public enum Enemies
     {
@@ -41,13 +41,15 @@ public class GameScript : MonoBehaviour
 
     private void Awake()
     {
+        //Подписки на события
         GlobalEventManager.OnPlayerDamage.AddListener(stats.ReceiveDamage);
         GlobalEventManager.OnConsumeExp.AddListener(stats.ReceiveExp);
         GlobalEventManager.OnConsumeFood.AddListener(stats.ReceiveHeal);
+        GlobalEventManager.OnConsumeCoin.AddListener(stats.ReceiveMoney);
         GlobalEventManager.OnEnemyKilled.AddListener(EnemyKill);
     }
 
-    private void EnemyKill(float arg0)
+    private void EnemyKill()
     {
         enemies--;
     }
@@ -60,13 +62,16 @@ public class GameScript : MonoBehaviour
         StartCoroutine(SpawnEnemy(spawnEnemyInterwal));
         StartCoroutine(SpawnFire(spawnFireInterwal));
         StartCoroutine(SpawnFood(spawnFoodInterwal));
+        StartCoroutine(SpawnCoin(spawnCoinInterwal));
 
     }
     private IEnumerator SpawnEnemy(float interwal)
     {
         yield return new WaitForSeconds(interwal);
         int tier = Random.Range(0, 2);
-        objectpool.SpawnFromPool(((Enemies)tier).ToString(), new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0), transform.rotation);
+        objectpool.SpawnFromPool(((Enemies)tier).ToString(), 
+            new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0), 
+            transform.rotation);
         enemies++;
         StartCoroutine(SpawnEnemy(interwal));
     }
@@ -74,9 +79,19 @@ public class GameScript : MonoBehaviour
     private IEnumerator SpawnFood(float interwal)
     {
         yield return new WaitForSeconds(interwal);
-        objectpool.SpawnFromPool("Food", new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0), transform.rotation);
-        enemies++;
+        objectpool.SpawnFromPool("Food", 
+            new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0), 
+            transform.rotation);
         StartCoroutine(SpawnFood(interwal));
+    }
+
+    private IEnumerator SpawnCoin(float interwal)
+    {
+        yield return new WaitForSeconds(interwal);
+        objectpool.SpawnFromPool("Coin",
+            new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0),
+            transform.rotation);
+        StartCoroutine(SpawnCoin(interwal));
     }
 
     private IEnumerator SpawnFire(float interwal)

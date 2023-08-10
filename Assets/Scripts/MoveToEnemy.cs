@@ -21,34 +21,7 @@ public class MoveToEnemy : MonoBehaviour
     private void OnEnable()
     {
             timeLife = 2f;
-            float min = 999;
-            Vector3 number = new Vector3(0, 0, 0);
-            foreach (var item in objectpool.AllpolledObjects["EnemyTier1"])
-            {
-                if (item.activeInHierarchy)
-                {
-                    float distance = (transform.position - item.transform.position).magnitude; //расстояние между точками?
-                    if (distance < min)
-                    {
-                        min = distance;
-                        number = item.transform.position;
-                    }
-                }
-            }
-            foreach (var item in objectpool.AllpolledObjects["EnemyTier2"])
-            {
-                if (item.activeInHierarchy)
-                {
-                    float distance = (transform.position - item.transform.position).magnitude; //расстояние между точками?
-                    if (distance < min)
-                    {
-                        min = distance;
-                        number = item.transform.position;
-                    }
-                }
-            }
-            direct = number - transform.position;
-            direct.Normalize();
+            
         }
   
     private void Start()

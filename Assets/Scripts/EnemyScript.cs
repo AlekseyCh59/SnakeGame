@@ -49,6 +49,7 @@ public class EnemyScript : MonoBehaviour
 
             if (currentHp <= 0 && gameObject.activeInHierarchy)
             {
+                GlobalEventManager.SendEnemyKilled();
                 GameObject obj = objectpool.SpawnFromPool("Exp", gameObject.transform.position, transform.rotation);
                 obj.GetComponent<ExpEat>().exp = enemyStats.experiens;
                 objectpool.BackToPoll(gameObject);

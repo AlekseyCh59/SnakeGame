@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxhp: 10
   currentHP: 10
-  speed: 6
+  speed: 9
   magicResistance: 0
   phisicResistance: 0
   armor: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
   bleedResistance: 0
   shield: 0
   shieldSize: 0
-  damage: 3
+  damage: 4
   damageType: 
   regeneration: 0
   level: 0

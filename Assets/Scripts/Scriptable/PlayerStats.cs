@@ -158,9 +158,10 @@ public class PlayerStats : ScriptableObject, ISerializationCallbackReceiver
     }
 
     //Получение монет
-    public void ReceiveMoney()
+    public void ReceiveMoney(int coin)
     {
 
+        money += coin;
     }
 
     //Смерть игрока
