@@ -30,6 +30,9 @@ public class SnakeTail : MonoBehaviour
         
         positions.Add(transform.position);
         AddCircle();
+        AddCircle();
+        AddCircle();
+        AddCircle();
     }
     private void Update()
     {
@@ -46,31 +49,65 @@ public class SnakeTail : MonoBehaviour
         }
         for (int i = 1; i < gameManager.SnakeList.Count; i++)
         {
+            //уменьшение дисстанции между частями тела
             gameManager.SnakeList[i].transform.position = Vector2.Lerp(positions[i], positions[i-1], distance / CircleDiameter);
-            gameManager.SnakeList[i].transform.position = new Vector3(gameManager.SnakeList[i].transform.position.x,
-                                                                        gameManager.SnakeList[i].transform.position.y,
-                                                                        gameManager.SnakeList[i - 1].transform.position.z - gameManager.SnakeList[i].transform.position.z);
-            gameManager.SnakeList[i].transform.GetComponent<SpriteRenderer>().sprite = SpriteTail[0];
+            
             //RenderTail[i].sprite = SpriteTail[0];
+            //Получение направления (dir)
             dir = positions[i] - positions[i - 1];
             dir.Normalize();
+            //присвоение каждой части тела своего спрайта
             if (dir.x > 0.5f)
             {
-                gameManager.SnakeList[i].transform.GetComponent<SpriteRenderer>().sprite = SpriteTail[2];
-                RenderTail[i].flipX = false;
+                //лево
+                if (i == gameManager.SnakeList.Count - 1)
+                    gameManager.SnakeList[i].transform.GetComponent<SpriteRenderer>().sprite = SpriteTail[5];
+                else
+                    gameManager.SnakeList[i].transform.GetComponent<SpriteRenderer>().sprite = SpriteTail[2];
+                gameManager.SnakeList[i].transform.GetComponent<SpriteRenderer>().flipX = true;
+                //увеличение координат по Z
+                gameManager.SnakeList[i].transform.position = new Vector3(gameManager.SnakeList[i].transform.position.x,
+                                                                            gameManager.SnakeList[i].transform.position.y,
+                                                                            gameManager.SnakeList[i - 1].transform.position.z + 0.5f);
+                //RenderTail[i].flipX = false;
             }
             else if (dir.x < -0.5f)
             {
-                gameManager.SnakeList[i].transform.GetComponent<SpriteRenderer>().sprite = SpriteTail[2];
-                RenderTail[i].flipX = true;
+                //право
+                if (i == gameManager.SnakeList.Count - 1)
+                    gameManager.SnakeList[i].transform.GetComponent<SpriteRenderer>().sprite = SpriteTail[5];
+                else
+                    gameManager.SnakeList[i].transform.GetComponent<SpriteRenderer>().sprite = SpriteTail[2];
+                gameManager.SnakeList[i].transform.GetComponent<SpriteRenderer>().flipX = false;
+                //увеличение координат по Z
+                gameManager.SnakeList[i].transform.position = new Vector3(gameManager.SnakeList[i].transform.position.x,
+                                                                            gameManager.SnakeList[i].transform.position.y,
+                                                                            gameManager.SnakeList[i - 1].transform.position.z + 0.5f);
+                //RenderTail[i].flipX = true;
             } 
             else if (dir.y > 0.5f)
             {
-                gameManager.SnakeList[i].transform.GetComponent<SpriteRenderer>().sprite = SpriteTail[0];
+                //вниз
+                if (i == gameManager.SnakeList.Count - 1)
+                    gameManager.SnakeList[i].transform.GetComponent<SpriteRenderer>().sprite = SpriteTail[4];
+                else
+                    gameManager.SnakeList[i].transform.GetComponent<SpriteRenderer>().sprite = SpriteTail[1];
+                //увеличение координат по Z
+                gameManager.SnakeList[i].transform.position = new Vector3(gameManager.SnakeList[i].transform.position.x,
+                                                                            gameManager.SnakeList[i].transform.position.y,
+                                                                            gameManager.SnakeList[i - 1].transform.position.z + 0.5f);
             } 
             else if (dir.y < -0.5f)
             {
-                gameManager.SnakeList[i].transform.GetComponent<SpriteRenderer>().sprite = SpriteTail[1];
+                //вверх
+                if (i == gameManager.SnakeList.Count - 1)
+                    gameManager.SnakeList[i].transform.GetComponent<SpriteRenderer>().sprite = SpriteTail[3];
+                else
+                    gameManager.SnakeList[i].transform.GetComponent<SpriteRenderer>().sprite = SpriteTail[0];
+                //уменьшение координат по Z
+                gameManager.SnakeList[i].transform.position = new Vector3(gameManager.SnakeList[i].transform.position.x,
+                                                                            gameManager.SnakeList[i].transform.position.y,
+                                                                            gameManager.SnakeList[i - 1].transform.position.z - 0.5f);
             }
         }
     }

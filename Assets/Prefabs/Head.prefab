@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6767126602759605265}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -187.60081, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tail: {fileID: 2376674306866171090, guid: 9a2b54940e26d5245a60cf9575aa888a, type: 3}
-  CircleDiameter: 0.85
+  CircleDiameter: 1
   SpriteTail:
   - {fileID: 678180908, guid: a9158ad89e07e254281ac772d118f270, type: 3}
   - {fileID: -1727095904, guid: a9158ad89e07e254281ac772d118f270, type: 3}
