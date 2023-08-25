@@ -2,16 +2,25 @@ using UnityEngine;
 
 public class NewGameState : IState
 {
-    public GameObject gameobj;
+    private GameObject _chooseWorld;
+    public NewGameState()
+    {
+    }
+
+    public NewGameState(GameObject chooseWorld)
+    {
+        _chooseWorld = chooseWorld;
+
+    }
+
     public void OnEnter(StateController sc)
     {
-        gameobj = GameObject.Find("StealTree");
-        gameobj.SetActive(true);
+        _chooseWorld.SetActive(true);
     }
 
     public void OnExit(StateController sc)
     {
-        gameobj.SetActive(false);
+        _chooseWorld.SetActive(false);
     }
 
     public void UpdateState(StateController sc)

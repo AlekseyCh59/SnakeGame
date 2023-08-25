@@ -4,33 +4,48 @@ using UnityEngine;
 
 public class StateController : MonoBehaviour
 {
+
+    public GameObject mainMenu;
+    public GameObject newGame;
     IState currentState;
-    public NewGameState newGameState = new();
+    IState previousState;
+
+    //не реализованы
     public ContinueState continueState = new();
     public ShopState shopState = new();
     public UpgradeState upgradeState = new();
     public OptionsState optionsState = new();
     public ExitState exitState= new();
-    public MainMenuState mainMenuState= new();
 
 
     private void Start()
     {
-        currentState = null;
+
+        InitialState(new MainMenuState(mainMenu) );
     }
 
     public void ChangeState(IState newState)
     {
         currentState.OnExit(this);
+        previousState = currentState;
+        currentState = newState;
+        currentState.OnEnter(this);
+    }
+    public void InitialState(IState newState)
+    {
         currentState = newState;
         currentState.OnEnter(this);
     }
 
     public void NewGameClick()
     {
-        ChangeState(new NewGameState);
+        ChangeState(new NewGameState(newGame));
     }
 
+    public void BackClick()
+    {
+        ChangeState(previousState);
+    }
 }
 
 public interface IState

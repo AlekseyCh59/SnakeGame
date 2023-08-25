@@ -3,15 +3,21 @@
 
 public class MainMenuState : IState
 {
+    private GameObject _mainMenu;
+
+    public MainMenuState(GameObject mainMenu)
+    {
+        _mainMenu = mainMenu;
+
+    }
     public void OnEnter(StateController controller)
     {
-        Debug.Log("fgdgdg");
-        //throw new System.NotImplementedException();
+        _mainMenu.SetActive(true);
     }
 
     public void OnExit(StateController controller)
     {
-        //throw new System.NotImplementedException();
+        _mainMenu.SetActive(false);
     }
 
     public void UpdateState(StateController controller)
