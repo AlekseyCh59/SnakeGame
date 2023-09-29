@@ -4,10 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(CVSLoader), typeof(SheetProcessor))]
 public class GoogleSheetLoader : MonoBehaviour
 {
-    public event Action<CubesData> OnProcessData;
+    //public event Action<CubesData> OnProcessData;
     
     [SerializeField] private string _sheetId;
-    [SerializeField] private CubesData _data;
+    //[SerializeField] private CubesData _data;
     
     private CVSLoader _cvsLoader;
     private SheetProcessor _sheetProcessor;
@@ -26,7 +26,8 @@ public class GoogleSheetLoader : MonoBehaviour
 
     private void OnRawCVSLoaded(string rawCVSText)
     {
-        _data = _sheetProcessor.ProcessData(rawCVSText);
-        OnProcessData?.Invoke(_data);
+        _sheetProcessor.ProcessData(rawCVSText);
+        //_data = _sheetProcessor.ProcessData(rawCVSText);
+        //OnProcessData?.Invoke(_data);
     }
 }

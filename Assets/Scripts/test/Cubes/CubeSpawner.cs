@@ -6,7 +6,7 @@ public class CubeSpawner : MonoBehaviour
 
     private void Awake()
     {
-        _loader.OnProcessData += InstantiateCubes;
+        //_loader.OnProcessData += InstantiateCubes;
     }
 
     private void InstantiateCubes(CubesData data)

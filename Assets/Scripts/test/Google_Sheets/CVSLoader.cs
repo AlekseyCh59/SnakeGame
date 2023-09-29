@@ -30,7 +30,7 @@ public class CVSLoader : MonoBehaviour
                 if (_debug)
                 {
                     Debug.Log("Successful download");
-                    Debug.Log(request.downloadHandler.text);
+                    //Debug.Log(request.downloadHandler.text);
                 }
 
                 callback(request.downloadHandler.text);
