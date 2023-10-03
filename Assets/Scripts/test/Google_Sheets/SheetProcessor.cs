@@ -4,23 +4,26 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Text;
 using Newtonsoft.Json;
+using UnityEditor;
+using System.IO;
 
 public class SheetProcessor : MonoBehaviour
 {
-
-    public Root root;
     public void ProcessData(string cvsRawData)
     {
         cvsRawData = cvsRawData.Replace("\"\"", "\"");
         cvsRawData = cvsRawData.Remove(0, 1);
         cvsRawData = cvsRawData.Remove(cvsRawData.Length - 2, 2);
         //Debug.Log((WeaponStats)JsonUtility.FromJson(cvsRawData, typeof(WeaponStats)));
+        Root root = new Root();
         root = JsonConvert.DeserializeObject<Root>(cvsRawData);
-        Debug.Log(root.Enemies[0].armor);
-        Debug.Log(root.Weapon[0].level);
-        Debug.Log(root.Player[0].speed);
-        Debug.Log(root.General[0].nameweapon);
 
+        FileStream fileStream = new FileStream(Application.persistentDataPath + "/" + "root.json", FileMode.Create);
+        using (StreamWriter writer = new StreamWriter(fileStream))
+        {
+            writer.Write(cvsRawData);
+        }
+        
         //return new CubesData();
     }
 }
