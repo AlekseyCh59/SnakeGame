@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using System.Linq;
+using UnityEngine.SceneManagement;
+
 
 public class ViewData : MonoBehaviour
 {
@@ -22,6 +23,11 @@ public class ViewData : MonoBehaviour
             {
                 string json = reader.ReadToEnd();
                 root = JsonConvert.DeserializeObject<Root>(json);
+                StatRoot.Enemies = root.Enemies;
+                StatRoot.General = root.General;
+                StatRoot.Weapon = root.Weapon;
+                StatRoot.Player = root.Player;
+                SceneManager.LoadScene("MenuScene");
             }
         }
     }

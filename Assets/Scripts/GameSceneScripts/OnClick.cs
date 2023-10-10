@@ -8,10 +8,10 @@ public class OnClick : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
-    private void OnMouseDown()
+    public void PressButton()
     {
         SceneManager.LoadScene("SampleScene");
     }

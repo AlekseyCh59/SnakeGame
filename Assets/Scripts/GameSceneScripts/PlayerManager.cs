@@ -7,6 +7,10 @@ public class PlayerManager : MonoBehaviour
 {
     public PlayerStats stats;
 
+    List<Weapon> playerWeapon= new List<Weapon>();
+
+
+
 
     private void Awake()
     {
@@ -22,6 +26,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
+        playerWeapon.Add(StatRoot.Weapon[0]);
     }
 
     /*    public void ReceiveDamage(float damage)

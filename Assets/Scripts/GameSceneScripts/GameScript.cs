@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using Random = System.Random;
 
 
 
@@ -18,7 +18,7 @@ public class GameScript : MonoBehaviour
     // Скриптаблы
     public PlayerStats stats;
 
-
+    Random random = new Random();
     int enemies;
     public static bool gameIsPaused = false;
 
@@ -67,10 +67,11 @@ public class GameScript : MonoBehaviour
     }
     private IEnumerator SpawnEnemy(float interwal)
     {
+
         yield return new WaitForSeconds(interwal);
-        int tier = Random.Range(0, 2);
+        int tier =random.Next(0, 2);
         objectpool.SpawnFromPool(((Enemies)tier).ToString(), 
-            new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0), 
+            new Vector3(random.Next(-40, 40)/2, random.Next(-40, 40) / 2, 0), 
             transform.rotation);
         enemies++;
         StartCoroutine(SpawnEnemy(interwal));
@@ -80,7 +81,7 @@ public class GameScript : MonoBehaviour
     {
         yield return new WaitForSeconds(interwal);
         objectpool.SpawnFromPool("Food", 
-            new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0), 
+            new Vector3(random.Next(-40, 40) / 2, random.Next(-40, 40) / 2, 0), 
             transform.rotation);
         StartCoroutine(SpawnFood(interwal));
     }
@@ -89,7 +90,7 @@ public class GameScript : MonoBehaviour
     {
         yield return new WaitForSeconds(interwal);
         objectpool.SpawnFromPool("Coin",
-            new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0),
+            new Vector3(random.Next(-40, 40), random.Next(-40, 40), 0),
             transform.rotation);
         StartCoroutine(SpawnCoin(interwal));
     }

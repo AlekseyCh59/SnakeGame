@@ -20,9 +20,9 @@ public class MoveToEnemy : MonoBehaviour
 
     private void OnEnable()
     {
-            timeLife = 2f;
-            
-        }
+        timeLife = 2f;  
+        
+    }
   
     private void Start()
     {
