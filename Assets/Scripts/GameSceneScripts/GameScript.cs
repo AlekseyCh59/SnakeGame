@@ -39,8 +39,37 @@ public class GameScript : MonoBehaviour
         EnemyTier4
     }
 
+    private void Init() { 
+    stats.maxhp = StatRoot.Player[0].maxhp;
+        stats.currentHP = StatRoot.Player[0].maxhp;
+        stats.speed = StatRoot.Player[0].speed;
+        stats.armor = StatRoot.Player[0].armor;
+        stats.phisicresisance = StatRoot.Player[0].phisicresisance;
+        stats.magicresisance = StatRoot.Player[0].magicresisance;
+        stats.fireresisance = StatRoot.Player[0].fireresisance;
+        stats.iceresisance = StatRoot.Player[0].iceresisance;
+        stats.lightingresisance = StatRoot.Player[0].lightingresisance;
+        stats.shield = StatRoot.Player[0].shield;
+        stats.shieldsize = StatRoot.Player[0].shieldsize;
+        stats.bonuscooldown = StatRoot.Player[0].bonuscooldown;
+        stats.bonusdamage = StatRoot.Player[0].bonusdamage;
+        stats.bonusprojectile = StatRoot.Player[0].bonusprojectile;
+        stats.bonuscritchance = StatRoot.Player[0].bonuscritchance;
+        stats.bonuscritdamage = StatRoot.Player[0].bonuscritdamage;
+        stats.bonusfiredamage = StatRoot.Player[0].bonusfiredamage;
+        stats.bonusicedamage = StatRoot.Player[0].bonusicedamage;
+        stats.bonuslightingdamage = StatRoot.Player[0].bonuslightingdamage;
+        stats.bonusmoney = StatRoot.Player[0].bonusmoney;
+        stats.bonusexp = StatRoot.Player[0].bonusexp;
+        stats.regeneration = StatRoot.Player[0].regeneration;
+        stats.level = StatRoot.Player[0].level;
+        stats.experience = StatRoot.Player[0].experience;
+        stats.expforlevel = StatRoot.Player[0].expforlevel;
+    }
+
     private void Awake()
     {
+        Init();
         //Подписки на события
         GlobalEventManager.OnPlayerDamage.AddListener(stats.ReceiveDamage);
         GlobalEventManager.OnConsumeExp.AddListener(stats.ReceiveExp);
@@ -130,7 +159,7 @@ public class GameScript : MonoBehaviour
     {
 
         hp.text = Math.Round(stats.maxhp) + "/" + Math.Round(stats.currentHP);
-        Exp.text = Math.Round(stats.expForLevel) + "/" + Math.Round(stats.experiens);
+        Exp.text = Math.Round(stats.expforlevel) + "/" + Math.Round(stats.experience);
         money.text = stats.money.ToString();
         level.text = stats.level.ToString();
     }

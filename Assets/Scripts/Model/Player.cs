@@ -7,28 +7,30 @@ using UnityEngine;
 
 public class Player
 {
-    public int maxhp { get; set; }
-    public int speed { get; set; }
-    public int armor { get; set; }
-    public int phisicresisance { get; set; }
-    public int magicresisance { get; set; }
-    public int fireresisance { get; set; }
-    public int iceresisance { get; set; }
-    public int lightingresisance { get; set; }
+
+    public float maxhp { get; set; }
+    public float currentHP { get; set; }
+    public float speed { get; set; }
+    public float armor { get; set; }
+    public float phisicresisance { get; set; }
+    public float magicresisance { get; set; }
+    public float fireresisance { get; set; }
+    public float iceresisance { get; set; }
+    public float lightingresisance { get; set; }
     public bool shield { get; set; }
-    public int shieldsize { get; set; }
-    public int bonuscooldown { get; set; }
-    public int bonusdamage { get; set; }
+    public float shieldsize { get; set; }
+    public float bonuscooldown { get; set; }
+    public float bonusdamage { get; set; }
     public int bonusprojectile { get; set; }
-    public int bonuscritchance { get; set; }
-    public int bonuscritdamage { get; set; }
-    public int bonusfiredamage { get; set; }
-    public int bonusicedamage { get; set; }
-    public int bonuslightingdamage { get; set; }
-    public int bonusmoney { get; set; }
-    public int bonusexp { get; set; }
+    public float bonuscritchance { get; set; }
+    public float bonuscritdamage { get; set; }
+    public float bonusfiredamage { get; set; }
+    public float bonusicedamage { get; set; }
+    public float bonuslightingdamage { get; set; }
+    public float bonusmoney { get; set; }
+    public float bonusexp { get; set; }
     public int regeneration { get; set; }
     public int level { get; set; }
-    public int experience { get; set; }
-    public int expforlevel { get; set; }
+    public float experience { get; set; }
+    public float expforlevel { get; set; }
 }
