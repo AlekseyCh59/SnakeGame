@@ -29,10 +29,6 @@ public class SnakeTail : MonoBehaviour
     {
         
         positions.Add(transform.position);
-        AddCircle();
-        AddCircle();
-        AddCircle();
-        AddCircle();
     }
     private void Update()
     {
@@ -114,6 +110,7 @@ public class SnakeTail : MonoBehaviour
 
     public void AddCircle()
     {
+
         GameObject circle = spawner.UniSpawn(Tail, positions[^1]);
         gameManager.SnakeList.Add(circle);
         positions.Add(circle.transform.position);

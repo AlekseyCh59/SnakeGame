@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class MoveToEnemy : MonoBehaviour
 {
-    Vector3 direct;
+    public Vector3 direct =new Vector3();
     [SerializeField]float Speed;
     float timeLife = 2f;
     GameScript gameScript;

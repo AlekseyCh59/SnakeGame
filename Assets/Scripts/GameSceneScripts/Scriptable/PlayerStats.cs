@@ -35,7 +35,7 @@ public class PlayerStats : ScriptableObject
     public float experience { get; set; }
     public float expforlevel { get; set; }
 
-    public List<Weapon> playerWeapon;
+    public List<Weapon> playerWeapon =new List<Weapon>();
 
     
 
@@ -82,7 +82,7 @@ public class PlayerStats : ScriptableObject
         maxhp *= 1.15f; 
         currentHP =maxhp;
         playerWeapon.Add(StatRoot.Weapon[0]);
-        ChooseBonus();
+        //ChooseBonus();
     }
 
     //Регенерация

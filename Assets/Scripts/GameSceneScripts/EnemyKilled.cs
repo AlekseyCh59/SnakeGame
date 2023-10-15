@@ -13,10 +13,5 @@ public class EnemyKilled : MonoBehaviour
      //   GlobalEventManager.OnEnemyKilled.AddListener(EnemyKill);
     }
 
-    private void EnemyKill()
-    {
-        killed++;
-        kill.text = "Killed: " + killed;
 
-    }
 }

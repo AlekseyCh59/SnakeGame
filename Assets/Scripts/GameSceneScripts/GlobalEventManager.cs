@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class GlobalEventManager : MonoBehaviour
 {
-    public static UnityEvent OnEnemyKilled = new UnityEvent();
+    public static UnityEvent<GameObject> OnEnemyKilled = new UnityEvent<GameObject>();
     public static UnityEvent<float> OnConsumeExp = new UnityEvent<float>();
     public static UnityEvent<float> OnConsumeFood = new UnityEvent<float>();
     public static UnityEvent<int> OnConsumeCoin = new UnityEvent<int>();
@@ -17,6 +17,7 @@ public class GlobalEventManager : MonoBehaviour
     public static void SendConsumeFood(float food) {
         OnConsumeFood.Invoke(food);
     }
+
     public static void SendConsumeCoin(int coin)
     {
         OnConsumeCoin.Invoke(coin);
@@ -32,10 +33,11 @@ public class GlobalEventManager : MonoBehaviour
         OnPlayerDamage.Invoke(damage);
     }
 
-    public static void SendEnemyKilled()
+    public static void SendEnemyKilled(GameObject enemy)
     {
-        OnEnemyKilled.Invoke();
+        OnEnemyKilled.Invoke(enemy);
     }
+
     public static void SendConsumeExp(float exp)
     {
         OnConsumeExp.Invoke(exp);

@@ -68,5 +68,6 @@ public class ObjectPool : MonoBehaviour
     public void BackToPoll(GameObject obj)
     {
         obj.SetActive(false);
+        obj.transform.position = new Vector2(999, 999);
     }
 }
