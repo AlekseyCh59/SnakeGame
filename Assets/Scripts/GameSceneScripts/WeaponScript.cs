@@ -68,7 +68,7 @@ public class WeaponScript : MonoBehaviour
 
     public Vector3 FindEnemy()
     {
-       Vector3 number = new Vector3(0, 0, 0);
+       Vector3 number = new Vector3(0, 0, 10);
         float min = 50f;
         foreach (var item in Enemies)
         {
@@ -78,9 +78,12 @@ public class WeaponScript : MonoBehaviour
                 {
                     min = distance;
                     number = item.transform.position;
+
                 }
             }
         }
+        
         return Vector3.Normalize(number - transform.position);
+
     }
 }
