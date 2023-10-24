@@ -36,14 +36,13 @@ public class MoveToEnemy : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log(direct);
+        transform.Translate(Speed * direct * Time.deltaTime);
         timeLife -= Time.deltaTime;
         if (timeLife <= 0) {
             objectpool.BackToPoll(this.gameObject);
         }
-            
-    }
-    private void FixedUpdate()
-    {
-        transform.Translate(Speed * Time.deltaTime * direct);
+
+
     }
 }

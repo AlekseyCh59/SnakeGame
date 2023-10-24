@@ -10,7 +10,7 @@ public class WeaponScript : MonoBehaviour
     public GameObject Weapon;
     List<GameObject> Enemies = new List<GameObject>();
     float cooldown = 2f;
-
+     
 
 
     Vector3 direct;
@@ -59,16 +59,19 @@ public class WeaponScript : MonoBehaviour
         if (cooldown <= 0 & Enemies.Count>0)
         {
             direct = FindEnemy();
-            GameObject fire = objectpool.SpawnFromPool("Fire", transform.position, transform.rotation);
-            fire.GetComponent<MoveToEnemy>().direct = direct;
-            cooldown = 2f;
+            if (direct.z < 1)
+            {
+                GameObject fire = objectpool.SpawnFromPool("Fire", transform.position, transform.rotation);
+                fire.GetComponent<MoveToEnemy>().direct = direct;
+                cooldown = 2f;
+            }
         }
 
     }
 
     public Vector3 FindEnemy()
     {
-       Vector3 number = new Vector3(0, 0, 10);
+       Vector3 number = new Vector3(0, 0, 0);
         float min = 50f;
         foreach (var item in Enemies)
         {
@@ -82,8 +85,9 @@ public class WeaponScript : MonoBehaviour
                 }
             }
         }
-        
-        return Vector3.Normalize(number - transform.position);
+        if (number.z != 100)
+            return Vector3.Normalize(number - transform.position);
+        else return new Vector3(0, 0, 100);
 
     }
 }
