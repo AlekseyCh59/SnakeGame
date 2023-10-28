@@ -1,26 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
  
 
 public class MoveToEnemy : MonoBehaviour
 {
-    public Vector3 direct =new Vector3();
+    public GameObject enemy = null;
     [SerializeField]float Speed;
-    float timeLife = 2f;
-    GameScript gameScript;
+    float timeLife = 10f;
     ObjectPool objectpool;
+    public Vector2 direct = new Vector2();
 
     private void Awake()
     {
-        gameScript = GameObject.Find("GameManager").GetComponent<GameScript>();
+
     }
 
 
     private void OnEnable()
     {
-        timeLife = 2f;  
+        if (enemy != null && enemy.activeInHierarchy) 
+        {
+           direct = (enemy.transform.position - transform.position).normalized;
+        }
+        else
+            objectpool.BackToPoll(this.gameObject);
+        timeLife = 10f;  
         
     }
   
@@ -36,8 +41,8 @@ public class MoveToEnemy : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(direct);
         transform.Translate(Speed * direct * Time.deltaTime);
+        Debug.Log(direct);
         timeLife -= Time.deltaTime;
         if (timeLife <= 0) {
             objectpool.BackToPoll(this.gameObject);

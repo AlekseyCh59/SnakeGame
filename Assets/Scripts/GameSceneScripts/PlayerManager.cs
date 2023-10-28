@@ -26,7 +26,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        playerWeapon.Add(StatRoot.Weapon[0]);
+        //playerWeapon.Add(StatRoot.Weapon[0]);
     }
 
     /*    public void ReceiveDamage(float damage)

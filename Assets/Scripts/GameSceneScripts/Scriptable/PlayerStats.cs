@@ -78,9 +78,9 @@ public class PlayerStats : ScriptableObject
     {
         GlobalEventManager.SendPlayerLevelUp();
         level++;
-        expforlevel *= (float)Math.Exp((double)expforlevel);
+        expforlevel = (float)Math.Exp((double)expforlevel);
         maxhp *= 1.15f; 
-        currentHP =maxhp;
+        currentHP=maxhp;
         playerWeapon.Add(StatRoot.Weapon[0]);
         //ChooseBonus();
     }
