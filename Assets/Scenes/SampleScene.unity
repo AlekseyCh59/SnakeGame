@@ -823,7 +823,6 @@ GameObject:
   - component: {fileID: 539293696}
   - component: {fileID: 539293695}
   - component: {fileID: 539293697}
-  - component: {fileID: 539293698}
   - component: {fileID: 539293699}
   - component: {fileID: 539293700}
   m_Layer: 0
@@ -849,7 +848,6 @@ MonoBehaviour:
   money: {fileID: 318169481}
   Exp: {fileID: 1316700220}
   level: {fileID: 1936758339}
-  stats: {fileID: 11400000, guid: 4519b8b2dfc7eee4086be6fc6a14308c, type: 2}
   SnakeList: []
 --- !u!4 &539293696
 Transform:
@@ -878,19 +876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b557ced94d91cde4cade556d76a51752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 4519b8b2dfc7eee4086be6fc6a14308c, type: 2}
---- !u!114 &539293698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 539293694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6815539674a7ec4782039226da78f3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  money: 0
 --- !u!114 &539293699
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1319510712740268496}
   - component: {fileID: 7422550451450757555}
   - component: {fileID: 4745039356117274423}
-  - component: {fileID: -6206979638246941191}
   m_Layer: 0
   m_Name: Tail
   m_TagString: Player
@@ -150,18 +149,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-6206979638246941191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2376674306866171090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9406274259c8b544a06942dbf7d23f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4302841264733873499
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +269,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 50
 --- !u!114 &9115758955479171848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,5 +282,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 493c7c37af024f147b632944d82a9bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 4519b8b2dfc7eee4086be6fc6a14308c, type: 2}
   Weapon: {fileID: 4302841264733873499}

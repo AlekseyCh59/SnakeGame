@@ -24,11 +24,12 @@ public class ObjectPool : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        FillPool();
     }
 
     private void Start()
     {
-        FillPool();
+
     }
 
     //заполнение пулов объектами и помещение в словарь
@@ -57,7 +58,7 @@ public class ObjectPool : MonoBehaviour
             if (!item.activeInHierarchy)
             {
                 item.transform.SetPositionAndRotation(position, rotation);
-                item.SetActive(true);
+                
                 return item;
             }
         }
@@ -68,6 +69,5 @@ public class ObjectPool : MonoBehaviour
     public void BackToPoll(GameObject obj)
     {
         obj.SetActive(false);
-        obj.transform.position = new Vector2(999, 999);
     }
 }

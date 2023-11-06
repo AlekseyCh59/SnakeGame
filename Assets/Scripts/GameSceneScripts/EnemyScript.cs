@@ -4,18 +4,16 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
     [SerializeField] Transform PlayerPos;
-    Rigidbody2D rbEnemy;
     Vector3 Direct;
     public float currentHp { get; private set; }
     public GameObject exp;
     public GameScript gameScript; //PUBLIC?!
     public EnemyStats enemyStats;
-    int cadr = 0;
+    float cadr = 1;
     ObjectPool objectpool;
 
     private void Awake()
     {
-
         gameScript = GameObject.Find("GameManager").GetComponent<GameScript>();
     }
 
@@ -25,7 +23,6 @@ public class EnemyScript : MonoBehaviour
         objectpool = ObjectPool.Instance;
         PlayerPos = gameScript.SnakeList[0].transform;
         currentHp = enemyStats.maxhp;
-        rbEnemy = GetComponent<Rigidbody2D>();
     }
 
 
@@ -52,6 +49,7 @@ public class EnemyScript : MonoBehaviour
                 GlobalEventManager.SendEnemyKilled(gameObject);
                 GameObject obj = objectpool.SpawnFromPool("Exp", gameObject.transform.position, transform.rotation);
                 obj.GetComponent<ExpEat>().exp = enemyStats.experiens;
+                obj.SetActive(true);
                 objectpool.BackToPoll(gameObject);
 
             }
@@ -64,26 +62,25 @@ public class EnemyScript : MonoBehaviour
 
     private void Update()
     {
-        cadr++;
-        if (cadr == 10)
+        cadr -= Time.deltaTime;
+
+        if (cadr <= 0)
         {
-            float min = (gameScript.SnakeList[0].transform.position - this.transform.position).magnitude;
-            foreach (var item in gameScript.SnakeList)
-            {
-                float distance = (item.transform.position - this.transform.position).magnitude;
-                if (min > distance)
+            float min = float.MaxValue;
+                foreach (var item in gameScript.SnakeList)
                 {
-                    min = distance;
-                    PlayerPos = item.transform;
+                    float distance = (item.transform.position - this.transform.position).sqrMagnitude;
+                    if (min > distance)
+                    {
+                        min = distance;
+                        PlayerPos = item.transform;
+                    }
                 }
-            }
-            cadr =0;
+                cadr = 1;
         }
-        Direct = PlayerPos.position - transform.position;
-        Direct.Normalize();
-        rbEnemy.MovePosition(transform.position + Direct * enemyStats.speed * Time.deltaTime);
-
-
+            Direct = PlayerPos.position - transform.position;
+            Direct.Normalize();
+            transform.Translate(Direct * enemyStats.speed * Time.deltaTime); 
     }
 
 }

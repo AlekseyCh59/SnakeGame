@@ -20,7 +20,6 @@ public class StateController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(StatRoot.Enemies[0].damage);
         InitialState(new MainMenuState(mainMenu) );
     }
 

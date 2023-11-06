@@ -16,8 +16,7 @@ public class GameScript : MonoBehaviour
     public TMP_Text level;
 
     // Скриптаблы
-    public PlayerStats stats;
-
+    PlayerManager playerStats;
     Random random = new Random();
     public static bool gameIsPaused = false;
 
@@ -37,43 +36,12 @@ public class GameScript : MonoBehaviour
         EnemyTier4
     }
 
-    private void Init() { 
-    stats.maxhp = StatRoot.Player[0].maxhp;
-        stats.currentHP = StatRoot.Player[0].maxhp;
-        stats.speed = StatRoot.Player[0].speed;
-        stats.armor = StatRoot.Player[0].armor;
-        stats.phisicresisance = StatRoot.Player[0].phisicresisance;
-        stats.magicresisance = StatRoot.Player[0].magicresisance;
-        stats.fireresisance = StatRoot.Player[0].fireresisance;
-        stats.iceresisance = StatRoot.Player[0].iceresisance;
-        stats.lightingresisance = StatRoot.Player[0].lightingresisance;
-        stats.shield = StatRoot.Player[0].shield;
-        stats.shieldsize = StatRoot.Player[0].shieldsize;
-        stats.bonuscooldown = StatRoot.Player[0].bonuscooldown;
-        stats.bonusdamage = StatRoot.Player[0].bonusdamage;
-        stats.bonusprojectile = StatRoot.Player[0].bonusprojectile;
-        stats.bonuscritchance = StatRoot.Player[0].bonuscritchance;
-        stats.bonuscritdamage = StatRoot.Player[0].bonuscritdamage;
-        stats.bonusfiredamage = StatRoot.Player[0].bonusfiredamage;
-        stats.bonusicedamage = StatRoot.Player[0].bonusicedamage;
-        stats.bonuslightingdamage = StatRoot.Player[0].bonuslightingdamage;
-        stats.bonusmoney = StatRoot.Player[0].bonusmoney;
-        stats.bonusexp = StatRoot.Player[0].bonusexp;
-        stats.regeneration = StatRoot.Player[0].regeneration;
-        stats.level = StatRoot.Player[0].level;
-        stats.experience = StatRoot.Player[0].experience;
-        stats.expforlevel = StatRoot.Player[0].expforlevel;
-    }
+
+
 
     private void Awake()
     {
-        Init();
-        //Подписки на события
-        GlobalEventManager.OnPlayerDamage.AddListener(stats.ReceiveDamage);
-        GlobalEventManager.OnConsumeExp.AddListener(stats.ReceiveExp);
-        GlobalEventManager.OnConsumeFood.AddListener(stats.ReceiveHeal);
-        GlobalEventManager.OnConsumeCoin.AddListener(stats.ReceiveMoney);
-
+        playerStats = this.GetComponent<PlayerManager>();
 
     }
 
@@ -84,24 +52,11 @@ public class GameScript : MonoBehaviour
     void Start()
     {
         objectpool = ObjectPool.Instance;
-        StartCoroutine(SpawnEnemy(spawnEnemyInterwal));
         StartCoroutine(SpawnFood(spawnFoodInterwal));
         StartCoroutine(SpawnCoin(spawnCoinInterwal));
 
-
-        
-
     }
-    private IEnumerator SpawnEnemy(float interwal)
-    {
 
-        yield return new WaitForSeconds(interwal);
-        int tier =random.Next(0, 2);
-        objectpool.SpawnFromPool(((Enemies)tier).ToString(), 
-            new Vector3(random.Next(-40, 40)/2, random.Next(-40, 40) / 2, 0), 
-            transform.rotation);
-        StartCoroutine(SpawnEnemy(interwal));
-    }
 
     private IEnumerator SpawnFood(float interwal)
     {
@@ -115,9 +70,9 @@ public class GameScript : MonoBehaviour
     private IEnumerator SpawnCoin(float interwal)
     {
         yield return new WaitForSeconds(interwal);
-        objectpool.SpawnFromPool("Coin",
-            new Vector3(random.Next(-40, 40), random.Next(-40, 40), 0),
+        objectpool.SpawnFromPool("Coin", new Vector3(random.Next(-40, 40)/2, random.Next(-40, 40)/2, 0),
             transform.rotation);
+
         StartCoroutine(SpawnCoin(interwal));
     }
 
@@ -134,7 +89,21 @@ public class GameScript : MonoBehaviour
 
 
         if (Input.GetKeyDown(KeyCode.X))
-            stats.LevelUp();
+            playerStats.LevelUp();
+
+        spawnEnemyInterwal -= Time.deltaTime;
+        if (spawnEnemyInterwal <= 0)
+        {
+            spawnEnemyInterwal = 1;
+            SpawnEnemy();
+        }
+    }
+    private void SpawnEnemy()
+    {   
+        GameObject obj = objectpool.SpawnFromPool(((Enemies)random.Next(0, 2)).ToString(),
+        new Vector3(random.Next(-40, 40) / 2, random.Next(-40, 40) / 2, 0), transform.rotation);
+        GlobalEventManager.SendEnemySpawn(obj);
+        obj.SetActive(true);
     }
 
     private void GameExit()
@@ -144,10 +113,10 @@ public class GameScript : MonoBehaviour
 
     private void MyInterface()
     {
-        hp.text = Math.Round(stats.maxhp) + "/" + Math.Round(stats.currentHP);
-        Exp.text = Math.Round(stats.expforlevel) + "/" + Math.Round(stats.experience);
-        money.text = stats.money.ToString();
-        level.text = stats.level.ToString();
+        hp.text = Math.Round(playerStats.maxhp) + "/" + Math.Round(playerStats.currentHP);
+        Exp.text = Math.Round(playerStats.expforlevel) + "/" + Math.Round(playerStats.experience);
+        money.text = playerStats.money.ToString();
+        level.text = playerStats.level.ToString();
     }
     void GamePause() {
             if (gameIsPaused)

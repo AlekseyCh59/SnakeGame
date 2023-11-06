@@ -19,7 +19,7 @@ public class SnakeTail : MonoBehaviour
     List<SpriteRenderer> RenderTail = new();
     private void Awake()
     {
-        GlobalEventManager.OnPlayerLevelUp.AddListener(AddCircle);
+        GlobalEventManager.OnPlayerLevelUp+=AddCircle;
         gameManager = GameObject.Find("GameManager").GetComponent<GameScript>();
         spawner = GameObject.Find("GameManager").GetComponent<Spawner>();
         gameManager.SnakeList.Add(gameObject);

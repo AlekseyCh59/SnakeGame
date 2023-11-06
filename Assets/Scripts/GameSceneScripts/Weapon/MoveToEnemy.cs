@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class MoveToEnemy : MonoBehaviour
 {
-    public GameObject enemy = null;
+    public GameObject enemy;
     [SerializeField]float Speed;
-    float timeLife = 10f;
+    float timeLife = 2;
     ObjectPool objectpool;
     public Vector2 direct = new Vector2();
 
@@ -19,13 +19,13 @@ public class MoveToEnemy : MonoBehaviour
 
     private void OnEnable()
     {
-        if (enemy != null && enemy.activeInHierarchy) 
+        if (enemy != null) 
         {
            direct = (enemy.transform.position - transform.position).normalized;
+
         }
-        else
-            objectpool.BackToPoll(this.gameObject);
-        timeLife = 10f;  
+
+        timeLife = 2;  
         
     }
   
@@ -42,7 +42,6 @@ public class MoveToEnemy : MonoBehaviour
     private void Update()
     {
         transform.Translate(Speed * direct * Time.deltaTime);
-        Debug.Log(direct);
         timeLife -= Time.deltaTime;
         if (timeLife <= 0) {
             objectpool.BackToPoll(this.gameObject);

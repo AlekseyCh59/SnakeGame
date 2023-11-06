@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    [SerializeField] PlayerStats stats;
+    PlayerManager playerStats;
     string key = "up";
     Rigidbody2D PhisycsBody;
     [SerializeField] Sprite[] SpriteHead = new Sprite[3];
     SpriteRenderer RenderHead;
     private void Awake()
     {
+        playerStats = GameObject.Find("GameManager").GetComponent<PlayerManager>();
         RenderHead = GetComponent<SpriteRenderer>();
         PhisycsBody = GetComponent<Rigidbody2D>();
     }
@@ -24,10 +25,10 @@ public class Move : MonoBehaviour
             key = "left";
         switch (key)
         {
-            case "up": PhisycsBody.MovePosition(transform.position + Vector3.up * stats.speed * Time.deltaTime); break;
-            case "down": PhisycsBody.MovePosition(transform.position + Vector3.down * stats.speed * Time.deltaTime); break;
-            case "right": PhisycsBody.MovePosition(transform.position + Vector3.right * stats.speed * Time.deltaTime); break;
-            case "left": PhisycsBody.MovePosition(transform.position + Vector3.left * stats.speed * Time.deltaTime); break;
+            case "up": PhisycsBody.MovePosition(transform.position + Vector3.up * playerStats.speed * Time.deltaTime); break;
+            case "down": PhisycsBody.MovePosition(transform.position + Vector3.down * playerStats.speed * Time.deltaTime); break;
+            case "right": PhisycsBody.MovePosition(transform.position + Vector3.right * playerStats.speed * Time.deltaTime); break;
+            case "left": PhisycsBody.MovePosition(transform.position + Vector3.left * playerStats.speed * Time.deltaTime); break;
 
         }
     }
