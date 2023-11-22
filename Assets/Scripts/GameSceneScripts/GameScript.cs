@@ -11,10 +11,12 @@ public class GameScript : MonoBehaviour
 {
     // Интерфейс
     public TMP_Text hp;
+    public RectTransform Fluid;
+    public float fluidPos;
     public TMP_Text money;
     public TMP_Text Exp;
     public TMP_Text level;
-
+    
     // Скриптаблы
     PlayerManager playerStats;
     Random random = new Random();
@@ -42,7 +44,6 @@ public class GameScript : MonoBehaviour
     private void Awake()
     {
         playerStats = this.GetComponent<PlayerManager>();
-
     }
 
 
@@ -113,7 +114,9 @@ public class GameScript : MonoBehaviour
 
     private void MyInterface()
     {
-        hp.text = Math.Round(playerStats.maxhp) + "/" + Math.Round(playerStats.currentHP);
+        hp.text = playerStats.maxhp + "/" + playerStats.currentHP;
+        fluidPos = -92f + (84.5f * ((float)playerStats.currentHP / playerStats.maxhp));
+        Fluid.localPosition = new Vector3(0, fluidPos, 0);
         Exp.text = Math.Round(playerStats.expforlevel) + "/" + Math.Round(playerStats.experience);
         money.text = playerStats.money.ToString();
         level.text = playerStats.level.ToString();

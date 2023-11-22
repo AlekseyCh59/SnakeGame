@@ -8,8 +8,8 @@ using UnityEngine;
 public class Player
 {
 
-    public float maxhp { get; set; }
-    public float currentHP { get; set; }
+    public int maxhp { get; set; }
+    public int currentHP { get; set; }
     public float speed { get; set; }
     public float armor { get; set; }
     public float phisicresisance { get; set; }

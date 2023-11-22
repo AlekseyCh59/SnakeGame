@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
-    public float maxhp { get; set; }
-    public float currentHP { get; set; }
+    public int maxhp { get; set; }
+    public int currentHP { get; set; }
     public float speed { get; set; }
     public float armor { get; set; }
     public float phisicresisance { get; set; }
@@ -92,7 +92,7 @@ public class PlayerManager : MonoBehaviour
 
     public void ReceiveDamage(float damage)
     {
-        currentHP -= damage;
+        currentHP = (int)(currentHP - damage);
         if (currentHP <= 0)
         {
 
@@ -103,7 +103,7 @@ public class PlayerManager : MonoBehaviour
     //Получение лечения
     public void ReceiveHeal(float heal)
     {
-        currentHP += heal;
+        currentHP = (int)(currentHP + heal);
         if (currentHP >= maxhp)
             currentHP = maxhp;
     }
@@ -123,7 +123,7 @@ public class PlayerManager : MonoBehaviour
         GlobalEventManager.SendPlayerLevelUp();
         level++;
         expforlevel *= 1.6f;
-        maxhp *= 1.15f;
+        maxhp = (int)(maxhp * 1.15f);
         currentHP = maxhp;
         playerWeapon.Add(StatRoot.Weapon[0]);
         //ChooseBonus();
