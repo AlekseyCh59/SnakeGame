@@ -7,21 +7,21 @@ public class EnemyScript : MonoBehaviour
     Vector3 Direct;
     public float currentHp { get; private set; }
     public GameObject exp;
-    public GameScript gameScript; //PUBLIC?!
+    public PlayerManager playerScript; //PUBLIC?!
     public EnemyStats enemyStats;
     float cadr = 1;
     ObjectPool objectpool;
 
     private void Awake()
     {
-        gameScript = GameObject.Find("GameManager").GetComponent<GameScript>();
+        playerScript = GameObject.Find("GameManager").GetComponent<PlayerManager>();
     }
 
 
     private void Start()
     {
         objectpool = ObjectPool.Instance;
-        PlayerPos = gameScript.SnakeList[0].transform;
+        PlayerPos = playerScript.SnakeList[0].transform;
         currentHp = enemyStats.maxhp;
     }
 
@@ -67,7 +67,7 @@ public class EnemyScript : MonoBehaviour
         if (cadr <= 0)
         {
             float min = float.MaxValue;
-                foreach (var item in gameScript.SnakeList)
+                foreach (var item in playerScript.SnakeList)
                 {
                     float distance = (item.transform.position - this.transform.position).sqrMagnitude;
                     if (min > distance)

@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
-    public int maxhp { get; set; }
-    public int currentHP { get; set; }
+    public float maxhp { get; set; }
+    public float currentHP { get; set; }
     public float speed { get; set; }
     public float armor { get; set; }
     public float phisicresisance { get; set; }
@@ -33,9 +33,12 @@ public class PlayerManager : MonoBehaviour
     public float expforlevel { get; set; }
 
     public List<Weapon> playerWeapon = new List<Weapon>();
+    public List<GameObject> SnakeList = new();
     //Нужно добавить?
     float scaleExpForLevel;
     public int money;
+
+    public GameObject Tail;
 
 
 
@@ -92,7 +95,7 @@ public class PlayerManager : MonoBehaviour
 
     public void ReceiveDamage(float damage)
     {
-        currentHP = (int)(currentHP - damage);
+        currentHP -= damage;
         if (currentHP <= 0)
         {
 
@@ -103,7 +106,7 @@ public class PlayerManager : MonoBehaviour
     //Получение лечения
     public void ReceiveHeal(float heal)
     {
-        currentHP = (int)(currentHP + heal);
+        currentHP += heal;
         if (currentHP >= maxhp)
             currentHP = maxhp;
     }
@@ -120,14 +123,21 @@ public class PlayerManager : MonoBehaviour
     //Поднятие уровня
     public void LevelUp()
     {
-        GlobalEventManager.SendPlayerLevelUp();
+
         level++;
         expforlevel *= 1.6f;
-        maxhp = (int)(maxhp * 1.15f);
+        maxhp *= 1.15f;
         currentHP = maxhp;
         playerWeapon.Add(StatRoot.Weapon[0]);
         //ChooseBonus();
+        GameObject circle = Instantiate(Tail, SnakeList[^1].transform.position, Quaternion.identity); ;
+        SnakeList.Add(circle);
+        WeaponScript obj =  SnakeList[^1].GetComponentInChildren<WeaponScript>();
+        obj.weaponStat = StatRoot.Weapon[0];
+        //obj.gameObject.SetActive(true);
+        GlobalEventManager.SendPlayerLevelUp();
     }
+
 
     //Регенерация
     public void Regeneration(float regen)

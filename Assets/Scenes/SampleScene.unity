@@ -911,6 +911,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: {fileID: 1049092116}
   Fluid: {fileID: 813761058}
+  fluidPos: 0
   money: {fileID: 318169481}
   Exp: {fileID: 1316700220}
   level: {fileID: 1936758339}
@@ -942,7 +943,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b557ced94d91cde4cade556d76a51752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SnakeList: []
   money: 0
+  Tail: {fileID: 2376674306866171090, guid: 9a2b54940e26d5245a60cf9575aa888a, type: 3}
 --- !u!114 &539293699
 MonoBehaviour:
   m_ObjectHideFlags: 0

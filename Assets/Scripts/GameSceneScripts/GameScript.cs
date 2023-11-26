@@ -114,10 +114,10 @@ public class GameScript : MonoBehaviour
 
     private void MyInterface()
     {
-        hp.text = playerStats.maxhp + "/" + playerStats.currentHP;
-        fluidPos = -92f + (84.5f * ((float)playerStats.currentHP / playerStats.maxhp));
+        hp.text = (int)playerStats.maxhp + "/" + (int)playerStats.currentHP;
+        fluidPos = -92f + (84.5f * (int)(playerStats.currentHP / playerStats.maxhp));
         Fluid.localPosition = new Vector3(0, fluidPos, 0);
-        Exp.text = Math.Round(playerStats.expforlevel) + "/" + Math.Round(playerStats.experience);
+        Exp.text = (int)playerStats.expforlevel + "/" + (int)playerStats.experience;
         money.text = playerStats.money.ToString();
         level.text = playerStats.level.ToString();
     }
