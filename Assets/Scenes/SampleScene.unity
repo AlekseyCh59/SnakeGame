@@ -945,7 +945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SnakeList: []
   money: 0
-  Tail: {fileID: 2376674306866171090, guid: 9a2b54940e26d5245a60cf9575aa888a, type: 3}
+  Tail: {fileID: 971861435420612157, guid: 9a2b54940e26d5245a60cf9575aa888a, type: 3}
 --- !u!114 &539293699
 MonoBehaviour:
   m_ObjectHideFlags: 0

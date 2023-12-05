@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Transform player;
-
+    
     //Границы
     [SerializeField]
     float leftLimit;
@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     float bottomLimit;
 
-
+    public int target = 200;
 
     public void FindPlayer()
     {
@@ -24,7 +24,11 @@ public class CameraController : MonoBehaviour
         transform.position = new Vector3(player.position.x, player.position.y, -20);
 
     }
-
+    void Awake()
+    {
+/*        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = target;*/
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +37,8 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       /* if (Application.targetFrameRate != target)
+            Application.targetFrameRate = target;*/
         if (player == null)
         {
             FindPlayer();

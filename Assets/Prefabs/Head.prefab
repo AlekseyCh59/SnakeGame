@@ -149,7 +149,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!114 &4908324424213336161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30400f9afc014434a92da0fb9f87fc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 4519b8b2dfc7eee4086be6fc6a14308c, type: 2}
   SpriteHead:
   - {fileID: -1222771115, guid: a9158ad89e07e254281ac772d118f270, type: 3}
   - {fileID: -1253609403, guid: a9158ad89e07e254281ac772d118f270, type: 3}
@@ -179,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d38f8a65f4ab2a8418b487b405f43973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tail: {fileID: 2376674306866171090, guid: 9a2b54940e26d5245a60cf9575aa888a, type: 3}
+  Tail: {fileID: 971861435420612157, guid: 9a2b54940e26d5245a60cf9575aa888a, type: 3}
   CircleDiameter: 1
   SpriteTail:
   - {fileID: 678180908, guid: a9158ad89e07e254281ac772d118f270, type: 3}

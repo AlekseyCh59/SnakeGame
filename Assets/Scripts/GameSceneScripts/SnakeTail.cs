@@ -5,7 +5,6 @@ using UnityEngine.UIElements;
 
 public class SnakeTail : MonoBehaviour
 {
-
     [SerializeField] public GameObject Tail;
     [SerializeField] private float CircleDiameter;
     private List<Vector2> positions = new List<Vector2>();
@@ -15,6 +14,7 @@ public class SnakeTail : MonoBehaviour
     Vector2 dir;
     [SerializeField] Sprite[] SpriteTail = new Sprite[6];
     List<SpriteRenderer> RenderTail = new();
+    Vector3 diametr = new Vector3(0.5f, 0.5f,0);
     private void Awake()
     {
         GlobalEventManager.OnPlayerLevelUp+=AddCircle;
@@ -28,11 +28,11 @@ public class SnakeTail : MonoBehaviour
         
         positions.Add(transform.position);
     }
-    private void Update()
+    private void FixedUpdate()
     {
         float distance = ((Vector2)playerManager.SnakeList[0].transform.position - positions[0]).magnitude;
 
-        if (distance > CircleDiameter)
+       /* if (distance > CircleDiameter)
         {
             Vector2 direction = ((Vector2)playerManager.SnakeList[0].transform.position - positions[0]);
 
@@ -40,15 +40,15 @@ public class SnakeTail : MonoBehaviour
             positions.RemoveAt(positions.Count - 1);
 
             distance -= CircleDiameter;
-        }
+        }*/
         for (int i = 1; i < playerManager.SnakeList.Count; i++)
         {
             //уменьшение дисстанции между частями тела
-            playerManager.SnakeList[i].transform.position = Vector2.Lerp(positions[i], positions[i-1], distance / CircleDiameter);
+            playerManager.SnakeList[i].transform.position = Vector3.Lerp(playerManager.SnakeList[i].transform.position, playerManager.SnakeList[i-1].transform.position, 3*Time.fixedDeltaTime);
             
             //RenderTail[i].sprite = SpriteTail[0];
             //Получение направления (dir)
-            dir = positions[i] - positions[i - 1];
+            dir = playerManager.SnakeList[i].transform.position - playerManager.SnakeList[i-1].transform.position;
             dir.Normalize();
             //присвоение каждой части тела своего спрайта
             if (dir.x > 0.5f)
