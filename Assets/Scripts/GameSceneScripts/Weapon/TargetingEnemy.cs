@@ -9,12 +9,13 @@ public class MoveToEnemy : MonoBehaviour
     [SerializeField]float Speed;
     float timeLife = 2;
     ObjectPool objectpool;
-    public Vector2 direct = new Vector2();
-    bool ricochet = true;
+    public Vector2 direct = new();
+    int ricochet = 1;
+    Ricochet rico;
 
     private void Awake()
     {
-
+        rico = GetComponent<Ricochet>();
     }
 
 
@@ -23,9 +24,8 @@ public class MoveToEnemy : MonoBehaviour
         if (enemy != null) 
         {
            direct = (enemy.transform.position - transform.position).normalized;
-
         }
-
+        ricochet = 1;
         timeLife = 2;  
         
     }
@@ -37,16 +37,21 @@ public class MoveToEnemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag.Contains("Enemy"))
-            if (ricochet)
+            if (ricochet>0)
             {
-                ricochet = false;
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(this.transform.position, 10f);
-                foreach (var item in collection)
-                {
-
-                }
-            }else
-            objectpool.BackToPoll(this.gameObject);
+                ricochet -= 1;
+                enemy = rico.GetNewTarget(10f, collision);
+                if (enemy != collision.gameObject)
+                direct = (enemy.transform.position - transform.position).normalized;
+                else
+                    objectpool.BackToPoll(this.gameObject);
+            }
+            else
+            {
+                enemy = null;
+                objectpool.BackToPoll(this.gameObject);
+            }
+            
 
     }
     private void Update()
@@ -54,6 +59,7 @@ public class MoveToEnemy : MonoBehaviour
         transform.Translate(Speed * direct * Time.deltaTime);
         timeLife -= Time.deltaTime;
         if (timeLife <= 0) {
+            enemy = null;
             objectpool.BackToPoll(this.gameObject);
         }
 

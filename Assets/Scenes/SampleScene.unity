@@ -877,6 +877,7 @@ MonoBehaviour:
   rightLimit: 0
   toplimit: 9
   bottomLimit: -9
+  target: 200
 --- !u!1 &539293694
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,6 +995,10 @@ MonoBehaviour:
     grow: 0
   - tag: Coin
     prefab: {fileID: 9172140675602034133, guid: abffd83b511af6047b34d22a39cb5457, type: 3}
+    size: 10
+    grow: 0
+  - tag: Lighting
+    prefab: {fileID: 2575384695216457030, guid: b2066380dd0afcd41b19ea78f100d63c, type: 3}
     size: 10
     grow: 0
 --- !u!1 &607295981

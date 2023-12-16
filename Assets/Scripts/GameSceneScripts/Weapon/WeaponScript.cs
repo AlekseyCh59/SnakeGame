@@ -14,11 +14,12 @@ public class WeaponScript : MonoBehaviour
     float weaponRange = 50; //применить к колайдеру
 
 
-    string bullet = "Fire";
+    //string bullet = "Fire";
+    string bullet = "Lighting";
     Vector2 spawnPoint;
     bool nontarget = false;
     bool instancedamage = true;
-    int target=0;
+    int target=4;
     System.Random random = new System.Random();
 
     List<GameObject> tier1 = new();

@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class Ricochet : MonoBehaviour
 {
-    Rigidbody2D sphere;
-    private void Awake()
+    public GameObject GetNewTarget(float radius, Collider2D colis)
     {
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        Physics2D.OverlapCircle();
-    }
+        GameObject enemy = null;
+        float min = float.MaxValue;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(this.transform.position, radius);
+        foreach (var item in colliders)
+        {
+            if (item.tag.Contains("Enemy"))
+            {
+                float distrance = (this.gameObject.transform.position - item.gameObject.transform.position).sqrMagnitude;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+                if (min > distrance && item.gameObject != colis.gameObject && distrance > 0)
+                {
+                    min = distrance;
+                    enemy = item.gameObject;
+
+                }
+            }
+           
+        }
+        return enemy;
     }
+               
 }

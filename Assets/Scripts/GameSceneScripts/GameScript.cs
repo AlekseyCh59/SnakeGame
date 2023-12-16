@@ -104,6 +104,7 @@ public class GameScript : MonoBehaviour
         GameObject obj = objectpool.SpawnFromPool(((Enemies)random.Next(0, 2)).ToString(),
         new Vector3(random.Next(-40, 40) / 2, random.Next(-40, 40) / 2, 0), transform.rotation);
         GlobalEventManager.SendEnemySpawn(obj);
+        obj.name = random.Next(0,100).ToString();
         obj.SetActive(true);
     }
 
