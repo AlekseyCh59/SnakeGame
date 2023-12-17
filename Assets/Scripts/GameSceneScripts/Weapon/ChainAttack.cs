@@ -7,36 +7,55 @@ public class ChainAttack : MonoBehaviour
     int CountEnemies = 3;
     List<GameObject> Enemies = new();
     float radius = 10f;
-    GameObject enemy = null;
+    public GameObject enemy = null;
+    private ObjectPool objectpool;
+    public LineRenderer line;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        objectpool = ObjectPool.Instance;
+        line.startWidth = 2f;
+        line.endWidth = 2f;
+        line.positionCount = 0;
+        line.startColor= Color.red;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag.Contains("Enemy") && Enemies.Count<CountEnemies)
+        if (collision.tag.Contains("Enemy"))
         {
-            Enemies.Add(collision.gameObject);
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(this.transform.position, radius);
-            float min = float.MaxValue;
-            foreach (var item in colliders)
+            if (Enemies.Count < CountEnemies+1)
             {
-                if (item.tag.Contains("Enemy") && !Enemies.Contains(item.gameObject))
+                line.positionCount++;
+                line.SetPosition(line.positionCount, collision.gameObject.transform.position);
+                Enemies.Add(collision.gameObject);
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(this.transform.position, radius);
+                float min = float.MaxValue;
+                foreach (var item in colliders)
                 {
-                    float distance = (item.gameObject.transform.position - this.transform.position).sqrMagnitude;
-                    if (min > distance)
+                    if (item.tag.Contains("Enemy") && !Enemies.Contains(item.gameObject))
                     {
-                        min = distance;
-                        enemy = item.gameObject;
+                        float distance = (item.gameObject.transform.position - this.transform.position).sqrMagnitude;
+                        if (min > distance)
+                        {
+                            min = distance;
+                            enemy = item.gameObject;
+                        }
                     }
                 }
+                if (min != float.MaxValue)
+                {
+                    this.transform.position = enemy.transform.position;
+                }
             }
-            if (min != float.MaxValue)
+            else
             {
-                this.transform.position = enemy.transform.position;
+                line.positionCount = 0;
             }
         }
+
+        //objectpool.BackToPoll(this.gameObject);
+
     }
 }

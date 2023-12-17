@@ -234,7 +234,8 @@ public class WeaponScript : MonoBehaviour
     public void Fire(string prefab, Vector2 tranform)
     {
             GameObject fire = objectpool.SpawnFromPool(prefab, tranform, transform.rotation);
-            fire.GetComponent<MoveToEnemy>().enemy = enemy;
+            //fire.GetComponent<MoveToEnemy>().enemy = enemy;
+            fire.GetComponent<ChainAttack>().enemy = enemy;
             enemy = null;
             cooldown = 2f;
             fire.SetActive(true);
