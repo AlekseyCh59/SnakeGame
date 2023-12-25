@@ -130,7 +130,8 @@ public class PlayerManager : MonoBehaviour
         currentHP = maxhp;
         playerWeapon.Add(StatRoot.Weapon[0]);
         //ChooseBonus();
-        GameObject circle = Instantiate(Tail, SnakeList[^1].transform.position, Quaternion.identity); ;
+        GameObject circle = Instantiate(Tail, SnakeList[^1].transform.position, Quaternion.identity);
+        circle.SetActive(true);
         SnakeList.Add(circle);
         WeaponScript obj =  SnakeList[^1].GetComponentInChildren<WeaponScript>();
         obj.weaponStat = StatRoot.Weapon[0];

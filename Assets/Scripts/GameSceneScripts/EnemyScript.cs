@@ -25,10 +25,17 @@ public class EnemyScript : MonoBehaviour
         currentHp = enemyStats.maxhp;
     }
 
-
-    private void OnDisable()
+    public void GetDamage(float damage)
     {
-
+        currentHp -= damage;
+        if (currentHp <= 0 && gameObject.activeInHierarchy)
+        {
+            GlobalEventManager.SendEnemyKilled(gameObject);
+            GameObject obj = objectpool.SpawnFromPool("Exp", gameObject.transform.position, transform.rotation);
+            obj.GetComponent<ExpEat>().exp = enemyStats.experiens;
+            obj.SetActive(true);
+            objectpool.BackToPoll(gameObject);
+        }
     }
 
 
@@ -40,7 +47,7 @@ public class EnemyScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag.Contains("weapon"))
+/*        if (collision.tag.Contains("weapon"))
         {
             currentHp -= 5;
 
@@ -53,7 +60,8 @@ public class EnemyScript : MonoBehaviour
                 objectpool.BackToPoll(gameObject);
 
             }
-        } else if (collision.tag.Contains("Player"))
+        } else*/
+        if (collision.tag.Contains("Player"))
         {
             GlobalEventManager.SendPlayerDamage(enemyStats.damage);//Нужно добавить тип урона врага
 

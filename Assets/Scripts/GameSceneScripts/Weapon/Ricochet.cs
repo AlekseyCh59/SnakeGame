@@ -4,27 +4,36 @@ using UnityEngine;
 
 public class Ricochet : MonoBehaviour
 {
-    public GameObject GetNewTarget(float radius, Collider2D colis)
+    private BulletStats stats;
+    private ObjectPool objectpool;
+    private MoveToEnemy moveTo;
+
+    public void RicochetMeh(Vector3 point)
     {
         GameObject enemy = null;
         float min = float.MaxValue;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(this.transform.position, radius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(point, stats.distance);
         foreach (var item in colliders)
         {
             if (item.tag.Contains("Enemy"))
             {
                 float distrance = (this.gameObject.transform.position - item.gameObject.transform.position).sqrMagnitude;
 
-                if (min > distrance && item.gameObject != colis.gameObject && distrance > 0)
+                if (min > distrance && item.gameObject.transform.position != point && distrance > 0)
                 {
                     min = distrance;
                     enemy = item.gameObject;
-
                 }
-            }
-           
+            }        
         }
-        return enemy;
+        stats.ricocount -= 1;
+        if (enemy != null && enemy.activeInHierarchy)
+        moveTo.direct = (enemy.transform.position-this.transform.position).normalized;
     }
-               
+    private void Start()
+    {
+        stats = GetComponent<BulletStats>();
+        objectpool = ObjectPool.Instance;
+        moveTo = GetComponent<MoveToEnemy>();
+    }
 }

@@ -19,16 +19,17 @@ public class GameScript : MonoBehaviour
     
     // Скриптаблы
     PlayerManager playerStats;
+
     Random random = new Random();
     public static bool gameIsPaused = false;
 
     //Массивы
-
     [SerializeField] public List<GameObject> SnakeList = new();
     ObjectPool objectpool;
     private float spawnEnemyInterwal = 1;
     private float spawnFoodInterwal = 10;
     private float spawnCoinInterwal = 1;
+    List<LineRenderer> lineList = new();
 
     public enum Enemies
     {
@@ -38,7 +39,10 @@ public class GameScript : MonoBehaviour
         EnemyTier4
     }
 
-
+    public void DrawLine(LineRenderer line)
+    {
+        lineList.Add(line);
+    }
 
 
     private void Awake()
@@ -53,29 +57,8 @@ public class GameScript : MonoBehaviour
     void Start()
     {
         objectpool = ObjectPool.Instance;
-        StartCoroutine(SpawnFood(spawnFoodInterwal));
-        StartCoroutine(SpawnCoin(spawnCoinInterwal));
-
     }
 
-
-    private IEnumerator SpawnFood(float interwal)
-    {
-        yield return new WaitForSeconds(interwal);
-        objectpool.SpawnFromPool("Food", 
-            new Vector3(random.Next(-40, 40) / 2, random.Next(-40, 40) / 2, 0), 
-            transform.rotation);
-        StartCoroutine(SpawnFood(interwal));
-    }
-
-    private IEnumerator SpawnCoin(float interwal)
-    {
-        yield return new WaitForSeconds(interwal);
-        objectpool.SpawnFromPool("Coin", new Vector3(random.Next(-40, 40)/2, random.Next(-40, 40)/2, 0),
-            transform.rotation);
-
-        StartCoroutine(SpawnCoin(interwal));
-    }
 
 
     // Update is called once per frame
@@ -95,7 +78,7 @@ public class GameScript : MonoBehaviour
         spawnEnemyInterwal -= Time.deltaTime;
         if (spawnEnemyInterwal <= 0)
         {
-            spawnEnemyInterwal = 1;
+            spawnEnemyInterwal = 0.1f;
             SpawnEnemy();
         }
     }

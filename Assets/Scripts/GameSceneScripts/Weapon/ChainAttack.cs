@@ -4,58 +4,74 @@ using UnityEngine;
 
 public class ChainAttack : MonoBehaviour
 {
+    BulletStats stats;
     int CountEnemies = 3;
-    List<GameObject> Enemies = new();
-    float radius = 10f;
+    List<Vector3> Enemies = new();
+    float chainDamage = 0.75f;
     public GameObject enemy = null;
     private ObjectPool objectpool;
-    public LineRenderer line;
-
     // Start is called before the first frame update
     void Start()
     {
+        stats = GetComponent<BulletStats>();
         objectpool = ObjectPool.Instance;
-        line.startWidth = 2f;
-        line.endWidth = 2f;
-        line.positionCount = 0;
-        line.startColor= Color.red;
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnEnable()
     {
-        if (collision.tag.Contains("Enemy"))
+        chainDamage = 0.75f;
+    }
+    public void Chain(Vector3 startPosition)
+    {
+        stats.line.positionCount = 0;
+        Enemies.Add(startPosition);
+        while (Enemies.Count<CountEnemies)
         {
-            if (Enemies.Count < CountEnemies+1)
+            enemy = null;
+            GetNewEnemy(Enemies[^1]);
+            if (enemy != null)
             {
-                line.positionCount++;
-                line.SetPosition(line.positionCount, collision.gameObject.transform.position);
-                Enemies.Add(collision.gameObject);
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(this.transform.position, radius);
-                float min = float.MaxValue;
-                foreach (var item in colliders)
-                {
-                    if (item.tag.Contains("Enemy") && !Enemies.Contains(item.gameObject))
-                    {
-                        float distance = (item.gameObject.transform.position - this.transform.position).sqrMagnitude;
-                        if (min > distance)
-                        {
-                            min = distance;
-                            enemy = item.gameObject;
-                        }
-                    }
-                }
-                if (min != float.MaxValue)
-                {
-                    this.transform.position = enemy.transform.position;
-                }
+                if (enemy.TryGetComponent<EnemyScript>(out EnemyScript nextEnemy))
+                    nextEnemy.GetDamage(stats.damage * chainDamage);
+                chainDamage /= 2;
             }
             else
             {
-                line.positionCount = 0;
+                break;
             }
         }
+        DrawLine();
 
-        //objectpool.BackToPoll(this.gameObject);
+    }
 
+    private void GetNewEnemy(Vector3 target)
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(target, stats.distance);
+        float min = float.MaxValue;
+        foreach (var item in colliders)
+        {
+            if (item.tag.Contains("Enemy") && !Enemies.Contains(item.gameObject.transform.position))
+            {
+                float distance = (item.gameObject.transform.position - target).sqrMagnitude;
+                if (min > distance)
+                {
+                    min = distance;
+                    enemy = item.gameObject;
+                }
+            }
+        }
+        if(enemy!=null)
+        Enemies.Add(enemy.transform.position);
+
+    }
+
+    private void DrawLine()
+    {
+
+        stats.line.positionCount = Enemies.Count;
+        for (int i = 0; i < stats.line.positionCount; i++)
+        {
+            stats.line.SetPosition(i, Enemies[i]);
+        }
+        Enemies.Clear();
     }
 }

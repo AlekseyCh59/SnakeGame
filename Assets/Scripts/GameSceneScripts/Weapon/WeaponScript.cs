@@ -12,14 +12,14 @@ public class WeaponScript : MonoBehaviour
     GameObject enemy;
     public Weapon weaponStat;
     float weaponRange = 50; //применить к колайдеру
+    LineRenderer line;
 
-
-    //string bullet = "Fire";
-    string bullet = "Lighting";
+    string bullet = "Fire";
+    //string bullet = "Lighting";
     Vector2 spawnPoint;
     bool nontarget = false;
     bool instancedamage = true;
-    int target=4;
+    int target=0;
     System.Random random = new System.Random();
 
     List<GameObject> tier1 = new();
@@ -71,6 +71,13 @@ public class WeaponScript : MonoBehaviour
    
     private void Awake()
     {
+        line = GetComponent<LineRenderer>();
+        line.positionCount = 0;
+        line.useWorldSpace = true;
+        line.endWidth = 0.2f;
+        line.startWidth = 0.2f;
+        line.startColor = Color.red;
+        line.endColor = Color.red;
         if (target !=6)
         {
             gameObject.GetComponent<Collider2D>().enabled = true;
@@ -97,7 +104,6 @@ public class WeaponScript : MonoBehaviour
     //Прицелы
     public void FindTarget()
     {
-
         switch ((Targeting)target)
         {
             case Targeting.Nearest:
@@ -138,7 +144,6 @@ public class WeaponScript : MonoBehaviour
             default:
                 break;
         }
-
     }
 
 
@@ -233,9 +238,10 @@ public class WeaponScript : MonoBehaviour
 
     public void Fire(string prefab, Vector2 tranform)
     {
+            line.positionCount = 0;
             GameObject fire = objectpool.SpawnFromPool(prefab, tranform, transform.rotation);
-            //fire.GetComponent<MoveToEnemy>().enemy = enemy;
-            fire.GetComponent<ChainAttack>().enemy = enemy;
+            fire.GetComponent<BulletStats>().GetStats(10,20,15,10, enemy);
+            fire.GetComponent<BulletStats>().line = line;
             enemy = null;
             cooldown = 2f;
             fire.SetActive(true);
